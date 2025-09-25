@@ -964,6 +964,90 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
             </div>
+
+            {/* Zona de Perigo - Exclusão de Conta */}
+            <Card className="bg-red-900/20 border-red-500/50">
+              <CardHeader>
+                <CardTitle className="text-red-400 flex items-center">
+                  <AlertTriangle className="mr-2 h-5 w-5" />
+                  Zona de Perigo
+                </CardTitle>
+                <CardDescription className="text-gray-400">
+                  Ações irreversíveis que afetam sua conta permanentemente
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white"
+                    >
+                      <UserMinus className="mr-2 h-4 w-4" />
+                      Excluir Conta
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="bg-slate-800 border-slate-700">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="text-red-400 flex items-center">
+                        <AlertTriangle className="mr-2 h-5 w-5" />
+                        Confirmar Exclusão da Conta
+                      </AlertDialogTitle>
+                      <AlertDialogDescription className="text-gray-300">
+                        ⚠️ Esta ação é <strong>IRREVERSÍVEL</strong> e irá remover permanentemente:
+                        <ul className="mt-2 ml-4 list-disc text-sm">
+                          <li>Sua conta e dados pessoais</li>
+                          <li>Todo histórico de treinos</li>
+                          <li>Todo histórico de nutrição</li>
+                          <li>Histórico de pagamentos</li>
+                        </ul>
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    
+                    <div className="space-y-4 my-4">
+                      <div>
+                        <Label className="text-white">Confirme sua senha</Label>
+                        <Input
+                          type="password"
+                          placeholder="Digite sua senha atual"
+                          value={deleteAccountData.password}
+                          onChange={(e) => setDeleteAccountData({...deleteAccountData, password: e.target.value})}
+                          className="bg-slate-700 border-slate-600 text-white mt-1"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label className="text-white">
+                          Digite "<strong>excluir minha conta</strong>" para confirmar
+                        </Label>
+                        <Input
+                          placeholder="excluir minha conta"
+                          value={deleteAccountData.confirmationText}
+                          onChange={(e) => setDeleteAccountData({...deleteAccountData, confirmationText: e.target.value})}
+                          className="bg-slate-700 border-slate-600 text-white mt-1"
+                        />
+                      </div>
+                    </div>
+
+                    <AlertDialogFooter>
+                      <AlertDialogCancel 
+                        className="bg-slate-700 text-white hover:bg-slate-600"
+                        onClick={() => setDeleteAccountData({password: '', confirmationText: ''})}
+                      >
+                        Cancelar
+                      </AlertDialogCancel>
+                      <AlertDialogAction 
+                        onClick={handleDeleteAccount}
+                        disabled={isDeleting}
+                        className="bg-red-600 hover:bg-red-700 text-white"
+                      >
+                        {isDeleting ? 'Excluindo...' : 'Confirmar Exclusão'}
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>
