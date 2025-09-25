@@ -8,6 +8,7 @@ import { Input } from './components/ui/input';
 import { Label } from './components/ui/label';
 import { Textarea } from './components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './components/ui/dialog';
 import { Toaster } from "./components/ui/toaster";
 import { useToast } from "./hooks/use-toast";
 import { 
@@ -22,7 +23,10 @@ import {
   LogOut,
   History,
   CreditCard,
-  Crown
+  Crown,
+  Eye,
+  Trash2,
+  Calendar
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
