@@ -85,7 +85,21 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .fitlife-logo-icon {
     width: 40px;
+    height: 14px;
+  }
+  
+  .fitlife-logo-icon::before {
+    width: 14px;
     height: 20px;
+    left: -5px;
+    top: -3px;
+  }
+  
+  .fitlife-logo-icon::after {
+    width: 14px;
+    height: 20px;
+    right: -5px;
+    top: -3px;
   }
   
   .fitlife-logo-text {
