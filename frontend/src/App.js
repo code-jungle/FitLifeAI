@@ -283,6 +283,7 @@ const AuthForms = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
     name: '',
     age: '',
     weight: '',
