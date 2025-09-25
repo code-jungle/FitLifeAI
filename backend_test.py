@@ -701,4 +701,10 @@ def test_nutrition_system():
         return 1
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import sys
+    
+    # Check if we should run nutrition tests specifically
+    if len(sys.argv) > 1 and sys.argv[1] == "nutrition":
+        sys.exit(test_nutrition_system())
+    else:
+        sys.exit(main())
