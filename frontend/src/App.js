@@ -333,13 +333,13 @@ const AuthForms = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 sm:p-6">
       <Card className="w-full max-w-md bg-slate-800 border-slate-700">
         <CardHeader className="text-center">
           <div className="fitlife-logo mx-auto mb-2">
             <div className="fitlife-logo-text">FitLife AI</div>
           </div>
-          <CardTitle className="text-white">
+          <CardTitle className="text-white text-xl sm:text-2xl">
             {isLogin ? 'Entrar na sua conta' : 'Criar conta gratuita'}
           </CardTitle>
           <CardDescription className="text-gray-400">
@@ -358,10 +358,10 @@ const AuthForms = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-slate-700 border-slate-600 text-white mt-1"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="age" className="text-white">Idade</Label>
                     <Input
@@ -370,7 +370,7 @@ const AuthForms = () => {
                       required
                       value={formData.age}
                       onChange={(e) => setFormData({...formData, age: e.target.value})}
-                      className="bg-slate-700 border-slate-600 text-white"
+                      className="bg-slate-700 border-slate-600 text-white mt-1"
                     />
                   </div>
                   <div>
@@ -382,7 +382,7 @@ const AuthForms = () => {
                       required
                       value={formData.weight}
                       onChange={(e) => setFormData({...formData, weight: e.target.value})}
-                      className="bg-slate-700 border-slate-600 text-white"
+                      className="bg-slate-700 border-slate-600 text-white mt-1"
                     />
                   </div>
                 </div>
@@ -394,7 +394,7 @@ const AuthForms = () => {
                     required
                     value={formData.height}
                     onChange={(e) => setFormData({...formData, height: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-slate-700 border-slate-600 text-white mt-1"
                   />
                 </div>
                 <div>
@@ -405,7 +405,7 @@ const AuthForms = () => {
                     placeholder="Ex: Perder peso, ganhar massa muscular, melhorar condicionamento..."
                     value={formData.goals}
                     onChange={(e) => setFormData({...formData, goals: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[80px]"
                   />
                 </div>
               </div>
@@ -419,7 +419,7 @@ const AuthForms = () => {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="bg-slate-700 border-slate-600 text-white"
+                className="bg-slate-700 border-slate-600 text-white mt-1"
               />
             </div>
             
@@ -431,7 +431,7 @@ const AuthForms = () => {
                 required
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
-                className="bg-slate-700 border-slate-600 text-white"
+                className="bg-slate-700 border-slate-600 text-white mt-1"
               />
             </div>
 
@@ -444,7 +444,7 @@ const AuthForms = () => {
                   required
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                  className={`bg-slate-700 border-slate-600 text-white ${
+                  className={`bg-slate-700 border-slate-600 text-white mt-1 ${
                     formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword
                       ? 'border-red-500 focus:border-red-500' 
                       : formData.password && formData.confirmPassword && formData.password === formData.confirmPassword
@@ -463,7 +463,7 @@ const AuthForms = () => {
 
             <Button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold"
+              className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold py-3"
               disabled={loading || (!isLogin && formData.password !== formData.confirmPassword)}
             >
               {loading ? 'Processando...' : (isLogin ? 'Entrar' : 'Criar Conta Grátis')}
@@ -485,7 +485,7 @@ const AuthForms = () => {
                   goals: ''
                 });
               }}
-              className="text-orange-400 hover:text-orange-300 transition-colors"
+              className="text-orange-400 hover:text-orange-300 transition-colors text-sm sm:text-base"
             >
               {isLogin ? 'Não tem conta? Cadastre-se' : 'Já tem conta? Faça login'}
             </button>
