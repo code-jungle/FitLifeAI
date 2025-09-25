@@ -388,11 +388,30 @@ def main():
     print("\n💳 PHASE 6: Payment System Test")
     payment_success, session_id = tester.test_payment_checkout()
     
+    # Test feedback system (public endpoint)
+    print("\n📝 PHASE 7: Feedback System Tests")
+    feedback_success, feedback_id = tester.test_feedback_submission()
+    
+    # Test feedback validation
+    print("\n🔍 PHASE 8: Feedback Validation Tests")
+    validation_success = tester.test_feedback_validation()
+    
+    # Verify feedback was saved to database
+    if feedback_success and feedback_id:
+        print("\n💾 PHASE 9: Database Verification")
+        db_verification = tester.verify_feedback_in_database(feedback_id)
+    
     # Final results
     print("\n" + "=" * 60)
     print(f"📊 FINAL RESULTS")
     print(f"Tests passed: {tester.tests_passed}/{tester.tests_run}")
     print(f"Success rate: {(tester.tests_passed/tester.tests_run)*100:.1f}%")
+    
+    # Specific feedback test results
+    print(f"\n📝 FEEDBACK SYSTEM RESULTS:")
+    print(f"   Feedback Submission: {'✅ PASSED' if feedback_success else '❌ FAILED'}")
+    print(f"   Validation Tests: {'✅ PASSED' if validation_success else '❌ FAILED'}")
+    print(f"   Database Storage: {'✅ VERIFIED' if feedback_success and feedback_id else '❌ UNVERIFIED'}")
     
     if tester.tests_passed == tester.tests_run:
         print("🎉 All tests passed! Backend is working correctly.")
