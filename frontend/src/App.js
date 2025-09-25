@@ -190,14 +190,6 @@ const LandingPage = () => {
               <span className="hidden sm:inline">Começar Agora - Grátis</span>
               <span className="sm:hidden">Começar Grátis</span>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-slate-900 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
-            >
-              <span className="hidden sm:inline">Ver Como Funciona</span>
-              <span className="sm:hidden">Como Funciona</span>
-            </Button>
           </div>
           
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-gray-400 px-4">
