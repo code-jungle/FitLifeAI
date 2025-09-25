@@ -100,7 +100,6 @@ const LandingPage = () => {
       <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="fitlife-logo">
-            <div className="fitlife-logo-icon"></div>
             <div className="fitlife-logo-text">FitLife AI</div>
           </div>
           <div className="flex items-center space-x-4">
