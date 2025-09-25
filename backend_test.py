@@ -449,97 +449,70 @@ class FitLifeAPITester:
             return False
 
 def main():
-    print("🚀 Starting FitLife AI Backend API Tests")
+    print("🚀 Starting FitLife AI Authentication System Tests")
+    print("🔍 Focus: Testing dietary_restrictions field fix")
     print("=" * 60)
     
     tester = FitLifeAPITester()
     
-    # Test sequence
-    print("\n📝 PHASE 1: Authentication Tests")
-    if not tester.test_user_registration():
-        print("❌ Registration failed, trying login instead...")
-        if not tester.test_user_login():
-            print("❌ Both registration and login failed, stopping tests")
-            return 1
+    # Test sequence for authentication system with dietary_restrictions fix
+    print("\n📝 PHASE 1: New User Registration with Dietary Restrictions")
+    registration_success = tester.test_user_registration_with_dietary_restrictions()
     
-    # Test profile access
-    print("\n👤 PHASE 2: User Profile Test")
-    if not tester.test_user_profile():
-        print("❌ Profile access failed")
+    if not registration_success:
+        print("❌ New user registration with dietary_restrictions failed")
         return 1
     
-    # Test AI suggestions (the core feature)
-    print("\n🤖 PHASE 3: AI Integration Tests")
-    workout_success = tester.test_workout_suggestion()
-    time.sleep(2)  # Brief pause between AI calls
-    nutrition_success = tester.test_nutrition_suggestion()
+    print("\n🔐 PHASE 2: Login with New User")
+    login_new_user_success = tester.test_user_login_with_new_user()
     
-    if not workout_success and not nutrition_success:
-        print("❌ Both AI suggestions failed - critical issue")
+    if not login_new_user_success:
+        print("❌ Login with new user failed")
         return 1
     
-    # Test history
-    print("\n📚 PHASE 4: History Tests")
-    workout_history_success, workout_history = tester.test_workout_history()
-    nutrition_history_success, nutrition_history = tester.test_nutrition_history()
+    print("\n👤 PHASE 3: Profile Verification with Dietary Restrictions")
+    profile_success = tester.test_user_profile_dietary_restrictions()
     
-    # Test deletion functionality if we have history items
-    print("\n🗑️ PHASE 5: History Deletion Tests")
-    if workout_history and len(workout_history) > 0:
-        first_workout_id = workout_history[0].get('id')
-        if first_workout_id:
-            tester.test_delete_workout_suggestion(first_workout_id)
-        else:
-            print("⚠️  No workout ID found for deletion test")
-    else:
-        print("⚠️  No workout history available for deletion test")
+    if not profile_success:
+        print("❌ Profile verification failed - dietary_restrictions field issue")
+        return 1
     
-    if nutrition_history and len(nutrition_history) > 0:
-        first_nutrition_id = nutrition_history[0].get('id')
-        if first_nutrition_id:
-            tester.test_delete_nutrition_suggestion(first_nutrition_id)
-        else:
-            print("⚠️  No nutrition ID found for deletion test")
-    else:
-        print("⚠️  No nutrition history available for deletion test")
+    print("\n🔄 PHASE 4: Backward Compatibility Test")
+    backward_compatibility_success = tester.test_existing_user_backward_compatibility()
     
-    # Test payment system
-    print("\n💳 PHASE 6: Payment System Test")
-    payment_success, session_id = tester.test_payment_checkout()
+    if not backward_compatibility_success:
+        print("❌ Backward compatibility test failed")
+        return 1
     
-    # Test feedback system (public endpoint)
-    print("\n📝 PHASE 7: Feedback System Tests")
-    feedback_success, feedback_id = tester.test_feedback_submission()
+    print("\n👤 PHASE 5: Profile Verification for Existing User")
+    existing_profile_success = tester.test_user_profile_dietary_restrictions()
     
-    # Test feedback validation
-    print("\n🔍 PHASE 8: Feedback Validation Tests")
-    validation_success = tester.test_feedback_validation()
-    
-    # Verify feedback was saved to database
-    if feedback_success and feedback_id:
-        print("\n💾 PHASE 9: Database Verification")
-        db_verification = tester.verify_feedback_in_database(feedback_id)
+    if not existing_profile_success:
+        print("❌ Profile verification for existing user failed")
+        return 1
     
     # Final results
     print("\n" + "=" * 60)
-    print(f"📊 FINAL RESULTS")
+    print(f"📊 AUTHENTICATION SYSTEM TEST RESULTS")
     print(f"Tests passed: {tester.tests_passed}/{tester.tests_run}")
     print(f"Success rate: {(tester.tests_passed/tester.tests_run)*100:.1f}%")
     
-    # Specific feedback test results
-    print(f"\n📝 FEEDBACK SYSTEM RESULTS:")
-    print(f"   Feedback Submission: {'✅ PASSED' if feedback_success else '❌ FAILED'}")
-    print(f"   Validation Tests: {'✅ PASSED' if validation_success else '❌ FAILED'}")
-    print(f"   Database Storage: {'✅ VERIFIED' if feedback_success and feedback_id else '❌ UNVERIFIED'}")
+    # Specific authentication test results
+    print(f"\n🔐 DIETARY RESTRICTIONS FIX VERIFICATION:")
+    print(f"   New User Registration: {'✅ PASSED' if registration_success else '❌ FAILED'}")
+    print(f"   New User Login: {'✅ PASSED' if login_new_user_success else '❌ FAILED'}")
+    print(f"   Profile with Dietary Restrictions: {'✅ PASSED' if profile_success else '❌ FAILED'}")
+    print(f"   Backward Compatibility: {'✅ PASSED' if backward_compatibility_success else '❌ FAILED'}")
+    print(f"   Existing User Profile: {'✅ PASSED' if existing_profile_success else '❌ FAILED'}")
     
     if tester.tests_passed == tester.tests_run:
-        print("🎉 All tests passed! Backend is working correctly.")
+        print("🎉 All authentication tests passed! Dietary restrictions fix verified.")
         return 0
     elif tester.tests_passed >= tester.tests_run * 0.8:
         print("⚠️  Most tests passed, minor issues detected.")
         return 0
     else:
-        print("❌ Multiple test failures detected.")
+        print("❌ Multiple test failures detected in authentication system.")
         return 1
 
 if __name__ == "__main__":
