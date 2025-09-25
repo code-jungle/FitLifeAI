@@ -797,8 +797,10 @@ const Dashboard = () => {
                                   </DialogDescription>
                                 </DialogHeader>
                                 <div className="mt-4">
-                                  <div className="whitespace-pre-wrap text-gray-300 leading-relaxed bg-slate-900/50 p-4 rounded-lg border border-slate-600">
-                                    {nutrition.suggestion}
+                                  <div className="suggestion-content">
+                                    <div className="ai-response whitespace-pre-wrap">
+                                      {nutrition.suggestion}
+                                    </div>
                                   </div>
                                 </div>
                               </DialogContent>
