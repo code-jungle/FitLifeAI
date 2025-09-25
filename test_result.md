@@ -166,7 +166,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Authentication System - Dietary Restrictions Fix"
+    - "Affordable Nutrition Suggestion System"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
