@@ -281,6 +281,118 @@ class FitLifeAPITester:
             return True
         return False
 
+    def test_nutrition_suggestion_affordable_foods(self):
+        """Test updated nutrition suggestion system with focus on affordable and accessible foods"""
+        print(f"\n🍎 Testing Updated Nutrition Suggestion - Affordable Foods Focus (this may take 15-20 seconds)...")
+        success, response = self.run_test(
+            "Generate Affordable Nutrition Suggestion",
+            "POST",
+            "suggestions/nutrition",
+            200
+        )
+        
+        if success and 'suggestion' in response:
+            suggestion = response['suggestion']
+            print(f"   ✅ AI Suggestion generated (ID: {response.get('id', 'N/A')})")
+            
+            # Analyze the content for affordable food focus
+            affordable_foods = ['ovos', 'frango', 'carne moída', 'arroz', 'feijão', 'batata', 'banana', 'maçã', 'aveia', 'leite', 'pão']
+            expensive_foods = ['castanha', 'camarão', 'salmão', 'quinoa', 'nuts', 'amêndoa', 'pistache']
+            
+            # Check for multiple meal options
+            meal_sections = ['CAFÉ DA MANHÃ', 'LANCHE DA MANHÃ', 'ALMOÇO', 'LANCHE DA TARDE', 'JANTAR']
+            
+            # Content analysis
+            suggestion_lower = suggestion.lower()
+            
+            # Check for affordable foods presence
+            affordable_found = sum(1 for food in affordable_foods if food in suggestion_lower)
+            expensive_found = sum(1 for food in expensive_foods if food in suggestion_lower)
+            
+            # Check for meal sections
+            meals_found = sum(1 for meal in meal_sections if meal in suggestion.upper())
+            
+            # Check for multiple options indicators
+            option_indicators = ['opções', 'ou', 'alternativa', '2-3', '3-4']
+            options_found = sum(1 for indicator in option_indicators if indicator in suggestion_lower)
+            
+            # Check for economic tips
+            economic_keywords = ['econômic', 'barato', 'custo', 'feira', 'sobras', 'semanal']
+            economic_tips_found = sum(1 for keyword in economic_keywords if keyword in suggestion_lower)
+            
+            # Check for specific portions
+            portion_indicators = ['gramas', 'xícara', 'colher', 'fatia', 'unidade', 'ml']
+            portions_found = sum(1 for portion in portion_indicators if portion in suggestion_lower)
+            
+            print(f"   📊 Content Analysis:")
+            print(f"      Affordable foods mentioned: {affordable_found}/{len(affordable_foods)}")
+            print(f"      Expensive foods mentioned: {expensive_found} (should be 0)")
+            print(f"      Meal sections found: {meals_found}/{len(meal_sections)}")
+            print(f"      Multiple options indicators: {options_found}")
+            print(f"      Economic tips keywords: {economic_tips_found}")
+            print(f"      Portion specifications: {portions_found}")
+            
+            # Validation criteria
+            criteria_met = 0
+            total_criteria = 6
+            
+            if affordable_found >= 5:
+                print(f"   ✅ Criterion 1: Affordable foods focus (found {affordable_found})")
+                criteria_met += 1
+            else:
+                print(f"   ❌ Criterion 1: Insufficient affordable foods (found {affordable_found})")
+            
+            if expensive_found == 0:
+                print(f"   ✅ Criterion 2: No expensive ingredients")
+                criteria_met += 1
+            else:
+                print(f"   ❌ Criterion 2: Found expensive ingredients ({expensive_found})")
+            
+            if meals_found >= 4:
+                print(f"   ✅ Criterion 3: Multiple meal sections (found {meals_found})")
+                criteria_met += 1
+            else:
+                print(f"   ❌ Criterion 3: Insufficient meal sections (found {meals_found})")
+            
+            if options_found >= 3:
+                print(f"   ✅ Criterion 4: Multiple food options per meal")
+                criteria_met += 1
+            else:
+                print(f"   ❌ Criterion 4: Insufficient multiple options indicators")
+            
+            if economic_tips_found >= 2:
+                print(f"   ✅ Criterion 5: Economic tips and planning")
+                criteria_met += 1
+            else:
+                print(f"   ❌ Criterion 5: Insufficient economic tips")
+            
+            if portions_found >= 5:
+                print(f"   ✅ Criterion 6: Detailed portion specifications")
+                criteria_met += 1
+            else:
+                print(f"   ❌ Criterion 6: Insufficient portion details")
+            
+            success_rate = (criteria_met / total_criteria) * 100
+            print(f"   📈 Overall Success Rate: {success_rate:.1f}% ({criteria_met}/{total_criteria} criteria met)")
+            
+            # Show a sample of the content
+            preview_lines = suggestion.split('\n')[:10]
+            preview = '\n'.join(preview_lines)
+            print(f"   📝 Content Preview:\n{preview}...")
+            
+            return success_rate >= 80, response, {
+                'affordable_foods': affordable_found,
+                'expensive_foods': expensive_found,
+                'meals_found': meals_found,
+                'options_found': options_found,
+                'economic_tips': economic_tips_found,
+                'portions_found': portions_found,
+                'success_rate': success_rate,
+                'criteria_met': criteria_met,
+                'total_criteria': total_criteria
+            }
+        return False, {}, {}
+
     def test_workout_history(self):
         """Test workout history retrieval"""
         success, response = self.run_test(
