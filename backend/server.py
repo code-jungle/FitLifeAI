@@ -494,37 +494,54 @@ async def stripe_webhook(request: Request):
 async def get_user_profile(current_user: User = Depends(get_current_user)):
     return UserResponse(**current_user.dict())
 
-@api_router.delete("/user/account")
-async def delete_user_account(current_user: User = Depends(get_current_user)):
-    """Delete user account and all associated data"""
+@api_router.post("/user/delete-account")
+async def delete_user_account_with_confirmation(
+    request: AccountDeletionRequest, 
+    current_user: User = Depends(get_current_user)
+):
+    """Delete user account with password confirmation"""
+    
+    # Get user with password from database
+    user_with_password = await db.users.find_one({"id": current_user.id})
+    if not user_with_password:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Verify password
+    if not verify_password(request.password, user_with_password["password"]):
+        raise HTTPException(status_code=401, detail="Invalid password")
+    
+    # Verify confirmation text
+    if request.confirmation_text.lower() != "excluir minha conta":
+        raise HTTPException(status_code=400, detail="Confirmation text incorrect")
+    
     try:
         # Delete user's workout suggestions
-        await db.workout_suggestions.delete_many({"user_id": current_user.id})
+        workout_deleted = await db.workout_suggestions.delete_many({"user_id": current_user.id})
         
         # Delete user's nutrition suggestions
-        await db.nutrition_suggestions.delete_many({"user_id": current_user.id})
+        nutrition_deleted = await db.nutrition_suggestions.delete_many({"user_id": current_user.id})
         
         # Delete user's payment transactions
-        await db.payment_transactions.delete_many({"user_id": current_user.id})
+        transactions_deleted = await db.payment_transactions.delete_many({"user_id": current_user.id})
         
         # Finally, delete the user account
-        result = await db.users.delete_one({"id": current_user.id})
+        user_deleted = await db.users.delete_one({"id": current_user.id})
         
-        if result.deleted_count == 0:
+        if user_deleted.deleted_count == 0:
             raise HTTPException(status_code=404, detail="User not found")
         
         return {
-            "message": "Account successfully deleted",
+            "message": "Conta excluída com sucesso",
             "deleted_data": {
-                "user_account": True,
-                "workout_suggestions": True,
-                "nutrition_suggestions": True,
-                "payment_history": True
+                "user_account": user_deleted.deleted_count > 0,
+                "workout_suggestions": workout_deleted.deleted_count,
+                "nutrition_suggestions": nutrition_deleted.deleted_count,
+                "payment_transactions": transactions_deleted.deleted_count
             }
         }
     except Exception as e:
         logging.error(f"Error deleting user account {current_user.id}: {str(e)}")
-        raise HTTPException(status_code=500, detail="Error deleting account")
+        raise HTTPException(status_code=500, detail="Erro ao excluir conta")
 
 # Include the router in the main app
 app.include_router(api_router)
