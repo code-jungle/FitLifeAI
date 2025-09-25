@@ -261,11 +261,31 @@ def main():
     
     # Test history
     print("\n📚 PHASE 4: History Tests")
-    tester.test_workout_history()
-    tester.test_nutrition_history()
+    workout_history_success, workout_history = tester.test_workout_history()
+    nutrition_history_success, nutrition_history = tester.test_nutrition_history()
+    
+    # Test deletion functionality if we have history items
+    print("\n🗑️ PHASE 5: History Deletion Tests")
+    if workout_history and len(workout_history) > 0:
+        first_workout_id = workout_history[0].get('id')
+        if first_workout_id:
+            tester.test_delete_workout_suggestion(first_workout_id)
+        else:
+            print("⚠️  No workout ID found for deletion test")
+    else:
+        print("⚠️  No workout history available for deletion test")
+    
+    if nutrition_history and len(nutrition_history) > 0:
+        first_nutrition_id = nutrition_history[0].get('id')
+        if first_nutrition_id:
+            tester.test_delete_nutrition_suggestion(first_nutrition_id)
+        else:
+            print("⚠️  No nutrition ID found for deletion test")
+    else:
+        print("⚠️  No nutrition history available for deletion test")
     
     # Test payment system
-    print("\n💳 PHASE 5: Payment System Test")
+    print("\n💳 PHASE 6: Payment System Test")
     payment_success, session_id = tester.test_payment_checkout()
     
     # Final results
