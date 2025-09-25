@@ -1033,6 +1033,12 @@ const Dashboard = () => {
                     <Label className="text-gray-400 text-sm">Objetivos</Label>
                     <div className="text-white text-sm sm:text-base">{user?.goals}</div>
                   </div>
+                  <div>
+                    <Label className="text-gray-400 text-sm">Restrições Alimentares</Label>
+                    <div className="text-white text-sm sm:text-base">
+                      {user?.dietary_restrictions || 'Nenhuma restrição informada'}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
