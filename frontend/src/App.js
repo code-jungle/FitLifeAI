@@ -562,6 +562,57 @@ const Dashboard = () => {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    if (!deleteAccountData.password || !deleteAccountData.confirmationText) {
+      toast({
+        title: "Erro",
+        description: "Preencha todos os campos para confirmar a exclusão.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (deleteAccountData.confirmationText.toLowerCase() !== "excluir minha conta") {
+      toast({
+        title: "Erro",
+        description: "Digite exatamente 'excluir minha conta' para confirmar.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsDeleting(true);
+
+    try {
+      const response = await axios.post(`${API}/user/delete-account`, {
+        password: deleteAccountData.password,
+        confirmation_text: deleteAccountData.confirmationText
+      }, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+
+      toast({
+        title: "Conta excluída",
+        description: "Sua conta e todos os dados foram removidos permanentemente."
+      });
+
+      // Logout após exclusão bem-sucedida
+      setTimeout(() => {
+        logout();
+        window.location.href = '/';
+      }, 2000);
+
+    } catch (error) {
+      toast({
+        title: "Erro na exclusão",
+        description: error.response?.data?.detail || "Não foi possível excluir a conta. Verifique sua senha.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   useEffect(() => {
     fetchWorkoutHistory();
     fetchNutritionHistory();
