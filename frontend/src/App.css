@@ -28,68 +28,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-/* Logo FitLife AI Custom */
+/* Logo FitLife AI - Apenas Texto */
 .fitlife-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.fitlife-logo-icon {
-  width: 48px;
-  height: 20px;
-  position: relative;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  animation: logoGlow 3s ease-in-out infinite alternate;
-}
-
-/* Barra central do halter */
-.fitlife-logo-icon::before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 4px;
-  background: linear-gradient(90deg, #ff6b35, #f7931e, #ec4899, #ef4444);
-  border-radius: 2px;
-  z-index: 2;
-  box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
-}
-
-/* Pesos do halter - esquerdo e direito */
-.fitlife-logo-icon::after {
-  content: '';
-  position: absolute;
-  width: 48px;
-  height: 20px;
-  background: 
-    linear-gradient(45deg, #ff6b35 0%, #ec4899 50%, #ef4444 100%),
-    linear-gradient(45deg, #ff6b35 0%, #ec4899 50%, #ef4444 100%);
-  background-size: 10px 16px, 10px 16px;
-  background-position: 2px 2px, 36px 2px;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  z-index: 1;
-  box-shadow: 
-    0 0 12px rgba(255, 107, 53, 0.5);
-  
-  /* Criando os pesos com clip-path */
-  -webkit-clip-path: polygon(
-    0% 25%, 8px 25%, 8px 10%, 18px 10%, 18px 25%, 30px 25%,
-    30px 75%, 18px 75%, 18px 90%, 8px 90%, 8px 75%, 0% 75%,
-    0% 25%,
-    /* peso direito */
-    68% 25%, 40px 25%, 40px 10%, 30px 10%, 30px 25%, 18px 25%,
-    18px 75%, 30px 75%, 30px 90%, 40px 90%, 40px 75%, 68% 75%
-  );
-  clip-path: polygon(
-    0% 25%, 20% 25%, 20% 15%, 35% 15%, 35% 25%, 65% 25%,
-    65% 75%, 35% 75%, 35% 85%, 20% 85%, 20% 75%, 0% 75%,
-    /* peso direito */
-    100% 25%, 80% 25%, 80% 15%, 65% 15%, 65% 25%, 35% 25%,
-    35% 75%, 65% 75%, 65% 85%, 80% 85%, 80% 75%, 100% 75%
-  );
 }
 
 .fitlife-logo-text {
@@ -106,25 +49,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile logo size */
 @media (max-width: 768px) {
-  .fitlife-logo-icon {
-    width: 40px;
-    height: 14px;
-  }
-  
-  .fitlife-logo-icon::before {
-    width: 14px;
-    height: 20px;
-    left: -5px;
-    top: -3px;
-  }
-  
-  .fitlife-logo-icon::after {
-    width: 14px;
-    height: 20px;
-    right: -5px;
-    top: -3px;
-  }
-  
   .fitlife-logo-text {
     font-size: 20px;
   }
