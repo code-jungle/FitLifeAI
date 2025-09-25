@@ -101,10 +101,17 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-white hover:bg-white/10">
+            <Button 
+              variant="ghost" 
+              className="text-white hover:bg-white/10"
+              onClick={() => navigate('/auth')}
+            >
               Login
             </Button>
-            <Button className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold">
+            <Button 
+              className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold"
+              onClick={() => navigate('/auth')}
+            >
               Comece Grátis
             </Button>
           </div>
