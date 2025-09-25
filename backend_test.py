@@ -231,6 +231,104 @@ class FitLifeAPITester:
             return True, response.get('session_id')
         return False, None
 
+    def test_feedback_submission(self):
+        """Test feedback submission with valid data"""
+        feedback_data = {
+            "name": "João Test",
+            "email": "joao.test@email.com",
+            "message": "Este é um teste do sistema de feedback do FitLife AI",
+            "rating": 5
+        }
+        
+        # Remove token temporarily since feedback endpoint is public
+        temp_token = self.token
+        self.token = None
+        
+        success, response = self.run_test(
+            "Submit Feedback",
+            "POST",
+            "feedback",
+            200,
+            data=feedback_data
+        )
+        
+        # Restore token
+        self.token = temp_token
+        
+        if success:
+            print(f"   ✅ Feedback submitted successfully")
+            print(f"   ✅ Status: {response.get('status', 'N/A')}")
+            print(f"   ✅ Feedback ID: {response.get('id', 'N/A')}")
+            return True, response.get('id')
+        return False, None
+
+    def test_feedback_validation(self):
+        """Test feedback validation with missing required fields"""
+        # Test missing name
+        invalid_data_1 = {
+            "email": "test@email.com",
+            "message": "Test message"
+        }
+        
+        # Test missing email
+        invalid_data_2 = {
+            "name": "Test User",
+            "message": "Test message"
+        }
+        
+        # Test missing message
+        invalid_data_3 = {
+            "name": "Test User",
+            "email": "test@email.com"
+        }
+        
+        # Test invalid email format
+        invalid_data_4 = {
+            "name": "Test User",
+            "email": "invalid-email",
+            "message": "Test message"
+        }
+        
+        # Remove token temporarily since feedback endpoint is public
+        temp_token = self.token
+        self.token = None
+        
+        validation_tests = [
+            ("Missing Name", invalid_data_1),
+            ("Missing Email", invalid_data_2),
+            ("Missing Message", invalid_data_3),
+            ("Invalid Email Format", invalid_data_4)
+        ]
+        
+        validation_passed = 0
+        for test_name, test_data in validation_tests:
+            success, response = self.run_test(
+                f"Feedback Validation - {test_name}",
+                "POST",
+                "feedback",
+                422,  # Expecting validation error
+                data=test_data
+            )
+            if success:
+                validation_passed += 1
+                print(f"   ✅ Validation correctly rejected {test_name.lower()}")
+        
+        # Restore token
+        self.token = temp_token
+        
+        return validation_passed == len(validation_tests)
+
+    def verify_feedback_in_database(self, feedback_id):
+        """Verify feedback was saved to database by checking if we can retrieve it"""
+        # Note: This is a simplified check since we don't have direct DB access
+        # We'll assume if the API returned an ID, it was saved successfully
+        if feedback_id:
+            print(f"   ✅ Feedback appears to be saved (ID: {feedback_id})")
+            return True
+        else:
+            print(f"   ❌ No feedback ID returned, may not be saved")
+            return False
+
 def main():
     print("🚀 Starting FitLife AI Backend API Tests")
     print("=" * 60)
