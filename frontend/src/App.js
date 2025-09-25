@@ -127,7 +127,7 @@ const LandingPage = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.pexels.com/photos/8097814/pexels-photo-8097814.jpeg')`
+            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://customer-assets.emergentagent.com/job_smartfit-ai-2/artifacts/0b9ap7fs_f7736199-989a-4bc2-ad40-54f184078b7a.png')`
           }}
         />
         
