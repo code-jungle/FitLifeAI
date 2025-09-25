@@ -260,8 +260,9 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="bg-slate-900 py-12 px-6 border-t border-slate-800">
         <div className="container mx-auto text-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4">
-            FitLife AI
+          <div className="fitlife-logo justify-center mb-4">
+            <div className="fitlife-logo-icon"></div>
+            <div className="fitlife-logo-text">FitLife AI</div>
           </div>
           <p className="text-gray-400">© 2025 FitLife AI. Todos os direitos reservados.</p>
         </div>
