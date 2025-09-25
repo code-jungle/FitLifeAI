@@ -512,6 +512,32 @@ const Dashboard = () => {
     }
   };
 
+  const deleteSuggestion = async (id, type) => {
+    try {
+      await axios.delete(`${API}/history/${type}/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      
+      toast({
+        title: "Sugestão excluída!",
+        description: `${type === 'workouts' ? 'Treino' : 'Dieta'} removida do histórico.`
+      });
+      
+      // Refresh history
+      if (type === 'workouts') {
+        fetchWorkoutHistory();
+      } else {
+        fetchNutritionHistory();
+      }
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Não foi possível excluir a sugestão.",
+        variant: "destructive"
+      });
+    }
+  };
+
   const handleUpgrade = async () => {
     try {
       const response = await axios.post(`${API}/payments/checkout`, {}, {
