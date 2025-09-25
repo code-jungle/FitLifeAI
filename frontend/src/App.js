@@ -686,8 +686,8 @@ const Dashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="prose prose-invert max-w-none">
-                    <div className="whitespace-pre-wrap text-gray-300 leading-relaxed">
+                  <div className="suggestion-content">
+                    <div className="ai-response whitespace-pre-wrap">
                       {currentSuggestion.suggestion}
                     </div>
                   </div>
