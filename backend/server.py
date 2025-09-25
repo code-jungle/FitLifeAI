@@ -108,6 +108,70 @@ class AccountDeletionRequest(BaseModel):
     password: str
     confirmation_text: str
 
+class FeedbackRequest(BaseModel):
+    name: str
+    email: EmailStr
+    message: str
+    rating: Optional[int] = None  # 1-5 estrelas (opcional)
+
+# Email sending function
+async def send_feedback_email(feedback: FeedbackRequest):
+    """Send feedback email to the configured email address"""
+    try:
+        # Email configuration from environment
+        smtp_server = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
+        smtp_port = int(os.environ.get('SMTP_PORT', 587))
+        smtp_username = os.environ.get('SMTP_USERNAME')
+        smtp_password = os.environ.get('SMTP_PASSWORD')
+        feedback_email = os.environ.get('FEEDBACK_EMAIL', 'codejungle8@gmail.com')
+        
+        # Create message
+        msg = MIMEMultipart()
+        msg['From'] = smtp_username if smtp_username else 'noreply@fitlife.ai'
+        msg['To'] = feedback_email
+        msg['Subject'] = f'Feedback FitLife AI - {feedback.name}'
+        
+        # Email body
+        rating_text = f" - Avaliação: {feedback.rating}/5 ⭐" if feedback.rating else ""
+        
+        body = f"""
+        Novo feedback recebido no FitLife AI!
+        
+        📝 DETALHES DO FEEDBACK:
+        
+        👤 Nome: {feedback.name}
+        📧 Email: {feedback.email}
+        ⭐ Avaliação: {feedback.rating}/5 estrelas (se fornecida)
+        📅 Data: {datetime.now(timezone.utc).strftime('%d/%m/%Y às %H:%M')} UTC
+        
+        💬 MENSAGEM:
+        {feedback.message}
+        
+        ---
+        Este email foi enviado automaticamente pelo sistema FitLife AI.
+        Para responder ao usuário, use o email: {feedback.email}
+        """
+        
+        msg.attach(MIMEText(body, 'plain'))
+        
+        # Send email (if SMTP is configured)
+        if smtp_username and smtp_password:
+            server = aiosmtplib.SMTP(hostname=smtp_server, port=smtp_port)
+            await server.connect()
+            await server.starttls()
+            await server.login(smtp_username, smtp_password)
+            await server.send_message(msg)
+            await server.quit()
+            return True
+        else:
+            # Log the feedback instead of sending email (for development)
+            logging.info(f"Feedback received (SMTP not configured): {feedback.dict()}")
+            return True
+            
+    except Exception as e:
+        logging.error(f"Error sending feedback email: {str(e)}")
+        return False
+
 def format_ai_response(text: str) -> str:
     """Format AI response for better presentation"""
     # Remove asterisks
