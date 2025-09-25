@@ -87,6 +87,7 @@ const AuthProvider = ({ children }) => {
 
 // Landing Page Component
 const LandingPage = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   
   return (
