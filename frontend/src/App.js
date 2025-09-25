@@ -298,6 +298,7 @@ const AuthForms = () => {
         title: "Sucesso!",
         description: isLogin ? "Login realizado com sucesso!" : "Cadastro realizado com sucesso!"
       });
+      navigate('/dashboard');
     } catch (error) {
       toast({
         title: "Erro",
