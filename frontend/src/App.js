@@ -499,7 +499,8 @@ const AuthForms = () => {
                   age: '',
                   weight: '',
                   height: '',
-                  goals: ''
+                  goals: '',
+                  dietary_restrictions: ''
                 });
               }}
               className="text-orange-400 hover:text-orange-300 transition-colors text-sm sm:text-base"
