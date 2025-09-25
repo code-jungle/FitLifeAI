@@ -284,12 +284,12 @@ const LandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
             Pronto para Transformar seu Corpo?
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Junte-se a milhares de pessoas que já transformaram suas vidas com o FitLife AI
           </p>
           <Button 
