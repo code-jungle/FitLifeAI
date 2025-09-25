@@ -631,5 +631,74 @@ def main():
         print("❌ Multiple test failures detected in authentication system.")
         return 1
 
+def test_nutrition_system():
+    """Test the updated nutrition suggestion system with affordable foods focus"""
+    print("🚀 Starting FitLife AI Nutrition System Tests")
+    print("🔍 Focus: Testing updated nutrition suggestions with affordable foods")
+    print("=" * 70)
+    
+    tester = FitLifeAPITester()
+    
+    # First, we need to login with an existing user who has trial/premium access
+    print("\n🔐 PHASE 1: User Authentication")
+    login_success = tester.test_user_login()
+    
+    if not login_success:
+        print("❌ Login failed, trying to register a new user...")
+        registration_success = tester.test_user_registration()
+        if not registration_success:
+            print("❌ Both login and registration failed")
+            return 1
+        print("✅ New user registered successfully")
+    else:
+        print("✅ Login successful")
+    
+    print("\n👤 PHASE 2: User Profile Verification")
+    profile_success = tester.test_user_profile()
+    
+    if not profile_success:
+        print("❌ Profile verification failed")
+        return 1
+    
+    print("\n🍎 PHASE 3: Nutrition Suggestion Testing")
+    nutrition_success, nutrition_response, analysis = tester.test_nutrition_suggestion_affordable_foods()
+    
+    if not nutrition_success:
+        print("❌ Nutrition suggestion test failed")
+        return 1
+    
+    # Final results
+    print("\n" + "=" * 70)
+    print(f"📊 NUTRITION SYSTEM TEST RESULTS")
+    print(f"Tests passed: {tester.tests_passed}/{tester.tests_run}")
+    print(f"Success rate: {(tester.tests_passed/tester.tests_run)*100:.1f}%")
+    
+    # Detailed nutrition test results
+    print(f"\n🍎 AFFORDABLE NUTRITION SYSTEM VERIFICATION:")
+    print(f"   User Authentication: {'✅ PASSED' if login_success or registration_success else '❌ FAILED'}")
+    print(f"   Profile Access: {'✅ PASSED' if profile_success else '❌ FAILED'}")
+    print(f"   Nutrition Generation: {'✅ PASSED' if nutrition_success else '❌ FAILED'}")
+    
+    if analysis:
+        print(f"\n📈 CONTENT QUALITY ANALYSIS:")
+        print(f"   Affordable Foods Focus: {analysis['affordable_foods']} foods mentioned")
+        print(f"   Expensive Foods Avoided: {analysis['expensive_foods']} expensive items (should be 0)")
+        print(f"   Meal Structure: {analysis['meals_found']} meal sections")
+        print(f"   Multiple Options: {analysis['options_found']} option indicators")
+        print(f"   Economic Tips: {analysis['economic_tips']} economic keywords")
+        print(f"   Portion Details: {analysis['portions_found']} portion specifications")
+        print(f"   Overall Quality Score: {analysis['success_rate']:.1f}%")
+        print(f"   Criteria Met: {analysis['criteria_met']}/{analysis['total_criteria']}")
+    
+    if nutrition_success and analysis and analysis['success_rate'] >= 80:
+        print("🎉 Nutrition system test passed! Affordable foods focus verified.")
+        return 0
+    elif nutrition_success:
+        print("⚠️  Nutrition system working but content quality needs improvement.")
+        return 0
+    else:
+        print("❌ Nutrition system test failed.")
+        return 1
+
 if __name__ == "__main__":
     sys.exit(main())
