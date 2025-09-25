@@ -48,6 +48,7 @@ class User(BaseModel):
     weight: float
     height: float
     goals: str
+    dietary_restrictions: str = ""  # Novo campo para restrições alimentares
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     is_premium: bool = False
     trial_end_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc) + timedelta(days=7))
@@ -60,6 +61,7 @@ class UserCreate(BaseModel):
     weight: float
     height: float
     goals: str
+    dietary_restrictions: str = ""  # Novo campo para restrições alimentares
 
 class UserLogin(BaseModel):
     email: EmailStr
@@ -73,6 +75,7 @@ class UserResponse(BaseModel):
     weight: float
     height: float
     goals: str
+    dietary_restrictions: str
     is_premium: bool
     trial_end_date: datetime
 
