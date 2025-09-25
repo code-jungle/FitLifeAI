@@ -29,9 +29,7 @@ import {
   Trash2,
   Calendar,
   AlertTriangle,
-  UserMinus,
-  MessageSquare,
-  Send
+  UserMinus
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
