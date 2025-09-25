@@ -295,9 +295,22 @@ const AuthForms = () => {
     e.preventDefault();
     setLoading(true);
 
+    // Validação de confirmação de senha apenas no cadastro
+    if (!isLogin && formData.password !== formData.confirmPassword) {
+      toast({
+        title: "Erro",
+        description: "As senhas não coincidem. Verifique e tente novamente.",
+        variant: "destructive"
+      });
+      setLoading(false);
+      return;
+    }
+
     try {
       const endpoint = isLogin ? 'login' : 'register';
-      const response = await axios.post(`${API}/auth/${endpoint}`, formData);
+      // Remover confirmPassword do objeto enviado para o backend
+      const { confirmPassword, ...dataToSend } = formData;
+      const response = await axios.post(`${API}/auth/${endpoint}`, dataToSend);
       
       login(response.data.user, response.data.token);
       toast({
