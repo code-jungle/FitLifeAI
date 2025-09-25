@@ -296,6 +296,7 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
         ⚖️ Peso: {current_user.weight}kg
         📏 Altura: {current_user.height}cm
         🎯 Objetivos: {current_user.goals}
+        🚫 Restrições Alimentares: {current_user.dietary_restrictions if current_user.dietary_restrictions else "Nenhuma restrição informada"}
         
         🍽️ PLANO ALIMENTAR COMPLETO:
         
@@ -326,6 +327,7 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
         - Hidratação diária recomendada
         - Horários ideais para as refeições
         - Alimentos que potencializam seus objetivos
+        - Substituições adequadas para restrições alimentares
         
         IMPORTANTE:
         - Use emojis para deixar mais visual e atrativo
@@ -333,6 +335,11 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
         - Inclua porções específicas (gramas, xícaras, unidades)
         - Mantenha linguagem motivacional
         - Adapte às necessidades calóricas do perfil
+        - RESPEITE RIGOROSAMENTE as restrições alimentares informadas
+        - Se for vegano/vegetariano, não inclua produtos de origem animal
+        - Se tiver alergias, exclua completamente os alérgenos
+        - Ofereça alternativas nutritivas para restrições
+        - Seja específico sobre ingredientes quando houver restrições
         """
     )
     
