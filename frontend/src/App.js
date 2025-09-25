@@ -154,13 +154,6 @@ const LandingPage = () => {
             >
               Login
             </Button>
-            <Button 
-              className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold text-sm sm:text-base px-3 sm:px-6"
-              onClick={() => navigate('/auth')}
-            >
-              <span className="hidden sm:inline">Comece Grátis</span>
-              <span className="sm:hidden">Grátis</span>
-            </Button>
           </div>
         </div>
       </header>
