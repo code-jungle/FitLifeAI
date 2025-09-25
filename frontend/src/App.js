@@ -744,20 +744,20 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto p-6">
-        <Tabs defaultValue="suggestions" className="space-y-6">
-          <TabsList className="bg-slate-800 border-slate-700">
-            <TabsTrigger value="suggestions" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500">
+      <div className="container mx-auto p-4 sm:p-6">
+        <Tabs defaultValue="suggestions" className="space-y-4 sm:space-y-6">
+          <TabsList className="bg-slate-800 border-slate-700 w-full flex-col sm:flex-row h-auto sm:h-10">
+            <TabsTrigger value="suggestions" className="w-full sm:w-auto text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 justify-center py-3 sm:py-2">
               <Zap className="mr-2 h-4 w-4" />
-              Sugestões IA
+              <span className="text-sm sm:text-base">Sugestões IA</span>
             </TabsTrigger>
-            <TabsTrigger value="history" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500">
+            <TabsTrigger value="history" className="w-full sm:w-auto text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 justify-center py-3 sm:py-2">
               <History className="mr-2 h-4 w-4" />
-              Histórico
+              <span className="text-sm sm:text-base">Histórico</span>
             </TabsTrigger>
-            <TabsTrigger value="profile" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500">
+            <TabsTrigger value="profile" className="w-full sm:w-auto text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 justify-center py-3 sm:py-2">
               <User className="mr-2 h-4 w-4" />
-              Perfil
+              <span className="text-sm sm:text-base">Perfil</span>
             </TabsTrigger>
           </TabsList>
 
