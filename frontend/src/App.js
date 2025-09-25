@@ -409,6 +409,22 @@ const AuthForms = () => {
                     className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[80px]"
                   />
                 </div>
+                <div>
+                  <Label htmlFor="dietary_restrictions" className="text-white">
+                    Restrições Alimentares
+                    <span className="text-gray-400 text-sm ml-1">(opcional)</span>
+                  </Label>
+                  <Textarea
+                    id="dietary_restrictions"
+                    placeholder="Ex: Vegano, vegetariano, alergia a lactose, intolerância ao glúten, alergia a frutos do mar..."
+                    value={formData.dietary_restrictions}
+                    onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
+                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[60px]"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    💡 Informe suas restrições, alergias ou preferências alimentares para sugestões mais personalizadas
+                  </p>
+                </div>
               </div>
             )}
             
