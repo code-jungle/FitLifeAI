@@ -761,34 +761,34 @@ const Dashboard = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="suggestions" className="space-y-6">
+          <TabsContent value="suggestions" className="space-y-4 sm:space-y-6">
             {!user?.is_premium && !isTrialActive && (
               <Card className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 border-0">
-                <CardContent className="p-6 text-center">
-                  <Crown className="mx-auto h-12 w-12 text-white mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-2">Trial Expirado</h3>
-                  <p className="text-white/90 mb-4">
+                <CardContent className="p-4 sm:p-6 text-center">
+                  <Crown className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-white mb-3 sm:mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Trial Expirado</h3>
+                  <p className="text-white/90 mb-4 text-sm sm:text-base">
                     Faça upgrade para premium e continue aproveitando sugestões ilimitadas de treino e nutrição.
                   </p>
                   <Button 
                     onClick={handleUpgrade}
-                    className="bg-white text-slate-900 hover:bg-gray-100 font-semibold"
+                    className="bg-white text-slate-900 hover:bg-gray-100 font-semibold w-full sm:w-auto"
                   >
                     <CreditCard className="mr-2 h-4 w-4" />
-                    Upgrade Premium - R$ 14,90/mês
+                    <span className="text-sm sm:text-base">Upgrade Premium - R$ 14,90/mês</span>
                   </Button>
                 </CardContent>
               </Card>
             )}
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-white flex items-center">
-                    <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
+                  <CardTitle className="text-white flex items-center text-lg sm:text-xl">
+                    <Dumbbell className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
                     Sugestão de Treino
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-gray-400 text-sm sm:text-base">
                     IA personalizada baseada no seu perfil
                   </CardDescription>
                 </CardHeader>
@@ -796,20 +796,22 @@ const Dashboard = () => {
                   <Button 
                     onClick={() => generateSuggestion('workout')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 text-white"
+                    className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 text-white py-3"
                   >
-                    {loading && suggestionType === 'workout' ? 'Gerando...' : 'Gerar Treino'}
+                    <span className="text-sm sm:text-base">
+                      {loading && suggestionType === 'workout' ? 'Gerando...' : 'Gerar Treino'}
+                    </span>
                   </Button>
                 </CardContent>
               </Card>
 
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-white flex items-center">
-                    <Apple className="mr-2 h-5 w-5 text-pink-500" />
+                  <CardTitle className="text-white flex items-center text-lg sm:text-xl">
+                    <Apple className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-pink-500" />
                     Sugestão de Nutrição
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-gray-400 text-sm sm:text-base">
                     Dieta balanceada para seus objetivos
                   </CardDescription>
                 </CardHeader>
@@ -817,9 +819,11 @@ const Dashboard = () => {
                   <Button 
                     onClick={() => generateSuggestion('nutrition')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="w-full bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90 text-white"
+                    className="w-full bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90 text-white py-3"
                   >
-                    {loading && suggestionType === 'nutrition' ? 'Gerando...' : 'Gerar Dieta'}
+                    <span className="text-sm sm:text-base">
+                      {loading && suggestionType === 'nutrition' ? 'Gerando...' : 'Gerar Dieta'}
+                    </span>
                   </Button>
                 </CardContent>
               </Card>
