@@ -273,6 +273,7 @@ const AuthForms = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
     email: '',
