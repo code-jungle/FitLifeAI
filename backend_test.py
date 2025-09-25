@@ -152,7 +152,7 @@ class FitLifeAPITester:
     def test_user_login_with_new_user(self):
         """Test login with newly registered user (with dietary_restrictions)"""
         login_data = {
-            "email": "test.fix@example.com",
+            "email": getattr(self, 'new_user_email', 'test.fix@example.com'),
             "password": "TestPassword123!"
         }
         
