@@ -177,9 +177,9 @@ const LandingPage = () => {
         
         <div className="relative container mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-            Seu Personal Trainer
+            Transforme seu corpo com
             <span className="block bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
-              com Inteligência Artificial
+              Inteligência Artificial
             </span>
           </h1>
           
