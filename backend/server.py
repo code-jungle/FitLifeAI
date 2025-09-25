@@ -98,6 +98,22 @@ class PaymentTransaction(BaseModel):
     metadata: Dict[str, str] = {}
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+def format_ai_response(text: str) -> str:
+    """Format AI response for better presentation"""
+    # Remove asterisks
+    text = text.replace('*', '')
+    
+    # Clean up extra spaces and line breaks
+    lines = text.split('\n')
+    formatted_lines = []
+    
+    for line in lines:
+        line = line.strip()
+        if line:
+            formatted_lines.append(line)
+    
+    return '\n\n'.join(formatted_lines)
+
 # Authentication functions
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
