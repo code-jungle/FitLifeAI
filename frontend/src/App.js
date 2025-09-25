@@ -709,29 +709,37 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Header */}
-      <header className="bg-slate-800 border-b border-slate-700 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="fitlife-logo">
-            <div className="fitlife-logo-text">FitLife AI</div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="text-white">
-              <span className="text-gray-400">Olá,</span> {user?.name}
+      <header className="bg-slate-800 border-b border-slate-700 p-3 sm:p-4">
+        <div className="container mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+            <div className="fitlife-logo">
+              <div className="fitlife-logo-text">FitLife AI</div>
             </div>
-            {!user?.is_premium && (
-              <div className="bg-yellow-600 text-black px-3 py-1 rounded-full text-sm font-semibold">
-                {isTrialActive ? `${trialDaysLeft} dias restantes` : 'Trial expirado'}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+              <div className="text-white text-sm sm:text-base">
+                <span className="text-gray-400">Olá,</span> {user?.name}
               </div>
-            )}
-            {user?.is_premium && (
-              <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                <Crown className="inline h-4 w-4 mr-1" />
-                Premium
+              <div className="flex items-center gap-2 sm:gap-4">
+                {!user?.is_premium && (
+                  <div className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${
+                    isTrialActive 
+                      ? 'bg-yellow-600 text-black' 
+                      : 'bg-red-600 text-white'
+                  }`}>
+                    {isTrialActive ? `${trialDaysLeft} dias restantes` : 'Trial expirado'}
+                  </div>
+                )}
+                {user?.is_premium && (
+                  <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                    <Crown className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                    Premium
+                  </div>
+                )}
+                <Button variant="ghost" onClick={logout} className="text-white hover:bg-slate-700 p-2">
+                  <LogOut className="h-4 w-4" />
+                </Button>
               </div>
-            )}
-            <Button variant="ghost" onClick={logout} className="text-white hover:bg-slate-700">
-              <LogOut className="h-4 w-4" />
-            </Button>
+            </div>
           </div>
         </div>
       </header>
