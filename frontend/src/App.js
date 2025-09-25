@@ -246,6 +246,7 @@ const LandingPage = () => {
           <Button 
             size="lg" 
             className="bg-white text-slate-900 hover:bg-gray-100 font-semibold px-12 py-4 text-xl"
+            onClick={() => navigate('/auth')}
           >
             <Trophy className="mr-2 h-6 w-6" />
             Comece sua Transformação
