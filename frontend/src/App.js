@@ -318,7 +318,6 @@ const AuthForms = () => {
       <Card className="w-full max-w-md bg-slate-800 border-slate-700">
         <CardHeader className="text-center">
           <div className="fitlife-logo mx-auto mb-2">
-            <div className="fitlife-logo-icon"></div>
             <div className="fitlife-logo-text">FitLife AI</div>
           </div>
           <CardTitle className="text-white">
