@@ -432,6 +432,32 @@ const AuthForms = () => {
               />
             </div>
 
+            {!isLogin && (
+              <div>
+                <Label htmlFor="confirmPassword" className="text-white">Confirmar Senha</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                  className={`bg-slate-700 border-slate-600 text-white ${
+                    formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword
+                      ? 'border-red-500 focus:border-red-500' 
+                      : formData.password && formData.confirmPassword && formData.password === formData.confirmPassword
+                      ? 'border-green-500 focus:border-green-500'
+                      : ''
+                  }`}
+                />
+                {formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword && (
+                  <p className="text-red-400 text-sm mt-1">As senhas não coincidem</p>
+                )}
+                {formData.password && formData.confirmPassword && formData.password === formData.confirmPassword && (
+                  <p className="text-green-400 text-sm mt-1">✓ Senhas coincidem</p>
+                )}
+              </div>
+            )}
+
             <Button 
               type="submit" 
               className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold"
