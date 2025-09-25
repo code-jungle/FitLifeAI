@@ -145,6 +145,66 @@ class FitLifeAPITester:
             return True
         return False
 
+    def test_user_login_with_new_user(self):
+        """Test login with newly registered user (with dietary_restrictions)"""
+        login_data = {
+            "email": "test.fix@example.com",
+            "password": "TestPassword123!"
+        }
+        
+        success, response = self.run_test(
+            "Login with New User (Dietary Restrictions)",
+            "POST",
+            "auth/login",
+            200,
+            data=login_data
+        )
+        
+        if success and 'token' in response:
+            self.token = response['token']
+            self.user_data = response.get('user', {})
+            print(f"   ✅ Login successful, token updated")
+            
+            # Verify dietary_restrictions field is present in login response
+            if 'dietary_restrictions' in self.user_data:
+                print(f"   ✅ Dietary restrictions field present: '{self.user_data['dietary_restrictions']}'")
+                return True
+            else:
+                print(f"   ❌ Dietary restrictions field missing from login response")
+                return False
+        return False
+
+    def test_existing_user_backward_compatibility(self):
+        """Test login with existing user (backward compatibility for users without dietary_restrictions)"""
+        # First try to login with the original test user
+        login_data = {
+            "email": "teste@fitlife.com",
+            "password": "senha123"
+        }
+        
+        success, response = self.run_test(
+            "Existing User Backward Compatibility",
+            "POST",
+            "auth/login",
+            200,
+            data=login_data
+        )
+        
+        if success and 'token' in response:
+            self.token = response['token']
+            self.user_data = response.get('user', {})
+            print(f"   ✅ Login successful with existing user")
+            
+            # Check if dietary_restrictions field exists (should have default value)
+            dietary_restrictions = self.user_data.get('dietary_restrictions', 'FIELD_MISSING')
+            if dietary_restrictions != 'FIELD_MISSING':
+                print(f"   ✅ Dietary restrictions field present with default: '{dietary_restrictions}'")
+                return True
+            else:
+                print(f"   ❌ Dietary restrictions field missing for existing user")
+                return False
+        return False
+
     def test_user_profile(self):
         """Test getting user profile"""
         success, response = self.run_test(
