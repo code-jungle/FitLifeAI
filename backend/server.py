@@ -182,7 +182,10 @@ async def login_user(login_data: UserLogin):
 @api_router.post("/suggestions/workout", response_model=WorkoutSuggestion)
 async def get_workout_suggestion(current_user: User = Depends(get_current_user)):
     # Check if user has access (premium or in trial)
-    if not current_user.is_premium and datetime.now(timezone.utc) > current_user.trial_end_date:
+    trial_end = current_user.trial_end_date
+    if trial_end.tzinfo is None:
+        trial_end = trial_end.replace(tzinfo=timezone.utc)
+    if not current_user.is_premium and datetime.now(timezone.utc) > trial_end:
         raise HTTPException(status_code=403, detail="Trial expired. Please upgrade to premium.")
     
     # Initialize Gemini chat
