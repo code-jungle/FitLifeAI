@@ -310,7 +310,120 @@ const LandingPage = () => {
           <div className="fitlife-logo justify-center mb-4">
             <div className="fitlife-logo-text">FitLife AI</div>
           </div>
-          <p className="text-gray-400">© 2025 FitLife AI. Todos os direitos reservados.</p>
+          <p className="text-gray-400 mb-6">© 2025 FitLife AI. Todos os direitos reservados.</p>
+          
+          {/* Botão de Feedback */}
+          <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
+            <DialogTrigger asChild>
+              <Button 
+                variant="outline" 
+                className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
+              >
+                <MessageSquare className="mr-2 h-4 w-4" />
+                Enviar Feedback
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-slate-800 border-slate-700 max-w-md mx-auto">
+              <DialogHeader>
+                <DialogTitle className="text-white flex items-center">
+                  <MessageSquare className="mr-2 h-5 w-5 text-orange-500" />
+                  Seu Feedback é Importante
+                </DialogTitle>
+                <DialogDescription className="text-gray-400">
+                  Conte-nos sua experiência com o FitLife AI. Sua opinião nos ajuda a melhorar!
+                </DialogDescription>
+              </DialogHeader>
+              
+              <form onSubmit={handleFeedbackSubmit} className="space-y-4 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="feedback-name" className="text-white">Nome</Label>
+                    <Input
+                      id="feedback-name"
+                      required
+                      value={feedbackData.name}
+                      onChange={(e) => setFeedbackData({...feedbackData, name: e.target.value})}
+                      className="bg-slate-700 border-slate-600 text-white mt-1"
+                      placeholder="Seu nome"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="feedback-email" className="text-white">Email</Label>
+                    <Input
+                      id="feedback-email"
+                      type="email"
+                      required
+                      value={feedbackData.email}
+                      onChange={(e) => setFeedbackData({...feedbackData, email: e.target.value})}
+                      className="bg-slate-700 border-slate-600 text-white mt-1"
+                      placeholder="seu@email.com"
+                    />
+                  </div>
+                </div>
+                
+                {/* Sistema de Avaliação por Estrelas */}
+                <div>
+                  <Label className="text-white">Avaliação (opcional)</Label>
+                  <div className="flex space-x-1 mt-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setFeedbackData({...feedbackData, rating: star})}
+                        className={`text-2xl transition-colors ${
+                          star <= feedbackData.rating 
+                            ? 'text-yellow-400 hover:text-yellow-300' 
+                            : 'text-gray-600 hover:text-gray-500'
+                        }`}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <Label htmlFor="feedback-message" className="text-white">Mensagem</Label>
+                  <Textarea
+                    id="feedback-message"
+                    required
+                    value={feedbackData.message}
+                    onChange={(e) => setFeedbackData({...feedbackData, message: e.target.value})}
+                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[100px]"
+                    placeholder="Compartilhe sua experiência, sugestões ou reportar problemas..."
+                  />
+                </div>
+                
+                <div className="flex justify-end space-x-3 pt-4">
+                  <Button 
+                    type="button" 
+                    variant="ghost" 
+                    onClick={() => setFeedbackOpen(false)}
+                    className="text-gray-400 hover:text-white"
+                  >
+                    Cancelar
+                  </Button>
+                  <Button 
+                    type="submit" 
+                    disabled={feedbackLoading}
+                    className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white"
+                  >
+                    {feedbackLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" />
+                        Enviar Feedback
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </footer>
     </div>
