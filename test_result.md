@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the feedback endpoint at POST /api/feedback"
+user_problem_statement: "Test the authentication system (registration and login) to verify the fix for the dietary_restrictions field error."
 
 backend:
   - task: "Feedback Endpoint Implementation"
@@ -116,6 +116,20 @@ backend:
         - working: true
           agent: "testing"
           comment: "✅ Feedback endpoint fully tested and working. All core functionality verified: 1) Valid feedback submission with test data (João Test, joao.test@email.com) returns 200 with success message and ID. 2) Feedback correctly saved to MongoDB database (verified 3 entries). 3) Email functionality working (status: sent). 4) Validation working for missing name, email, message, and invalid email format (all return 422). Minor: Empty string validation could be improved but doesn't break functionality. 5) Optional rating field works correctly. Database verification shows all feedback entries properly stored with IDs, timestamps, and status tracking."
+  - task: "Authentication System - Dietary Restrictions Fix"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "Initial testing revealed bug in registration endpoint - dietary_restrictions field from UserCreate was not being passed to User model creation, causing field to always be empty string regardless of input value."
+        - working: true
+          agent: "testing"
+          comment: "✅ Authentication system with dietary_restrictions fix fully tested and working. Fixed bug in registration endpoint (line 238) by adding dietary_restrictions=user_data.dietary_restrictions to User model creation. Comprehensive testing completed: 1) New user registration with dietary_restrictions='Sem restrições' works correctly (returns proper value in response). 2) Login with newly registered user preserves dietary_restrictions field. 3) User profile endpoint returns dietary_restrictions field correctly. 4) Backward compatibility verified - existing users without dietary_restrictions get empty string default. 5) Edge case testing: empty dietary_restrictions, missing field (defaults to empty), and long dietary_restrictions content all work correctly. 6) Full data persistence verified through registration -> login -> profile flow. ValidationError for missing dietary_restrictions field has been resolved."
 
 frontend:
   - task: "Feedback System Testing"
