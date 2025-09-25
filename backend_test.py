@@ -183,6 +183,34 @@ class FitLifeAPITester:
         if success:
             history_count = len(response) if isinstance(response, list) else 0
             print(f"   ✅ Nutrition history retrieved: {history_count} items")
+            return True, response
+        return False, []
+
+    def test_delete_workout_suggestion(self, suggestion_id):
+        """Test deleting a workout suggestion"""
+        success, response = self.run_test(
+            f"Delete Workout Suggestion ({suggestion_id})",
+            "DELETE",
+            f"history/workouts/{suggestion_id}",
+            200
+        )
+        
+        if success:
+            print(f"   ✅ Workout suggestion deleted successfully")
+            return True
+        return False
+
+    def test_delete_nutrition_suggestion(self, suggestion_id):
+        """Test deleting a nutrition suggestion"""
+        success, response = self.run_test(
+            f"Delete Nutrition Suggestion ({suggestion_id})",
+            "DELETE", 
+            f"history/nutrition/{suggestion_id}",
+            200
+        )
+        
+        if success:
+            print(f"   ✅ Nutrition suggestion deleted successfully")
             return True
         return False
 
