@@ -17,15 +17,76 @@ body {
   color: #ffffff;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+/* Logo FitLife AI Custom */
+.fitlife-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.logo-text {
+.fitlife-logo-icon {
+  width: 48px;
+  height: 24px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e, #ec4899, #ef4444);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+.fitlife-logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.fitlife-logo-text {
   font-family: 'Orbitron', monospace;
+  font-size: 24px;
   font-weight: 700;
+  background: linear-gradient(135deg, #ff6b35, #f7931e, #ec4899, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+  animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+/* Mobile logo size */
+@media (max-width: 768px) {
+  .fitlife-logo-icon {
+    width: 40px;
+    height: 20px;
+  }
+  
+  .fitlife-logo-text {
+    font-size: 20px;
+  }
+}
+
+@keyframes logoGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.9);
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(255, 107, 53, 0.8);
+  }
 }
 
 /* Custom Gradient Backgrounds */
