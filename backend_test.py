@@ -89,8 +89,11 @@ class FitLifeAPITester:
 
     def test_user_registration_with_dietary_restrictions(self):
         """Test user registration with dietary_restrictions field - FIX VERIFICATION"""
+        import time
+        unique_email = f"test.fix.{int(time.time())}@example.com"
+        
         test_data = {
-            "email": "test.fix@example.com",
+            "email": unique_email,
             "password": "TestPassword123!",
             "name": "Test Fix User",
             "age": 25,
@@ -111,6 +114,7 @@ class FitLifeAPITester:
         if success and 'token' in response:
             self.token = response['token']
             self.user_data = response.get('user', {})
+            self.new_user_email = unique_email  # Store for login test
             print(f"   ✅ Token received and stored")
             print(f"   ✅ User ID: {self.user_data.get('id', 'N/A')}")
             
