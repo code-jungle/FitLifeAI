@@ -27,7 +27,9 @@ import {
   Crown,
   Eye,
   Trash2,
-  Calendar
+  Calendar,
+  AlertTriangle,
+  UserMinus
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
