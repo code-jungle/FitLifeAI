@@ -291,7 +291,8 @@ const AuthForms = () => {
     age: '',
     weight: '',
     height: '',
-    goals: ''
+    goals: '',
+    dietary_restrictions: ''
   });
 
   const handleSubmit = async (e) => {
