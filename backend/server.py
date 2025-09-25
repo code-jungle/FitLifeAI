@@ -358,7 +358,7 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
     # Create personalized prompt
     user_message = UserMessage(
         text=f"""
-        Crie uma sugestão de dieta personalizada para:
+        Crie uma sugestão de dieta personalizada ACESSÍVEL E ECONÔMICA para:
         👤 Nome: {current_user.name}
         🎂 Idade: {current_user.age} anos
         ⚖️ Peso: {current_user.weight}kg
@@ -366,48 +366,70 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
         🎯 Objetivos: {current_user.goals}
         🚫 Restrições Alimentares: {current_user.dietary_restrictions if current_user.dietary_restrictions else "Nenhuma restrição informada"}
         
-        🍽️ PLANO ALIMENTAR COMPLETO:
+        🎯 FOQUE EM ALIMENTOS ACESSÍVEIS: 
+        - Alimentos de baixo custo e fácil acesso
+        - Itens que pessoas de classe média baixa já têm em casa
+        - Nada de ingredientes caros como castanhas, camarão, salmão, quinoa
+        - APENAS alimentos convencionais e baratos como: ovos, frango, carne moída, arroz, feijão, batata, banana, maçã, aveia, leite, pão integral, verduras básicas
+        
+        🍽️ PLANO ALIMENTAR COMPLETO E DETALHADO:
         
         ☀️ CAFÉ DA MANHÃ (7:00-8:00)
-        - Alimentos específicos com porções
-        - Benefícios nutricionais
+        - Liste 3-4 opções de alimentos básicos com porções exatas
+        - Exemplo: "2 fatias de pão integral OU 1 xícara de aveia com leite OU 2 ovos mexidos"
+        - Inclua benefícios nutricionais simples
         
         🥤 LANCHE DA MANHÃ (10:00-10:30)
-        - Opção prática e saudável
+        - 2-3 opções práticas e baratas
+        - Exemplo: "1 banana média OU 1 maçã OU 200ml de leite"
         - Porção recomendada
         
         🍽️ ALMOÇO (12:00-13:00)
-        - Proteína + Carboidrato + Vegetais
-        - Porções detalhadas
+        - PROTEÍNA: Liste 3-4 opções (frango, carne moída, ovos, feijão)
+        - CARBOIDRATO: 2-3 opções (arroz, batata, macarrão)
+        - VEGETAIS: 3-4 opções baratas (alface, tomate, cenoura, abobrinha)
+        - Porções bem detalhadas para cada item
         
         🍎 LANCHE DA TARDE (15:30-16:00)
-        - Opção nutritiva
-        - Quantidade ideal
+        - 3-4 opções econômicas
+        - Exemplo: "1 iogurte natural OU 2 biscoitos integrais OU 1 fruta da época"
+        - Quantidade ideal específica
         
         🌙 JANTAR (19:00-20:00)
-        - Refeição balanceada
-        - Porções apropriadas
+        - Refeição balanceada com múltiplas opções para cada grupo
+        - PROTEÍNA: 3 opções diferentes de carnes baratas ou ovos
+        - CARBOIDRATO: 2-3 opções econômicas  
+        - SALADA: verduras e legumes básicos e baratos
+        - Porções apropriadas bem especificadas
         
         🌜 CEIA (21:30-22:00) - Se necessário
-        - Opção leve para antes de dormir
+        - 2-3 opções leves e baratas
+        - Exemplo: "1 copo de leite morno OU 1 iogurte OU 1 fatia de queijo"
         
-        💡 DICAS NUTRICIONAIS IMPORTANTES:
-        - Hidratação diária recomendada
-        - Horários ideais para as refeições
-        - Alimentos que potencializam seus objetivos
-        - Substituições adequadas para restrições alimentares
+        💡 DICAS ECONÔMICAS E PRÁTICAS:
+        - Dicas para economizar na feira
+        - Alimentos da época mais baratos
+        - Como aproveitar sobras
+        - Preparos simples que não gastam muito gás
+        - Substituições baratas quando faltar algum ingrediente
+        - Hidratação: foque em água (evite sucos caros)
         
-        IMPORTANTE:
+        💰 CARDÁPIO SEMANAL ECONÔMICO:
+        - Sugira como variar as refeições na semana usando os mesmos ingredientes básicos
+        - Exemplo: segunda (frango), terça (carne moída), quarta (ovos), etc.
+        
+        DIRETRIZES OBRIGATÓRIAS:
         - Use emojis para deixar mais visual e atrativo
         - Não use asteriscos (*)
-        - Inclua porções específicas (gramas, xícaras, unidades)
-        - Mantenha linguagem motivacional
-        - Adapte às necessidades calóricas do perfil
+        - Inclua porções MUITO específicas (gramas, xícaras, unidades, colheres)
+        - Mantenha linguagem motivacional e empática
+        - FOQUE EXCLUSIVAMENTE em ingredientes baratos e acessíveis
+        - Ofereça MÚLTIPLAS opções para cada refeição
         - RESPEITE RIGOROSAMENTE as restrições alimentares informadas
-        - Se for vegano/vegetariano, não inclua produtos de origem animal
+        - Se for vegano/vegetariano, use apenas leguminosas e ovos (se permitido)
         - Se tiver alergias, exclua completamente os alérgenos
-        - Ofereça alternativas nutritivas para restrições
         - Seja específico sobre ingredientes quando houver restrições
+        - Adapte às necessidades calóricas considerando o orçamento limitado
         """
     )
     
