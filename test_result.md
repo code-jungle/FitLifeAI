@@ -155,7 +155,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Feedback System Testing"
+    - "Authentication System - Dietary Restrictions Fix"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -165,3 +165,5 @@ agent_communication:
       message: "Feedback endpoint testing completed successfully. All requested tests passed: valid submission, database storage, email functionality, and validation. Minor issue with empty string validation but core functionality works perfectly. Endpoint is production-ready."
     - agent: "testing"
       message: "Frontend feedback system testing completed successfully! Comprehensive testing covered all requested scenarios: 1) Feedback section visibility and positioning ✅ 2) Modal opening/closing functionality ✅ 3) Form field validation (empty fields, invalid email) ✅ 4) Successful form submission with API integration ✅ 5) Success toast notifications ✅ 6) UI/UX elements (icons, gradients, styling) ✅ 7) Mobile responsiveness ✅ 8) Modal behavior (cancel, reopen) ✅. The feedback system is fully functional and production-ready. API returns 200 OK, form validation works, success notifications appear, and the UI is polished with proper responsive design."
+    - agent: "testing"
+      message: "Authentication system dietary_restrictions fix testing completed successfully! Found and fixed critical bug in registration endpoint where dietary_restrictions field was not being passed from UserCreate to User model. All requested test scenarios passed: 1) New user registration with dietary_restrictions field ✅ 2) Login with newly registered user ✅ 3) Profile retrieval with dietary_restrictions field ✅ 4) Backward compatibility with existing users ✅ 5) Edge cases (empty, missing, long content) ✅. The ValidationError for missing dietary_restrictions field has been resolved. Authentication system is fully functional and production-ready."
