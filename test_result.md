@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the authentication system (registration and login) to verify the fix for the dietary_restrictions field error."
+user_problem_statement: "Test the updated nutrition suggestion system with the new focus on affordable and accessible foods."
 
 backend:
   - task: "Feedback Endpoint Implementation"
