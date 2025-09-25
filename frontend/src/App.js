@@ -138,7 +138,6 @@ const LandingPage = () => {
       setFeedbackLoading(false);
     }
   };
-  const { toast } = useToast();
   
   return (
     <div className="min-h-screen bg-slate-900">
