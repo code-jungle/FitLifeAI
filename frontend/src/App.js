@@ -184,7 +184,7 @@ const LandingPage = () => {
             <Button 
               size="lg" 
               className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
-              onClick={() => navigate('/auth')}
+              onClick={() => navigate('/register')}
             >
               <Zap className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               <span className="hidden sm:inline">Começar Agora - Grátis</span>
