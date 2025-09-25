@@ -490,6 +490,42 @@ async def stripe_webhook(request: Request):
 async def get_user_profile(current_user: User = Depends(get_current_user)):
     return UserResponse(**current_user.dict())
 
+@api_router.delete("/user/account")
+async def delete_user_account(current_user: User = Depends(get_current_user)):
+    """Delete user account and all associated data"""
+    try:
+        # Delete user's workout suggestions
+        await db.workout_suggestions.delete_many({"user_id": current_user.id})
+        
+        # Delete user's nutrition suggestions
+        await db.nutrition_suggestions.delete_many({"user_id": current_user.id})
+        
+        # Delete user's payment transactions
+        await db.payment_transactions.delete_many({"user_id": current_user.id})
+        
+        # Finally, delete the user account
+        result = await db.users.delete_one({"id": current_user.id})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        return {
+            "message": "Account successfully deleted",
+            "deleted_data": {
+                "user_account": True,
+                "workout_suggestions": True,
+                "nutrition_suggestions": True,
+                "payment_history": True
+            }
+        }
+    except Exception as e:
+        logging.error(f"Error deleting user account {current_user.id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Error deleting account")
+
+class AccountDeletionRequest(BaseModel):
+    password: str
+    confirmation_text: str
+
 # Include the router in the main app
 app.include_router(api_router)
 
