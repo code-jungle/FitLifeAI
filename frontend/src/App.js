@@ -461,7 +461,7 @@ const AuthForms = () => {
             <Button 
               type="submit" 
               className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold"
-              disabled={loading}
+              disabled={loading || (!isLogin && formData.password !== formData.confirmPassword)}
             >
               {loading ? 'Processando...' : (isLogin ? 'Entrar' : 'Criar Conta Grátis')}
             </Button>
