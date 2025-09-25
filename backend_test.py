@@ -168,8 +168,8 @@ class FitLifeAPITester:
         if success:
             history_count = len(response) if isinstance(response, list) else 0
             print(f"   ✅ Workout history retrieved: {history_count} items")
-            return True
-        return False
+            return True, response
+        return False, []
 
     def test_nutrition_history(self):
         """Test nutrition history retrieval"""
