@@ -469,7 +469,19 @@ const AuthForms = () => {
 
           <div className="mt-6 text-center">
             <button
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setFormData({
+                  email: '',
+                  password: '',
+                  confirmPassword: '',
+                  name: '',
+                  age: '',
+                  weight: '',
+                  height: '',
+                  goals: ''
+                });
+              }}
               className="text-orange-400 hover:text-orange-300 transition-colors"
             >
               {isLogin ? 'Não tem conta? Cadastre-se' : 'Já tem conta? Faça login'}
