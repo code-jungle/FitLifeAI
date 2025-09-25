@@ -404,7 +404,8 @@ const LandingPage = () => {
 
 // Auth Forms Component
 const AuthForms = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const location = useLocation();
+  const [isLogin, setIsLogin] = useState(location.pathname !== '/register');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { toast } = useToast();
