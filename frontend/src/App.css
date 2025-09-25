@@ -17,6 +17,17 @@ body {
   color: #ffffff;
 }
 
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.logo-text {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+}
+
 /* Logo FitLife AI Custom */
 .fitlife-logo {
   display: flex;
