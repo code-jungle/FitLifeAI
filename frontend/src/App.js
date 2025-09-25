@@ -673,6 +673,36 @@ const Dashboard = () => {
   const isTrialActive = user && new Date() <= new Date(user.trial_end_date);
   const trialDaysLeft = user ? Math.max(0, Math.ceil((new Date(user.trial_end_date) - new Date()) / (1000 * 60 * 60 * 24))) : 0;
 
+  // Função para calcular IMC
+  const calculateBMI = (weight, height) => {
+    if (!weight || !height) return null;
+    const heightInMeters = height / 100;
+    return (weight / (heightInMeters * heightInMeters)).toFixed(1);
+  };
+
+  // Função para classificar IMC
+  const getBMICategory = (bmi) => {
+    if (!bmi) return null;
+    const bmiValue = parseFloat(bmi);
+    
+    if (bmiValue < 18.5) {
+      return { category: 'Abaixo do peso', color: 'text-blue-400', bgColor: 'bg-blue-500/10' };
+    } else if (bmiValue < 25) {
+      return { category: 'Peso normal', color: 'text-green-400', bgColor: 'bg-green-500/10' };
+    } else if (bmiValue < 30) {
+      return { category: 'Sobrepeso', color: 'text-yellow-400', bgColor: 'bg-yellow-500/10' };
+    } else if (bmiValue < 35) {
+      return { category: 'Obesidade grau I', color: 'text-orange-400', bgColor: 'bg-orange-500/10' };
+    } else if (bmiValue < 40) {
+      return { category: 'Obesidade grau II', color: 'text-red-400', bgColor: 'bg-red-500/10' };
+    } else {
+      return { category: 'Obesidade grau III', color: 'text-red-600', bgColor: 'bg-red-600/10' };
+    }
+  };
+
+  const userBMI = user ? calculateBMI(user.weight, user.height) : null;
+  const bmiInfo = userBMI ? getBMICategory(userBMI) : null;
+
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Header */}
