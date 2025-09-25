@@ -96,6 +96,46 @@ const AuthProvider = ({ children }) => {
 // Landing Page Component
 const LandingPage = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [feedbackData, setFeedbackData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleFeedbackSubmit = async (e) => {
+    e.preventDefault();
+    setFeedbackLoading(true);
+
+    try {
+      const response = await axios.post(`${API}/feedback`, {
+        name: feedbackData.name,
+        email: feedbackData.email,
+        message: feedbackData.message,
+        rating: null
+      });
+
+      toast({
+        title: "Feedback enviado!",
+        description: "Obrigado pelo seu feedback. Recebemos sua mensagem com sucesso."
+      });
+
+      // Reset form and close modal
+      setFeedbackData({ name: '', email: '', message: '' });
+      setFeedbackOpen(false);
+
+    } catch (error) {
+      toast({
+        title: "Erro no envio",
+        description: "Não foi possível enviar o feedback. Tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setFeedbackLoading(false);
+    }
+  };
   
   return (
     <div className="min-h-screen bg-slate-900">
