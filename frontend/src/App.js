@@ -101,23 +101,24 @@ const LandingPage = () => {
     <div className="min-h-screen bg-slate-900">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
           <div className="fitlife-logo">
             <div className="fitlife-logo-text">FitLife AI</div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Button 
               variant="ghost" 
-              className="text-white hover:bg-white/10"
+              className="text-white hover:bg-white/10 text-sm sm:text-base px-3 sm:px-4"
               onClick={() => navigate('/auth')}
             >
               Login
             </Button>
             <Button 
-              className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold"
+              className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold text-sm sm:text-base px-3 sm:px-6"
               onClick={() => navigate('/auth')}
             >
-              Comece Grátis
+              <span className="hidden sm:inline">Comece Grátis</span>
+              <span className="sm:hidden">Grátis</span>
             </Button>
           </div>
         </div>
