@@ -87,6 +87,42 @@ class FitLifeAPITester:
             return True
         return False
 
+    def test_user_registration_with_dietary_restrictions(self):
+        """Test user registration with dietary_restrictions field - FIX VERIFICATION"""
+        test_data = {
+            "email": "test.fix@example.com",
+            "password": "TestPassword123!",
+            "name": "Test Fix User",
+            "age": 25,
+            "weight": 70,
+            "height": 175,
+            "goals": "Teste após correção",
+            "dietary_restrictions": "Sem restrições"
+        }
+        
+        success, response = self.run_test(
+            "User Registration with Dietary Restrictions",
+            "POST",
+            "auth/register",
+            200,
+            data=test_data
+        )
+        
+        if success and 'token' in response:
+            self.token = response['token']
+            self.user_data = response.get('user', {})
+            print(f"   ✅ Token received and stored")
+            print(f"   ✅ User ID: {self.user_data.get('id', 'N/A')}")
+            
+            # Verify dietary_restrictions field is present in response
+            if 'dietary_restrictions' in self.user_data:
+                print(f"   ✅ Dietary restrictions field present: '{self.user_data['dietary_restrictions']}'")
+                return True
+            else:
+                print(f"   ❌ Dietary restrictions field missing from user response")
+                return False
+        return False
+
     def test_user_login(self):
         """Test user login"""
         login_data = {
