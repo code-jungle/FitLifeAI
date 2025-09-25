@@ -99,10 +99,9 @@ const LandingPage = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="text-2xl font-bold bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
-              FitLife AI
-            </div>
+          <div className="fitlife-logo">
+            <div className="fitlife-logo-icon"></div>
+            <div className="fitlife-logo-text">FitLife AI</div>
           </div>
           <div className="flex items-center space-x-4">
             <Button 
