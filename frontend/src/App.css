@@ -301,34 +301,82 @@ h1, h2, h3, h4, h5, h6 {
 .suggestion-content {
   background: rgba(30, 41, 59, 0.5);
   border-radius: 12px;
-  padding: 20px;
+  padding: 24px;
   border-left: 4px solid #f97316;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-size: 15px;
 }
 
 .suggestion-content h3 {
   color: #f97316;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  font-size: 18px;
 }
 
 .suggestion-content h4 {
   color: #ec4899;
-  margin: 16px 0 8px 0;
+  margin: 20px 0 12px 0;
+  font-size: 16px;
 }
 
 .suggestion-content p {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: #e2e8f0;
 }
 
 .suggestion-content ul, .suggestion-content ol {
-  margin: 12px 0;
-  padding-left: 20px;
+  margin: 16px 0;
+  padding-left: 24px;
 }
 
 .suggestion-content li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* Enhanced AI response formatting */
+.ai-response {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.8;
+  color: #e2e8f0;
+  font-size: 15px;
+}
+
+.ai-response strong {
+  color: #f97316;
+  font-weight: 600;
+}
+
+.ai-response em {
+  color: #ec4899;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Emoji spacing */
+.ai-response {
+  word-spacing: 2px;
+  letter-spacing: 0.3px;
+}
+
+/* Section headers with emojis */
+.ai-response h2,
+.ai-response h3 {
+  color: #f97316;
+  margin: 24px 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ai-response h4 {
+  color: #ec4899;
+  margin: 16px 0 8px 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Hero section enhancements */
