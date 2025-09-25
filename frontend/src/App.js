@@ -317,8 +317,9 @@ const AuthForms = () => {
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
       <Card className="w-full max-w-md bg-slate-800 border-slate-700">
         <CardHeader className="text-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-2">
-            FitLife AI
+          <div className="fitlife-logo mx-auto mb-2">
+            <div className="fitlife-logo-icon"></div>
+            <div className="fitlife-logo-text">FitLife AI</div>
           </div>
           <CardTitle className="text-white">
             {isLogin ? 'Entrar na sua conta' : 'Criar conta gratuita'}
