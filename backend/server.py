@@ -251,10 +251,13 @@ async def get_workout_suggestion(current_user: User = Depends(get_current_user))
     # Get AI response
     response = await chat.send_message(user_message)
     
+    # Format the response
+    formatted_response = format_ai_response(response)
+    
     # Save suggestion to database
     suggestion = WorkoutSuggestion(
         user_id=current_user.id,
-        suggestion=response
+        suggestion=formatted_response
     )
     
     await db.workout_suggestions.insert_one(suggestion.dict())
