@@ -332,10 +332,13 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
     # Get AI response
     response = await chat.send_message(user_message)
     
+    # Format the response
+    formatted_response = format_ai_response(response)
+    
     # Save suggestion to database
     suggestion = NutritionSuggestion(
         user_id=current_user.id,
-        suggestion=response
+        suggestion=formatted_response
     )
     
     await db.nutrition_suggestions.insert_one(suggestion.dict())
