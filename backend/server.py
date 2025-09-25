@@ -78,7 +78,7 @@ class UserResponse(BaseModel):
     weight: float
     height: float
     goals: str
-    dietary_restrictions: str
+    dietary_restrictions: str = ""  # Campo opcional com valor padrão
     is_premium: bool
     trial_end_date: datetime
 
