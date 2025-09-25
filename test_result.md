@@ -138,7 +138,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Feedback Endpoint Implementation"
+    - "Feedback System Testing"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
