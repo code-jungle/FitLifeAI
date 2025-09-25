@@ -125,7 +125,7 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-24 px-6 overflow-hidden">
+      <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -134,37 +134,39 @@ const LandingPage = () => {
         />
         
         <div className="relative container mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight">
             Seu Personal Trainer
             <span className="block bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
               com Inteligência Artificial
             </span>
           </h1>
           
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
             Sugestões personalizadas de treinos e nutrição criadas especialmente para você.
             7 dias grátis, depois apenas R$ 14,90/mês.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold px-8 py-4 text-lg"
+              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
               onClick={() => navigate('/auth')}
             >
-              <Zap className="mr-2 h-5 w-5" />
-              Começar Agora - Grátis
+              <Zap className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="hidden sm:inline">Começar Agora - Grátis</span>
+              <span className="sm:hidden">Começar Grátis</span>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
+              className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-slate-900 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
             >
-              Ver Como Funciona
+              <span className="hidden sm:inline">Ver Como Funciona</span>
+              <span className="sm:hidden">Como Funciona</span>
             </Button>
           </div>
           
-          <div className="mt-12 flex justify-center items-center space-x-8 text-sm text-gray-400">
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-gray-400 px-4">
             <div className="flex items-center">
               <Star className="h-4 w-4 text-yellow-500 mr-1" />
               7 dias grátis
