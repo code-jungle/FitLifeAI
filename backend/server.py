@@ -526,10 +526,6 @@ async def delete_user_account(current_user: User = Depends(get_current_user)):
         logging.error(f"Error deleting user account {current_user.id}: {str(e)}")
         raise HTTPException(status_code=500, detail="Error deleting account")
 
-class AccountDeletionRequest(BaseModel):
-    password: str
-    confirmation_text: str
-
 # Include the router in the main app
 app.include_router(api_router)
 
