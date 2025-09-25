@@ -199,19 +199,36 @@ async def get_workout_suggestion(current_user: User = Depends(get_current_user))
     user_message = UserMessage(
         text=f"""
         Crie uma sugestão de treino personalizada para:
-        - Nome: {current_user.name}
-        - Idade: {current_user.age} anos
-        - Peso: {current_user.weight}kg
-        - Altura: {current_user.height}cm
-        - Objetivos: {current_user.goals}
+        👤 Nome: {current_user.name}
+        🎂 Idade: {current_user.age} anos
+        ⚖️ Peso: {current_user.weight}kg
+        📏 Altura: {current_user.height}cm
+        🎯 Objetivos: {current_user.goals}
         
-        Por favor, forneça um treino específico com:
-        1. Aquecimento (5-10 minutos)
-        2. Exercícios principais (séries x repetições)
-        3. Exercícios de resfriamento
-        4. Dicas importantes de segurança
+        📋 ESTRUTURA DO TREINO:
         
-        Mantenha o treino prático e adequado ao nível do usuário.
+        🔥 AQUECIMENTO (5-10 minutos)
+        - Liste 3-4 exercícios de aquecimento específicos
+        
+        💪 TREINO PRINCIPAL
+        Para cada exercício, inclua:
+        - Nome do exercício
+        - Séries x Repetições
+        - Tempo de descanso
+        - Dica técnica importante
+        
+        🧘 ALONGAMENTO/RESFRIAMENTO (5-10 minutos)
+        - Liste 3-4 exercícios de alongamento
+        
+        ⚠️ DICAS IMPORTANTES DE SEGURANÇA
+        - 2-3 orientações específicas para evitar lesões
+        
+        IMPORTANTE: 
+        - Use emojis para deixar mais visual e atrativo
+        - Não use asteriscos (*)
+        - Seja específico com números (séries, repetições, tempo)
+        - Mantenha linguagem motivacional e positiva
+        - Adapte a intensidade conforme idade e objetivos
         """
     )
     
