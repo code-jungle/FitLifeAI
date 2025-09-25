@@ -225,23 +225,186 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #ea580c, #db2777);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Responsive Design - Mobile First */
+@media (max-width: 640px) {
   .container {
-    padding: 0 16px;
+    padding: 0 12px;
   }
   
+  /* Typography mobile */
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    line-height: 1.2;
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    line-height: 1.3;
   }
   
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Logo mobile */
+  .fitlife-logo-text {
+    font-size: 18px;
+  }
+  
+  /* Buttons mobile */
   .btn-primary, .btn-secondary {
-    padding: 10px 20px;
+    padding: 12px 16px;
     font-size: 14px;
+    min-height: 44px; /* Touch target */
+  }
+  
+  /* Cards mobile */
+  .feature-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  /* Hero section mobile */
+  .hero-section h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-section p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Form inputs mobile */
+  .custom-input {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevent zoom on iOS */
+    min-height: 44px;
+  }
+  
+  /* Modal mobile */
+  .modal-mobile {
+    margin: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  /* Navigation mobile */
+  .nav-mobile {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  /* Grid mobile - force single column */
+  .grid-mobile {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Spacing mobile */
+  .space-mobile {
+    padding: 16px 0;
+  }
+  
+  /* Text mobile */
+  .text-mobile {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Dashboard header mobile */
+  .dashboard-header {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .dashboard-header .user-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  
+  /* Tabs mobile */
+  .tabs-mobile {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .tabs-mobile button {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+  }
+  
+  /* Cards grid mobile */
+  .cards-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* IMC card mobile */
+  .imc-card-mobile {
+    padding: 16px;
+  }
+  
+  .imc-value-mobile {
+    font-size: 2.5rem;
+  }
+  
+  /* History cards mobile */
+  .history-card-mobile {
+    padding: 12px;
+  }
+  
+  .history-actions-mobile {
+    gap: 8px;
+  }
+  
+  /* Modal mobile specific */
+  .suggestion-modal-mobile {
+    padding: 16px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* Auth form mobile */
+  .auth-form-mobile {
+    margin: 16px;
+    padding: 20px;
+  }
+  
+  /* Danger zone mobile */
+  .danger-zone-mobile {
+    margin: 16px 0;
+  }
+}
+
+/* Tablet specific */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+  }
+  
+  .grid-tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .fitlife-logo-text {
+    font-size: 22px;
   }
 }
 
@@ -458,22 +621,6 @@ h1, h2, h3, h4, h5, h6 {
 .payment-processing .loading-spinner {
   width: 20px;
   height: 20px;
-}
-
-/* Mobile optimizations */
-@media (max-width: 640px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-    line-height: 1.2;
-  }
-  
-  .feature-card {
-    padding: 16px;
-  }
-  
-  .container {
-    padding: 0 12px;
-  }
 }
 
 /* Dark mode specific adjustments */
