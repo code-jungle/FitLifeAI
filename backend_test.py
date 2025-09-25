@@ -220,6 +220,29 @@ class FitLifeAPITester:
             return True
         return False
 
+    def test_user_profile_dietary_restrictions(self):
+        """Test getting user profile with dietary_restrictions field verification"""
+        success, response = self.run_test(
+            "Get User Profile (Dietary Restrictions Check)",
+            "GET",
+            "user/profile",
+            200
+        )
+        
+        if success:
+            print(f"   ✅ Profile data: {response.get('name', 'N/A')} - {response.get('email', 'N/A')}")
+            print(f"   ✅ Trial status: {'Premium' if response.get('is_premium') else 'Trial'}")
+            
+            # Verify dietary_restrictions field is present
+            if 'dietary_restrictions' in response:
+                dietary_restrictions = response['dietary_restrictions']
+                print(f"   ✅ Dietary restrictions field present: '{dietary_restrictions}'")
+                return True
+            else:
+                print(f"   ❌ Dietary restrictions field missing from profile response")
+                return False
+        return False
+
     def test_workout_suggestion(self):
         """Test AI workout suggestion generation"""
         print(f"\n🤖 Testing AI Workout Suggestion (this may take 10-15 seconds)...")
