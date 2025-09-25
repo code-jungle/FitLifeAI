@@ -265,21 +265,48 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
     user_message = UserMessage(
         text=f"""
         Crie uma sugestão de dieta personalizada para:
-        - Nome: {current_user.name}
-        - Idade: {current_user.age} anos
-        - Peso: {current_user.weight}kg
-        - Altura: {current_user.height}cm
-        - Objetivos: {current_user.goals}
+        👤 Nome: {current_user.name}
+        🎂 Idade: {current_user.age} anos
+        ⚖️ Peso: {current_user.weight}kg
+        📏 Altura: {current_user.height}cm
+        🎯 Objetivos: {current_user.goals}
         
-        Por favor, forneça um plano alimentar com:
-        1. Café da manhã
-        2. Lanche da manhã
-        3. Almoço
-        4. Lanche da tarde
-        5. Jantar
-        6. Ceia (se necessário)
+        🍽️ PLANO ALIMENTAR COMPLETO:
         
-        Inclua porções aproximadas e dicas nutricionais importantes.
+        ☀️ CAFÉ DA MANHÃ (7:00-8:00)
+        - Alimentos específicos com porções
+        - Benefícios nutricionais
+        
+        🥤 LANCHE DA MANHÃ (10:00-10:30)
+        - Opção prática e saudável
+        - Porção recomendada
+        
+        🍽️ ALMOÇO (12:00-13:00)
+        - Proteína + Carboidrato + Vegetais
+        - Porções detalhadas
+        
+        🍎 LANCHE DA TARDE (15:30-16:00)
+        - Opção nutritiva
+        - Quantidade ideal
+        
+        🌙 JANTAR (19:00-20:00)
+        - Refeição balanceada
+        - Porções apropriadas
+        
+        🌜 CEIA (21:30-22:00) - Se necessário
+        - Opção leve para antes de dormir
+        
+        💡 DICAS NUTRICIONAIS IMPORTANTES:
+        - Hidratação diária recomendada
+        - Horários ideais para as refeições
+        - Alimentos que potencializam seus objetivos
+        
+        IMPORTANTE:
+        - Use emojis para deixar mais visual e atrativo
+        - Não use asteriscos (*)
+        - Inclua porções específicas (gramas, xícaras, unidades)
+        - Mantenha linguagem motivacional
+        - Adapte às necessidades calóricas do perfil
         """
     )
     
