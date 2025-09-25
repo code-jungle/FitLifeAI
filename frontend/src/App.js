@@ -702,19 +702,58 @@ const Dashboard = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-white">Histórico de Treinos</CardTitle>
+                  <CardTitle className="text-white flex items-center">
+                    <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
+                    Histórico de Treinos
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {workoutHistory.length === 0 ? (
                     <p className="text-gray-400">Nenhum treino gerado ainda.</p>
                   ) : (
-                    workoutHistory.slice(0, 3).map((workout) => (
+                    workoutHistory.map((workout) => (
                       <div key={workout.id} className="p-4 bg-slate-700 rounded-lg">
-                        <div className="text-sm text-gray-400 mb-2">
-                          {new Date(workout.created_at).toLocaleDateString('pt-BR')}
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="text-sm text-gray-400 flex items-center">
+                            <Calendar className="h-4 w-4 mr-1" />
+                            {new Date(workout.created_at).toLocaleDateString('pt-BR')}
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button size="sm" variant="ghost" className="text-orange-400 hover:text-orange-300 hover:bg-orange-400/10">
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className="bg-slate-800 border-slate-700 max-w-3xl max-h-[80vh] overflow-y-auto">
+                                <DialogHeader>
+                                  <DialogTitle className="text-white flex items-center">
+                                    <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
+                                    Sugestão de Treino
+                                  </DialogTitle>
+                                  <DialogDescription className="text-gray-400">
+                                    Gerado em {new Date(workout.created_at).toLocaleString('pt-BR')}
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <div className="mt-4">
+                                  <div className="whitespace-pre-wrap text-gray-300 leading-relaxed bg-slate-900/50 p-4 rounded-lg border border-slate-600">
+                                    {workout.suggestion}
+                                  </div>
+                                </div>
+                              </DialogContent>
+                            </Dialog>
+                            <Button 
+                              size="sm" 
+                              variant="ghost" 
+                              className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
+                              onClick={() => deleteSuggestion(workout.id, 'workouts')}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
-                        <div className="text-white text-sm line-clamp-3">
-                          {workout.suggestion.substring(0, 200)}...
+                        <div className="text-white text-sm line-clamp-2">
+                          {workout.suggestion.substring(0, 120)}...
                         </div>
                       </div>
                     ))
@@ -724,19 +763,58 @@ const Dashboard = () => {
 
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-white">Histórico de Nutrição</CardTitle>
+                  <CardTitle className="text-white flex items-center">
+                    <Apple className="mr-2 h-5 w-5 text-pink-500" />
+                    Histórico de Nutrição
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {nutritionHistory.length === 0 ? (
                     <p className="text-gray-400">Nenhuma dieta gerada ainda.</p>
                   ) : (
-                    nutritionHistory.slice(0, 3).map((nutrition) => (
+                    nutritionHistory.map((nutrition) => (
                       <div key={nutrition.id} className="p-4 bg-slate-700 rounded-lg">
-                        <div className="text-sm text-gray-400 mb-2">
-                          {new Date(nutrition.created_at).toLocaleDateString('pt-BR')}
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="text-sm text-gray-400 flex items-center">
+                            <Calendar className="h-4 w-4 mr-1" />
+                            {new Date(nutrition.created_at).toLocaleDateString('pt-BR')}
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button size="sm" variant="ghost" className="text-pink-400 hover:text-pink-300 hover:bg-pink-400/10">
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className="bg-slate-800 border-slate-700 max-w-3xl max-h-[80vh] overflow-y-auto">
+                                <DialogHeader>
+                                  <DialogTitle className="text-white flex items-center">
+                                    <Apple className="mr-2 h-5 w-5 text-pink-500" />
+                                    Sugestão de Nutrição
+                                  </DialogTitle>
+                                  <DialogDescription className="text-gray-400">
+                                    Gerado em {new Date(nutrition.created_at).toLocaleString('pt-BR')}
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <div className="mt-4">
+                                  <div className="whitespace-pre-wrap text-gray-300 leading-relaxed bg-slate-900/50 p-4 rounded-lg border border-slate-600">
+                                    {nutrition.suggestion}
+                                  </div>
+                                </div>
+                              </DialogContent>
+                            </Dialog>
+                            <Button 
+                              size="sm" 
+                              variant="ghost" 
+                              className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
+                              onClick={() => deleteSuggestion(nutrition.id, 'nutrition')}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
-                        <div className="text-white text-sm line-clamp-3">
-                          {nutrition.suggestion.substring(0, 200)}...
+                        <div className="text-white text-sm line-clamp-2">
+                          {nutrition.suggestion.substring(0, 120)}...
                         </div>
                       </div>
                     ))
