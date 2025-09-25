@@ -569,8 +569,9 @@ const Dashboard = () => {
       {/* Header */}
       <header className="bg-slate-800 border-b border-slate-700 p-4">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
-            FitLife AI
+          <div className="fitlife-logo">
+            <div className="fitlife-logo-icon"></div>
+            <div className="fitlife-logo-text">FitLife AI</div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="text-white">
