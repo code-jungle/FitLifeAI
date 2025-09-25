@@ -450,6 +450,11 @@ const Dashboard = () => {
   const [suggestionType, setSuggestionType] = useState('workout');
   const [workoutHistory, setWorkoutHistory] = useState([]);
   const [nutritionHistory, setNutritionHistory] = useState([]);
+  const [deleteAccountData, setDeleteAccountData] = useState({
+    password: '',
+    confirmationText: ''
+  });
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const generateSuggestion = async (type) => {
     setLoading(true);
