@@ -1003,48 +1003,124 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-800 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white">Status da Conta</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Plano</span>
-                    <div className="flex items-center">
-                      {user?.is_premium ? (
-                        <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          <Crown className="inline h-4 w-4 mr-1" />
-                          Premium
+              <div className="space-y-6">
+                {/* Card do IMC */}
+                <Card className="bg-slate-800 border-slate-700">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center">
+                      <Activity className="mr-2 h-5 w-5 text-orange-500" />
+                      Índice de Massa Corporal (IMC)
+                    </CardTitle>
+                    <CardDescription className="text-gray-400">
+                      Indicador de saúde baseado em peso e altura
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {userBMI && bmiInfo ? (
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <div className="text-4xl font-bold text-white mb-2">
+                            {userBMI}
+                          </div>
+                          <div className={`inline-flex px-4 py-2 rounded-full text-sm font-semibold ${bmiInfo.color} ${bmiInfo.bgColor}`}>
+                            {bmiInfo.category}
+                          </div>
                         </div>
-                      ) : (
-                        <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                          isTrialActive 
-                            ? 'bg-yellow-600 text-black' 
-                            : 'bg-red-600 text-white'
-                        }`}>
-                          {isTrialActive ? 'Trial Ativo' : 'Trial Expirado'}
+                        
+                        <div className="space-y-2 text-sm text-gray-300">
+                          <div className="flex justify-between">
+                            <span>Cálculo:</span>
+                            <span>{user?.weight}kg ÷ ({user?.height/100}m)² = {userBMI}</span>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {!user?.is_premium && (
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-400">Trial termina em</span>
-                        <span className="text-white">{trialDaysLeft} dias</span>
+                        
+                        {/* Escala visual do IMC */}
+                        <div className="space-y-2">
+                          <div className="text-xs text-gray-400 mb-2">Referência:</div>
+                          <div className="space-y-1 text-xs">
+                            <div className="flex justify-between items-center">
+                              <span className="text-blue-400">Abaixo do peso</span>
+                              <span className="text-gray-400">&lt; 18.5</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-green-400">Peso normal</span>
+                              <span className="text-gray-400">18.5 - 24.9</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-yellow-400">Sobrepeso</span>
+                              <span className="text-gray-400">25.0 - 29.9</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-orange-400">Obesidade I</span>
+                              <span className="text-gray-400">30.0 - 34.9</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-red-400">Obesidade II</span>
+                              <span className="text-gray-400">35.0 - 39.9</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-red-600">Obesidade III</span>
+                              <span className="text-gray-400">≥ 40.0</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="text-xs text-gray-400 bg-slate-700/50 p-3 rounded-lg">
+                          💡 <strong>Dica:</strong> O IMC é uma referência geral. Consulte sempre um profissional de saúde para orientação personalizada.
+                        </div>
                       </div>
-                      <Button 
-                        onClick={handleUpgrade}
-                        className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white"
-                      >
-                        <CreditCard className="mr-2 h-4 w-4" />
-                        Upgrade Premium - R$ 14,90/mês
-                      </Button>
+                    ) : (
+                      <div className="text-gray-400 text-center py-4">
+                        Dados insuficientes para calcular o IMC
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Card do Status da Conta */}
+                <Card className="bg-slate-800 border-slate-700">
+                  <CardHeader>
+                    <CardTitle className="text-white">Status da Conta</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400">Plano</span>
+                      <div className="flex items-center">
+                        {user?.is_premium ? (
+                          <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <Crown className="inline h-4 w-4 mr-1" />
+                            Premium
+                          </div>
+                        ) : (
+                          <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                            isTrialActive 
+                              ? 'bg-yellow-600 text-black' 
+                              : 'bg-red-600 text-white'
+                          }`}>
+                            {isTrialActive ? 'Trial Ativo' : 'Trial Expirado'}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
+                    
+                    {!user?.is_premium && (
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-400">Trial termina em</span>
+                          <span className="text-white">{trialDaysLeft} dias</span>
+                        </div>
+                        <Button 
+                          onClick={handleUpgrade}
+                          className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white"
+                        >
+                          <CreditCard className="mr-2 h-4 w-4" />
+                          Upgrade Premium - R$ 14,90/mês
+                        </Button>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Zona de Perigo - Exclusão de Conta */}
