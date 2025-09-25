@@ -98,6 +98,10 @@ class PaymentTransaction(BaseModel):
     metadata: Dict[str, str] = {}
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+class AccountDeletionRequest(BaseModel):
+    password: str
+    confirmation_text: str
+
 def format_ai_response(text: str) -> str:
     """Format AI response for better presentation"""
     # Remove asterisks
