@@ -571,6 +571,49 @@ async def stripe_webhook(request: Request):
 async def get_user_profile(current_user: User = Depends(get_current_user)):
     return UserResponse(**current_user.dict())
 
+# Feedback endpoint (public - no authentication required)
+@api_router.post("/feedback")
+async def submit_feedback(feedback: FeedbackRequest):
+    """Submit feedback from users"""
+    try:
+        # Save feedback to database for tracking
+        feedback_doc = feedback.dict()
+        feedback_doc["id"] = str(uuid.uuid4())
+        feedback_doc["created_at"] = datetime.now(timezone.utc)
+        feedback_doc["status"] = "pending"
+        
+        await db.feedback.insert_one(feedback_doc)
+        
+        # Send email
+        email_sent = await send_feedback_email(feedback)
+        
+        if email_sent:
+            # Update status to sent
+            await db.feedback.update_one(
+                {"id": feedback_doc["id"]}, 
+                {"$set": {"status": "sent", "sent_at": datetime.now(timezone.utc)}}
+            )
+            return {
+                "message": "Feedback enviado com sucesso!",
+                "status": "sent",
+                "id": feedback_doc["id"]
+            }
+        else:
+            # Update status to failed
+            await db.feedback.update_one(
+                {"id": feedback_doc["id"]}, 
+                {"$set": {"status": "failed"}}
+            )
+            return {
+                "message": "Feedback salvo, mas houve problema no envio do email.",
+                "status": "saved",
+                "id": feedback_doc["id"]
+            }
+            
+    except Exception as e:
+        logging.error(f"Error processing feedback: {str(e)}")
+        raise HTTPException(status_code=500, detail="Erro ao processar feedback")
+
 @api_router.post("/user/delete-account")
 async def delete_user_account_with_confirmation(
     request: AccountDeletionRequest, 
