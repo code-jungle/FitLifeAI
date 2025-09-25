@@ -982,51 +982,52 @@ const Dashboard = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="profile" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <TabsContent value="profile" className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-white">Informações Pessoais</CardTitle>
+                  <CardTitle className="text-white text-lg sm:text-xl">Informações Pessoais</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label className="text-gray-400">Nome</Label>
-                      <div className="text-white">{user?.name}</div>
+                      <Label className="text-gray-400 text-sm">Nome</Label>
+                      <div className="text-white text-sm sm:text-base">{user?.name}</div>
                     </div>
                     <div>
-                      <Label className="text-gray-400">Email</Label>
-                      <div className="text-white">{user?.email}</div>
+                      <Label className="text-gray-400 text-sm">Email</Label>
+                      <div className="text-white text-sm sm:text-base break-all">{user?.email}</div>
                     </div>
                     <div>
-                      <Label className="text-gray-400">Idade</Label>
-                      <div className="text-white">{user?.age} anos</div>
+                      <Label className="text-gray-400 text-sm">Idade</Label>
+                      <div className="text-white text-sm sm:text-base">{user?.age} anos</div>
                     </div>
                     <div>
-                      <Label className="text-gray-400">Peso</Label>
-                      <div className="text-white">{user?.weight} kg</div>
+                      <Label className="text-gray-400 text-sm">Peso</Label>
+                      <div className="text-white text-sm sm:text-base">{user?.weight} kg</div>
                     </div>
                     <div>
-                      <Label className="text-gray-400">Altura</Label>
-                      <div className="text-white">{user?.height} cm</div>
+                      <Label className="text-gray-400 text-sm">Altura</Label>
+                      <div className="text-white text-sm sm:text-base">{user?.height} cm</div>
                     </div>
                   </div>
                   <div>
-                    <Label className="text-gray-400">Objetivos</Label>
-                    <div className="text-white">{user?.goals}</div>
+                    <Label className="text-gray-400 text-sm">Objetivos</Label>
+                    <div className="text-white text-sm sm:text-base">{user?.goals}</div>
                   </div>
                 </CardContent>
               </Card>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Card do IMC */}
                 <Card className="bg-slate-800 border-slate-700">
                   <CardHeader>
-                    <CardTitle className="text-white flex items-center">
-                      <Activity className="mr-2 h-5 w-5 text-orange-500" />
-                      Índice de Massa Corporal (IMC)
+                    <CardTitle className="text-white flex items-center text-lg sm:text-xl">
+                      <Activity className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
+                      <span className="hidden sm:inline">Índice de Massa Corporal (IMC)</span>
+                      <span className="sm:hidden">IMC</span>
                     </CardTitle>
-                    <CardDescription className="text-gray-400">
+                    <CardDescription className="text-gray-400 text-sm">
                       Indicador de saúde baseado em peso e altura
                     </CardDescription>
                   </CardHeader>
@@ -1034,18 +1035,18 @@ const Dashboard = () => {
                     {userBMI && bmiInfo ? (
                       <div className="space-y-4">
                         <div className="text-center">
-                          <div className="text-4xl font-bold text-white mb-2">
+                          <div className="text-3xl sm:text-4xl font-bold text-white mb-2">
                             {userBMI}
                           </div>
-                          <div className={`inline-flex px-4 py-2 rounded-full text-sm font-semibold ${bmiInfo.color} ${bmiInfo.bgColor}`}>
+                          <div className={`inline-flex px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold ${bmiInfo.color} ${bmiInfo.bgColor}`}>
                             {bmiInfo.category}
                           </div>
                         </div>
                         
-                        <div className="space-y-2 text-sm text-gray-300">
-                          <div className="flex justify-between">
+                        <div className="space-y-2 text-xs sm:text-sm text-gray-300">
+                          <div className="flex justify-between items-center">
                             <span>Cálculo:</span>
-                            <span>{user?.weight}kg ÷ ({user?.height/100}m)² = {userBMI}</span>
+                            <span className="text-right">{user?.weight}kg ÷ ({user?.height/100}m)² = {userBMI}</span>
                           </div>
                         </div>
                         
@@ -1080,12 +1081,12 @@ const Dashboard = () => {
                           </div>
                         </div>
                         
-                        <div className="text-xs text-gray-400 bg-slate-700/50 p-3 rounded-lg">
+                        <div className="text-xs text-gray-400 bg-slate-700/50 p-2 sm:p-3 rounded-lg">
                           💡 <strong>Dica:</strong> O IMC é uma referência geral. Consulte sempre um profissional de saúde para orientação personalizada.
                         </div>
                       </div>
                     ) : (
-                      <div className="text-gray-400 text-center py-4">
+                      <div className="text-gray-400 text-center py-4 text-sm">
                         Dados insuficientes para calcular o IMC
                       </div>
                     )}
@@ -1095,19 +1096,19 @@ const Dashboard = () => {
                 {/* Card do Status da Conta */}
                 <Card className="bg-slate-800 border-slate-700">
                   <CardHeader>
-                    <CardTitle className="text-white">Status da Conta</CardTitle>
+                    <CardTitle className="text-white text-lg sm:text-xl">Status da Conta</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">Plano</span>
+                      <span className="text-gray-400 text-sm sm:text-base">Plano</span>
                       <div className="flex items-center">
                         {user?.is_premium ? (
-                          <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            <Crown className="inline h-4 w-4 mr-1" />
+                          <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                            <Crown className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                             Premium
                           </div>
                         ) : (
-                          <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                          <div className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${
                             isTrialActive 
                               ? 'bg-yellow-600 text-black' 
                               : 'bg-red-600 text-white'
@@ -1121,15 +1122,15 @@ const Dashboard = () => {
                     {!user?.is_premium && (
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-gray-400">Trial termina em</span>
-                          <span className="text-white">{trialDaysLeft} dias</span>
+                          <span className="text-gray-400 text-sm sm:text-base">Trial termina em</span>
+                          <span className="text-white text-sm sm:text-base">{trialDaysLeft} dias</span>
                         </div>
                         <Button 
                           onClick={handleUpgrade}
-                          className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white"
+                          className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white py-3"
                         >
                           <CreditCard className="mr-2 h-4 w-4" />
-                          Upgrade Premium - R$ 14,90/mês
+                          <span className="text-sm sm:text-base">Upgrade Premium - R$ 14,90/mês</span>
                         </Button>
                       </div>
                     )}
