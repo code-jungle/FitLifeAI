@@ -144,6 +144,7 @@ const LandingPage = () => {
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold px-8 py-4 text-lg"
+              onClick={() => navigate('/auth')}
             >
               <Zap className="mr-2 h-5 w-5" />
               Começar Agora - Grátis
