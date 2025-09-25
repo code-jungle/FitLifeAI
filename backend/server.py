@@ -282,13 +282,27 @@ async def get_nutrition_suggestion(current_user: User = Depends(get_current_user
 # History endpoints
 @api_router.get("/history/workouts", response_model=List[WorkoutSuggestion])
 async def get_workout_history(current_user: User = Depends(get_current_user)):
-    suggestions = await db.workout_suggestions.find({"user_id": current_user.id}).sort("created_at", -1).limit(10).to_list(10)
+    suggestions = await db.workout_suggestions.find({"user_id": current_user.id}).sort("created_at", -1).limit(20).to_list(20)
     return [WorkoutSuggestion(**suggestion) for suggestion in suggestions]
 
 @api_router.get("/history/nutrition", response_model=List[NutritionSuggestion])
 async def get_nutrition_history(current_user: User = Depends(get_current_user)):
-    suggestions = await db.nutrition_suggestions.find({"user_id": current_user.id}).sort("created_at", -1).limit(10).to_list(10)
+    suggestions = await db.nutrition_suggestions.find({"user_id": current_user.id}).sort("created_at", -1).limit(20).to_list(20)
     return [NutritionSuggestion(**suggestion) for suggestion in suggestions]
+
+@api_router.delete("/history/workouts/{suggestion_id}")
+async def delete_workout_suggestion(suggestion_id: str, current_user: User = Depends(get_current_user)):
+    result = await db.workout_suggestions.delete_one({"id": suggestion_id, "user_id": current_user.id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Workout suggestion not found")
+    return {"message": "Workout suggestion deleted successfully"}
+
+@api_router.delete("/history/nutrition/{suggestion_id}")
+async def delete_nutrition_suggestion(suggestion_id: str, current_user: User = Depends(get_current_user)):
+    result = await db.nutrition_suggestions.delete_one({"id": suggestion_id, "user_id": current_user.id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Nutrition suggestion not found")
+    return {"message": "Nutrition suggestion deleted successfully"}
 
 # Payment endpoints
 @api_router.post("/payments/checkout", response_model=CheckoutSessionResponse)
