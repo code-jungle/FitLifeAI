@@ -1132,7 +1132,18 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-white text-lg sm:text-xl">Informações Pessoais</CardTitle>
+                  <div className="flex justify-between items-center">
+                    <CardTitle className="text-white text-lg sm:text-xl">Informações Pessoais</CardTitle>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
+                      onClick={() => setEditProfileOpen(true)}
+                    >
+                      <User className="mr-2 h-4 w-4" />
+                      Editar Perfil
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
