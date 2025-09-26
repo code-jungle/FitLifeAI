@@ -1232,26 +1232,6 @@ const Dashboard = () => {
           </TabsContent>
 
           <TabsContent value="profile" className="space-y-4 sm:space-y-6">
-            
-            {/* Aviso Importante sobre as Sugestões */}
-            <Card className="bg-blue-950/50 border-blue-700/50">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-start space-x-3">
-                  <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-blue-200 font-semibold text-sm sm:text-base mb-2">
-                      ⚠️ Importante - Leia antes de usar
-                    </h4>
-                    <p className="text-blue-100 text-xs sm:text-sm leading-relaxed">
-                      <strong>As sugestões de treinos e dietas são apenas orientações educacionais</strong> geradas por IA para ajudar em uma vida mais saudável. 
-                      Elas <strong>NÃO substituem</strong> a consulta com profissionais de saúde qualificados como médicos, nutricionistas ou educadores físicos. 
-                      Sempre consulte um profissional antes de iniciar qualquer programa de exercícios ou mudança na alimentação.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
