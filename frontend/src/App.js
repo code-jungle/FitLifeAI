@@ -1501,13 +1501,23 @@ const Dashboard = () => {
                     <div className="space-y-4 my-4">
                       <div>
                         <Label className="text-white">Confirme sua senha</Label>
-                        <Input
-                          type="password"
-                          placeholder="Digite sua senha atual"
-                          value={deleteAccountData.password}
-                          onChange={(e) => setDeleteAccountData({...deleteAccountData, password: e.target.value})}
-                          className="bg-slate-700 border-slate-600 text-white mt-1"
-                        />
+                        <div className="relative">
+                          <Input
+                            type={showDeletePassword ? "text" : "password"}
+                            placeholder="Digite sua senha atual"
+                            value={deleteAccountData.password}
+                            onChange={(e) => setDeleteAccountData({...deleteAccountData, password: e.target.value})}
+                            className="bg-slate-700 border-slate-600 text-white mt-1 pr-10"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowDeletePassword(!showDeletePassword)}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                            tabIndex={-1}
+                          >
+                            {showDeletePassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </button>
+                        </div>
                       </div>
                       
                       <div>
