@@ -1574,6 +1574,24 @@ const Dashboard = () => {
                 />
               </div>
               
+              <div>
+                <Label htmlFor="edit-workout-type" className="text-white">Tipo de Treino *</Label>
+                <select
+                  id="edit-workout-type"
+                  required
+                  value={editProfileData.workout_type}
+                  onChange={(e) => setEditProfileData({...editProfileData, workout_type: e.target.value})}
+                  className="w-full bg-slate-700 border border-slate-600 text-white mt-1 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                >
+                  <option value="academia">🏋️ Academia (equipamentos completos)</option>
+                  <option value="casa">🏠 Em Casa (peso corporal/básico)</option>
+                  <option value="ar_livre">🌳 Ao Ar Livre (parques/ruas)</option>
+                </select>
+                <p className="text-xs text-gray-400 mt-1">
+                  💡 A IA adaptará os treinos para o ambiente escolhido
+                </p>
+              </div>
+              
               <div className="flex justify-end space-x-3 pt-4">
                 <Button 
                   type="button" 
