@@ -656,6 +656,15 @@ const Dashboard = () => {
     confirmationText: ''
   });
   const [isDeleting, setIsDeleting] = useState(false);
+  const [editProfileOpen, setEditProfileOpen] = useState(false);
+  const [editProfileData, setEditProfileData] = useState({
+    age: '',
+    weight: '',
+    height: '',
+    goals: '',
+    dietary_restrictions: ''
+  });
+  const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
 
   const generateSuggestion = async (type) => {
     setLoading(true);
