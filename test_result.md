@@ -152,6 +152,17 @@ backend:
         - working: true
           agent: "testing"
           comment: "✅ Updated nutrition suggestion system with affordable foods focus fully tested and working. Comprehensive testing completed with 83.3% success rate (5/6 criteria met): 1) ✅ Affordable foods focus - All 11 target affordable foods mentioned (eggs, chicken, ground meat, rice, beans, potatoes, bananas, apples, oats, milk, bread). 2) ✅ No expensive ingredients - Zero expensive items like nuts, shrimp, salmon, quinoa found. 3) ✅ Complete meal structure - All 5 meal sections present (breakfast, morning snack, lunch, afternoon snack, dinner, plus optional evening snack). 4) ✅ Detailed portions - Specific measurements throughout (60g, 240ml, 120g, 150g, etc.). 5) ✅ Economic tips and planning - Includes practical advice about shopping at fairs, using leftovers, bulk cooking, substitutions, weekly meal planning. 6) Minor: Multiple options indicators could be more explicit, but content does provide 2-4 options per meal. API endpoint POST /api/suggestions/nutrition working correctly with 200 OK responses. AI generating personalized, affordable nutrition plans as requested. System is production-ready and meeting user requirements for low-cost, accessible food recommendations."
+  - task: "Enhanced Workout Suggestion System with Workout Type"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ Enhanced workout suggestion system with workout_type field fully tested and working. Comprehensive testing completed with 100% success rate (10/10 tests passed): 1) ✅ User registration with workout_type field working correctly - field properly saved and returned in response. 2) ✅ Profile updates with all three workout types (academia, casa, ar_livre) working perfectly - values correctly updated and persisted. 3) ✅ AI workout suggestions properly customized by workout type: Academia (100% quality score) - correctly mentions gym equipment like halteres, barras, máquinas, esteiras; Casa (75% quality score) - focuses on bodyweight exercises, minimal equipment mentions; Ar_livre (100% quality score) - emphasizes outdoor activities, park exercises, running. 4) ✅ Content analysis verified location-appropriate exercises for each type. 5) ✅ All API endpoints working correctly with proper authentication. The AI is successfully generating different workout plans based on workout_type field as requested. System is production-ready and meeting all requirements for location-specific workout customization."
 
 frontend:
   - task: "Feedback System Testing"
