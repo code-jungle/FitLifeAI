@@ -1208,7 +1208,7 @@ const Dashboard = () => {
                       variant="outline"
                       size="sm"
                       className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
-                      onClick={() => setEditProfileOpen(true)}
+                      onClick={() => handleEditProfile()}
                     >
                       <User className="mr-2 h-4 w-4" />
                       Editar Perfil
