@@ -858,7 +858,8 @@ const Dashboard = () => {
         weight: parseFloat(editProfileData.weight),
         height: parseFloat(editProfileData.height),
         goals: editProfileData.goals,
-        dietary_restrictions: editProfileData.dietary_restrictions
+        dietary_restrictions: editProfileData.dietary_restrictions,
+        workout_type: editProfileData.workout_type
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
