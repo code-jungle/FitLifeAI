@@ -711,6 +711,7 @@ const Dashboard = () => {
     confirmationText: ''
   });
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeletePassword, setShowDeletePassword] = useState(false);
   const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [editProfileData, setEditProfileData] = useState({
     age: '',
