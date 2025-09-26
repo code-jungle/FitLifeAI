@@ -832,7 +832,8 @@ const Dashboard = () => {
       weight: user?.weight || '',
       height: user?.height || '',
       goals: user?.goals || '',
-      dietary_restrictions: user?.dietary_restrictions || ''
+      dietary_restrictions: user?.dietary_restrictions || '',
+      workout_type: user?.workout_type || 'academia'
     });
     setEditProfileOpen(true);
   };
