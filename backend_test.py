@@ -564,6 +564,180 @@ class FitLifeAPITester:
             print(f"   ❌ No feedback ID returned, may not be saved")
             return False
 
+    def test_profile_update_full(self):
+        """Test full profile update with all fields"""
+        update_data = {
+            "age": 28,
+            "weight": 72.5,
+            "height": 178,
+            "goals": "Ganhar massa muscular e melhorar definição",
+            "dietary_restrictions": "Sem lactose"
+        }
+        
+        success, response = self.run_test(
+            "Update Profile - Full Update",
+            "PUT",
+            "user/profile",
+            200,
+            data=update_data
+        )
+        
+        if success:
+            print(f"   ✅ Profile updated successfully")
+            # Verify all fields were updated correctly
+            for field, expected_value in update_data.items():
+                actual_value = response.get(field)
+                if actual_value == expected_value:
+                    print(f"   ✅ {field}: {actual_value} (correct)")
+                else:
+                    print(f"   ❌ {field}: expected {expected_value}, got {actual_value}")
+                    return False
+            return True, response
+        return False, {}
+
+    def test_profile_update_partial(self):
+        """Test partial profile update with only some fields"""
+        update_data = {
+            "age": 30,
+            "goals": "Manter peso e melhorar resistência"
+        }
+        
+        success, response = self.run_test(
+            "Update Profile - Partial Update",
+            "PUT",
+            "user/profile",
+            200,
+            data=update_data
+        )
+        
+        if success:
+            print(f"   ✅ Partial profile update successful")
+            # Verify updated fields
+            for field, expected_value in update_data.items():
+                actual_value = response.get(field)
+                if actual_value == expected_value:
+                    print(f"   ✅ {field}: {actual_value} (updated correctly)")
+                else:
+                    print(f"   ❌ {field}: expected {expected_value}, got {actual_value}")
+                    return False
+            return True, response
+        return False, {}
+
+    def test_profile_update_single_field(self):
+        """Test updating only one field"""
+        update_data = {
+            "weight": 75.0
+        }
+        
+        success, response = self.run_test(
+            "Update Profile - Single Field",
+            "PUT",
+            "user/profile",
+            200,
+            data=update_data
+        )
+        
+        if success:
+            print(f"   ✅ Single field update successful")
+            actual_weight = response.get('weight')
+            if actual_weight == 75.0:
+                print(f"   ✅ Weight updated correctly: {actual_weight}kg")
+                return True, response
+            else:
+                print(f"   ❌ Weight update failed: expected 75.0, got {actual_weight}")
+                return False
+        return False, {}
+
+    def test_profile_update_validation(self):
+        """Test profile update validation with invalid data"""
+        # Test empty update (should fail)
+        success, response = self.run_test(
+            "Update Profile - Empty Data",
+            "PUT",
+            "user/profile",
+            400,
+            data={}
+        )
+        
+        if success:
+            print(f"   ✅ Empty update correctly rejected")
+            return True
+        else:
+            print(f"   ❌ Empty update should have been rejected with 400")
+            return False
+
+    def test_profile_update_without_auth(self):
+        """Test profile update without authentication"""
+        # Temporarily remove token
+        temp_token = self.token
+        self.token = None
+        
+        update_data = {
+            "age": 25
+        }
+        
+        success, response = self.run_test(
+            "Update Profile - No Auth",
+            "PUT",
+            "user/profile",
+            401,  # Expecting unauthorized
+            data=update_data
+        )
+        
+        # Restore token
+        self.token = temp_token
+        
+        if success:
+            print(f"   ✅ Unauthorized request correctly rejected")
+            return True
+        else:
+            print(f"   ❌ Unauthorized request should have been rejected with 401")
+            return False
+
+    def test_profile_update_persistence(self):
+        """Test that profile updates are persisted by fetching profile after update"""
+        # First update the profile
+        update_data = {
+            "age": 32,
+            "weight": 68.5,
+            "dietary_restrictions": "Vegetariano"
+        }
+        
+        success, update_response = self.run_test(
+            "Update Profile - For Persistence Test",
+            "PUT",
+            "user/profile",
+            200,
+            data=update_data
+        )
+        
+        if not success:
+            print(f"   ❌ Profile update failed")
+            return False
+        
+        # Now fetch the profile to verify persistence
+        success, profile_response = self.run_test(
+            "Get Profile - Verify Persistence",
+            "GET",
+            "user/profile",
+            200
+        )
+        
+        if success:
+            print(f"   ✅ Profile fetched after update")
+            # Verify the updated values are persisted
+            for field, expected_value in update_data.items():
+                actual_value = profile_response.get(field)
+                if actual_value == expected_value:
+                    print(f"   ✅ {field}: {actual_value} (persisted correctly)")
+                else:
+                    print(f"   ❌ {field}: expected {expected_value}, got {actual_value} (not persisted)")
+                    return False
+            return True
+        else:
+            print(f"   ❌ Failed to fetch profile after update")
+            return False
+
 def main():
     print("🚀 Starting FitLife AI Authentication System Tests")
     print("🔍 Focus: Testing dietary_restrictions field fix")
