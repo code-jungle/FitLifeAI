@@ -66,6 +66,7 @@ class UserCreate(BaseModel):
     height: float
     goals: str
     dietary_restrictions: str = ""  # Novo campo para restrições alimentares
+    workout_type: str = "academia"  # Novo campo: academia, casa, ar_livre
 
 class UserLogin(BaseModel):
     email: EmailStr
