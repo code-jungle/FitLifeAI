@@ -52,6 +52,7 @@ class User(BaseModel):
     height: float
     goals: str
     dietary_restrictions: str = ""  # Novo campo para restrições alimentares
+    workout_type: str = "academia"  # Novo campo: academia, casa, ar_livre
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     is_premium: bool = False
     trial_end_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc) + timedelta(days=7))
