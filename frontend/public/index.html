@@ -158,5 +158,72 @@
                 person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
             });
         </script>
+        
+        <!-- Service Worker Registration -->
+        <script>
+            // Register Service Worker for PWA
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('FitLife AI SW registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', function() {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New version available, show update notification
+                                    if (confirm('Nova versão do FitLife AI disponível! Atualizar agora?')) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('FitLife AI SW registration failed:', error);
+                    });
+                });
+                
+                // Handle controller change (new SW takes control)
+                navigator.serviceWorker.addEventListener('controllerchange', function() {
+                    window.location.reload();
+                });
+            }
+            
+            // PWA Install Prompt
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', function(e) {
+                console.log('FitLife AI: Install prompt available');
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // Show custom install button if needed
+                const installButton = document.getElementById('pwa-install-btn');
+                if (installButton) {
+                    installButton.style.display = 'block';
+                    installButton.addEventListener('click', function() {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then(function(choiceResult) {
+                            if (choiceResult.outcome === 'accepted') {
+                                console.log('FitLife AI: PWA installed');
+                            }
+                            deferredPrompt = null;
+                            installButton.style.display = 'none';
+                        });
+                    });
+                }
+            });
+            
+            // Track PWA usage
+            window.addEventListener('appinstalled', function() {
+                console.log('FitLife AI: PWA installed successfully');
+                if (window.posthog) {
+                    posthog.capture('pwa_installed');
+                }
+            });
+        </script>
     </body>
 </html>
