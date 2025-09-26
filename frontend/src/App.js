@@ -554,6 +554,24 @@ const AuthForms = () => {
                     💡 Informe suas restrições, alergias ou preferências alimentares para sugestões mais personalizadas
                   </p>
                 </div>
+                
+                <div>
+                  <Label htmlFor="workout_type" className="text-white">Onde você prefere treinar?</Label>
+                  <select
+                    id="workout_type"
+                    required
+                    value={formData.workout_type}
+                    onChange={(e) => setFormData({...formData, workout_type: e.target.value})}
+                    className="w-full bg-slate-700 border border-slate-600 text-white mt-1 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  >
+                    <option value="academia">🏋️ Academia (equipamentos completos)</option>
+                    <option value="casa">🏠 Em Casa (peso corporal/básico)</option>
+                    <option value="ar_livre">🌳 Ao Ar Livre (parques/ruas)</option>
+                  </select>
+                  <p className="text-xs text-gray-400 mt-1">
+                    💡 A IA criará treinos específicos para o ambiente escolhido
+                  </p>
+                </div>
               </div>
             )}
             
