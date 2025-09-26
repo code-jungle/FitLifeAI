@@ -627,20 +627,30 @@ const AuthForms = () => {
             {!isLogin && (
               <div>
                 <Label htmlFor="confirmPassword" className="text-white">Confirmar Senha</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  required
-                  value={formData.confirmPassword}
-                  onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                  className={`bg-slate-700 border-slate-600 text-white mt-1 ${
-                    formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword
-                      ? 'border-red-500 focus:border-red-500' 
-                      : formData.password && formData.confirmPassword && formData.password === formData.confirmPassword
-                      ? 'border-green-500 focus:border-green-500'
-                      : ''
-                  }`}
-                />
+                <div className="relative">
+                  <Input
+                    id="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    required
+                    value={formData.confirmPassword}
+                    onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                    className={`bg-slate-700 border-slate-600 text-white mt-1 pr-10 ${
+                      formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword
+                        ? 'border-red-500 focus:border-red-500' 
+                        : formData.password && formData.confirmPassword && formData.password === formData.confirmPassword
+                        ? 'border-green-500 focus:border-green-500'
+                        : ''
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                    tabIndex={-1}
+                  >
+                    {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
                 {formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword && (
                   <p className="text-red-400 text-sm mt-1">As senhas não coincidem</p>
                 )}
