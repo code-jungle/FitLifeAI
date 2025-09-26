@@ -1457,6 +1457,121 @@ const Dashboard = () => {
             </Card>
           </TabsContent>
         </Tabs>
+        
+        {/* Modal de Edição de Perfil */}
+        <Dialog open={editProfileOpen} onOpenChange={setEditProfileOpen}>
+          <DialogContent className="bg-slate-800 border-slate-700 max-w-md mx-auto">
+            <DialogHeader>
+              <DialogTitle className="text-white flex items-center">
+                <User className="mr-2 h-5 w-5 text-orange-500" />
+                Editar Perfil
+              </DialogTitle>
+              <DialogDescription className="text-gray-400">
+                Atualize suas informações para receber sugestões mais precisas da IA
+              </DialogDescription>
+            </DialogHeader>
+            
+            <form onSubmit={handleUpdateProfile} className="space-y-4 mt-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="edit-age" className="text-white">Idade *</Label>
+                  <Input
+                    id="edit-age"
+                    type="number"
+                    required
+                    min="12"
+                    max="100"
+                    value={editProfileData.age}
+                    onChange={(e) => setEditProfileData({...editProfileData, age: e.target.value})}
+                    className="bg-slate-700 border-slate-600 text-white mt-1"
+                    placeholder="Idade"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="edit-weight" className="text-white">Peso (kg) *</Label>
+                  <Input
+                    id="edit-weight"
+                    type="number"
+                    required
+                    min="30"
+                    max="300"
+                    step="0.1"
+                    value={editProfileData.weight}
+                    onChange={(e) => setEditProfileData({...editProfileData, weight: e.target.value})}
+                    className="bg-slate-700 border-slate-600 text-white mt-1"
+                    placeholder="Peso"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <Label htmlFor="edit-height" className="text-white">Altura (cm) *</Label>
+                <Input
+                  id="edit-height"
+                  type="number"
+                  required
+                  min="120"
+                  max="250"
+                  value={editProfileData.height}
+                  onChange={(e) => setEditProfileData({...editProfileData, height: e.target.value})}
+                  className="bg-slate-700 border-slate-600 text-white mt-1"
+                  placeholder="Altura em centímetros"
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="edit-goals" className="text-white">Objetivos *</Label>
+                <Textarea
+                  id="edit-goals"
+                  required
+                  value={editProfileData.goals}
+                  onChange={(e) => setEditProfileData({...editProfileData, goals: e.target.value})}
+                  className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[80px]"
+                  placeholder="Ex: Perder peso, ganhar massa muscular, melhorar condicionamento..."
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="edit-restrictions" className="text-white">Restrições Alimentares</Label>
+                <Textarea
+                  id="edit-restrictions"
+                  value={editProfileData.dietary_restrictions}
+                  onChange={(e) => setEditProfileData({...editProfileData, dietary_restrictions: e.target.value})}
+                  className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[60px]"
+                  placeholder="Ex: Vegano, alergia a glúten, intolerância à lactose..."
+                />
+              </div>
+              
+              <div className="flex justify-end space-x-3 pt-4">
+                <Button 
+                  type="button" 
+                  variant="ghost" 
+                  onClick={() => setEditProfileOpen(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  Cancelar
+                </Button>
+                <Button 
+                  type="submit" 
+                  disabled={isUpdatingProfile}
+                  className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white"
+                >
+                  {isUpdatingProfile ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Atualizando...
+                    </>
+                  ) : (
+                    <>
+                      <User className="mr-2 h-4 w-4" />
+                      Salvar Alterações
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
