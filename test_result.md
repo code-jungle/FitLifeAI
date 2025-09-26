@@ -188,7 +188,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Profile Editing Functionality"
+    - "Enhanced Workout Suggestion System with Workout Type"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
