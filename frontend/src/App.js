@@ -635,7 +635,7 @@ const AuthForms = () => {
                     required
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                    className={`bg-slate-700 border-slate-600 text-white mt-1 pr-10 ${
+                    className={`bg-slate-700 border-slate-600 text-white mt-1 pr-12 ${
                       formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword
                         ? 'border-red-500 focus:border-red-500' 
                         : formData.password && formData.confirmPassword && formData.password === formData.confirmPassword
@@ -646,8 +646,9 @@ const AuthForms = () => {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors bg-slate-600 p-1 rounded z-10"
                     tabIndex={-1}
+                    title={showConfirmPassword ? "Ocultar senha" : "Mostrar senha"}
                   >
                     {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
