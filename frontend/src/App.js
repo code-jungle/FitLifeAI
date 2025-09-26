@@ -668,13 +668,13 @@ const Dashboard = () => {
 
   const generateSuggestion = async (type) => {
     setLoading(true);
+    setSuggestionType(type); // Define o tipo ANTES da requisição
     try {
       const response = await axios.post(`${API}/suggestions/${type}`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       
       setCurrentSuggestion(response.data);
-      setSuggestionType(type);
       
       toast({
         title: "Sugestão gerada!",
