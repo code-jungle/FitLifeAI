@@ -1,34 +1,41 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#ec4899;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    <!-- Gradient background matching the card -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF9454;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E93F88;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Subtle highlight for depth -->
+    <linearGradient id="plateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F055A4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E93F88;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Background -->
-  <rect width="512" height="512" rx="60" fill="url(#bgGradient)"/>
+  <!-- Circular background with gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)"/>
   
-  <!-- Dumbbell Icon -->
-  <g transform="translate(256,256)" fill="white">
-    <!-- Left weight -->
-    <rect x="-120" y="-40" width="30" height="80" rx="15"/>
-    <rect x="-100" y="-25" width="15" height="50" rx="7"/>
-    
-    <!-- Bar -->
-    <rect x="-70" y="-8" width="140" height="16" rx="8"/>
-    
-    <!-- Right weight -->
-    <rect x="90" y="-40" width="30" height="80" rx="15"/>
-    <rect x="85" y="-25" width="15" height="50" rx="7"/>
-    
-    <!-- Center grip -->
-    <rect x="-25" y="-12" width="50" height="24" rx="12" fill="rgba(255,255,255,0.3)"/>
+  <!-- Left Dumbbell (angled slightly inward) -->
+  <g transform="translate(180,256) rotate(-15)">
+    <!-- Left plates -->
+    <circle cx="-45" cy="0" r="25" fill="url(#plateGradient)"/>
+    <!-- Central bar -->
+    <rect x="-45" y="-8" width="90" height="16" rx="8" fill="url(#plateGradient)"/>
+    <!-- Right plates -->
+    <circle cx="45" cy="0" r="25" fill="url(#plateGradient)"/>
   </g>
   
-  <!-- FitLife Text -->
-  <text x="256" y="420" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="36" font-weight="bold">
-    FitLife AI
-  </text>
+  <!-- Right Dumbbell (angled slightly inward, mirrored) -->
+  <g transform="translate(332,256) rotate(15)">
+    <!-- Left plates -->
+    <circle cx="-45" cy="0" r="25" fill="url(#plateGradient)"/>
+    <!-- Central bar -->
+    <rect x="-45" y="-8" width="90" height="16" rx="8" fill="url(#plateGradient)"/>
+    <!-- Right plates -->
+    <circle cx="45" cy="0" r="25" fill="url(#plateGradient)"/>
+  </g>
+  
+  <!-- Subtle inner shadow for depth (optional) -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2" stroke-dasharray="0"/>
 </svg>
