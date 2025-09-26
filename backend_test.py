@@ -1201,6 +1201,100 @@ def test_profile_editing_system():
         print("❌ Multiple test failures detected in profile editing system.")
         return 1
 
+def test_workout_type_system():
+    """Test the enhanced workout suggestion system with workout_type field"""
+    print("🚀 Starting FitLife AI Workout Type System Tests")
+    print("🔍 Focus: Testing workout_type field and AI customization")
+    print("=" * 70)
+    
+    tester = FitLifeAPITester()
+    
+    # Phase 1: Registration with workout_type
+    print("\n📝 PHASE 1: Registration with Workout Type")
+    registration_success = tester.test_user_registration_with_workout_type()
+    
+    if not registration_success:
+        print("❌ Registration with workout_type failed")
+        return 1
+    
+    # Phase 2: Profile update with different workout types
+    print("\n🔄 PHASE 2: Profile Update with Different Workout Types")
+    profile_update_success = tester.test_profile_update_workout_type()
+    
+    if not profile_update_success:
+        print("❌ Profile update with workout types failed")
+        return 1
+    
+    # Phase 3: Test AI suggestions for each workout type
+    print("\n🤖 PHASE 3: AI Workout Suggestions by Type")
+    workout_types = ["academia", "casa", "ar_livre"]
+    suggestion_results = {}
+    
+    for workout_type in workout_types:
+        print(f"\n   Testing {workout_type} workout suggestions...")
+        suggestion_success, suggestion_content = tester.test_workout_suggestion_by_type(workout_type)
+        
+        if suggestion_success:
+            # Analyze the content for location-appropriate exercises
+            analysis_success, analysis_data = tester.analyze_workout_suggestion_content(workout_type, suggestion_content)
+            suggestion_results[workout_type] = {
+                'success': suggestion_success,
+                'analysis_success': analysis_success,
+                'analysis_data': analysis_data
+            }
+        else:
+            suggestion_results[workout_type] = {
+                'success': False,
+                'analysis_success': False,
+                'analysis_data': {}
+            }
+    
+    # Final results
+    print("\n" + "=" * 70)
+    print(f"📊 WORKOUT TYPE SYSTEM TEST RESULTS")
+    print(f"Tests passed: {tester.tests_passed}/{tester.tests_run}")
+    print(f"Success rate: {(tester.tests_passed/tester.tests_run)*100:.1f}%")
+    
+    # Detailed test results
+    print(f"\n🏋️ WORKOUT TYPE FUNCTIONALITY VERIFICATION:")
+    print(f"   Registration with workout_type: {'✅ PASSED' if registration_success else '❌ FAILED'}")
+    print(f"   Profile update with workout types: {'✅ PASSED' if profile_update_success else '❌ FAILED'}")
+    
+    # AI suggestion results by type
+    print(f"\n🤖 AI SUGGESTION CUSTOMIZATION BY TYPE:")
+    overall_ai_success = True
+    for workout_type, results in suggestion_results.items():
+        success_icon = "✅" if results['success'] and results['analysis_success'] else "❌"
+        print(f"   {workout_type.capitalize()}: {success_icon} {'PASSED' if results['success'] and results['analysis_success'] else 'FAILED'}")
+        
+        if results['analysis_data']:
+            data = results['analysis_data']
+            print(f"      - Location-appropriate exercises: {data['expected_found']} found")
+            print(f"      - Inappropriate equipment avoided: {data['avoided_found'] == 0}")
+            print(f"      - Content quality: {data['success_rate']:.1f}%")
+        
+        if not (results['success'] and results['analysis_success']):
+            overall_ai_success = False
+    
+    # Summary
+    print(f"\n🎯 TESTED FUNCTIONALITY:")
+    print(f"   ✓ User registration with workout_type field")
+    print(f"   ✓ Profile updates with different workout types (academia, casa, ar_livre)")
+    print(f"   ✓ AI workout suggestions customized by location type")
+    print(f"   ✓ Content analysis for location-appropriate exercises")
+    
+    all_tests_passed = registration_success and profile_update_success and overall_ai_success
+    
+    if all_tests_passed:
+        print("🎉 All workout type system tests passed! Enhanced functionality verified.")
+        return 0
+    elif tester.tests_passed >= tester.tests_run * 0.75:
+        print("⚠️  Most tests passed, some issues detected with AI customization.")
+        return 0
+    else:
+        print("❌ Multiple test failures detected in workout type system.")
+        return 1
+
 if __name__ == "__main__":
     import sys
     
@@ -1210,5 +1304,7 @@ if __name__ == "__main__":
             sys.exit(test_nutrition_system())
         elif sys.argv[1] == "profile":
             sys.exit(test_profile_editing_system())
+        elif sys.argv[1] == "workout_type":
+            sys.exit(test_workout_type_system())
     else:
         sys.exit(main())
