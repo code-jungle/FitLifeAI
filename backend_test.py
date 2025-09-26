@@ -738,6 +738,194 @@ class FitLifeAPITester:
             print(f"   ❌ Failed to fetch profile after update")
             return False
 
+    def test_user_registration_with_workout_type(self):
+        """Test user registration with workout_type field"""
+        import time
+        unique_email = f"workout.test.{int(time.time())}@example.com"
+        
+        test_data = {
+            "email": unique_email,
+            "password": "WorkoutTest123!",
+            "name": "Workout Test User",
+            "age": 30,
+            "weight": 75,
+            "height": 180,
+            "goals": "Teste do sistema de workout_type",
+            "dietary_restrictions": "Nenhuma",
+            "workout_type": "casa"
+        }
+        
+        success, response = self.run_test(
+            "User Registration with Workout Type",
+            "POST",
+            "auth/register",
+            200,
+            data=test_data
+        )
+        
+        if success and 'token' in response:
+            self.token = response['token']
+            self.user_data = response.get('user', {})
+            self.workout_test_email = unique_email  # Store for login test
+            print(f"   ✅ Token received and stored")
+            print(f"   ✅ User ID: {self.user_data.get('id', 'N/A')}")
+            
+            # Verify workout_type field is present in response
+            if 'workout_type' in self.user_data:
+                workout_type = self.user_data['workout_type']
+                print(f"   ✅ Workout type field present: '{workout_type}'")
+                if workout_type == "casa":
+                    print(f"   ✅ Workout type correctly set to 'casa'")
+                    return True
+                else:
+                    print(f"   ❌ Workout type incorrect: expected 'casa', got '{workout_type}'")
+                    return False
+            else:
+                print(f"   ❌ Workout type field missing from user response")
+                return False
+        return False
+
+    def test_profile_update_workout_type(self):
+        """Test profile update with different workout types"""
+        workout_types = ["academia", "casa", "ar_livre"]
+        
+        for workout_type in workout_types:
+            update_data = {
+                "workout_type": workout_type
+            }
+            
+            success, response = self.run_test(
+                f"Update Profile - Workout Type ({workout_type})",
+                "PUT",
+                "user/profile",
+                200,
+                data=update_data
+            )
+            
+            if success:
+                actual_workout_type = response.get('workout_type')
+                if actual_workout_type == workout_type:
+                    print(f"   ✅ Workout type updated to '{workout_type}' successfully")
+                else:
+                    print(f"   ❌ Workout type update failed: expected '{workout_type}', got '{actual_workout_type}'")
+                    return False
+            else:
+                print(f"   ❌ Failed to update workout type to '{workout_type}'")
+                return False
+        
+        return True
+
+    def test_workout_suggestion_by_type(self, workout_type):
+        """Test AI workout suggestion for specific workout type"""
+        # First update profile to the desired workout type
+        update_data = {"workout_type": workout_type}
+        
+        success, response = self.run_test(
+            f"Update Profile - Set Workout Type to {workout_type}",
+            "PUT",
+            "user/profile",
+            200,
+            data=update_data
+        )
+        
+        if not success:
+            print(f"   ❌ Failed to set workout type to {workout_type}")
+            return False, ""
+        
+        # Now generate workout suggestion
+        print(f"\n🏋️ Testing AI Workout Suggestion for {workout_type} (this may take 15-20 seconds)...")
+        success, response = self.run_test(
+            f"Generate Workout Suggestion - {workout_type}",
+            "POST",
+            "suggestions/workout",
+            200
+        )
+        
+        if success and 'suggestion' in response:
+            suggestion = response['suggestion']
+            suggestion_preview = suggestion[:300] + "..." if len(suggestion) > 300 else suggestion
+            print(f"   ✅ AI Suggestion generated for {workout_type} (ID: {response.get('id', 'N/A')})")
+            print(f"   ✅ Preview: {suggestion_preview}")
+            return True, suggestion
+        return False, ""
+
+    def analyze_workout_suggestion_content(self, workout_type, suggestion):
+        """Analyze workout suggestion content for location-appropriate exercises"""
+        suggestion_lower = suggestion.lower()
+        
+        # Define expected keywords for each workout type
+        if workout_type == "academia":
+            expected_keywords = ['halter', 'barra', 'máquina', 'esteira', 'equipamento', 'peso', 'academia']
+            avoid_keywords = ['peso corporal', 'sem equipamento', 'parque', 'corrida ao ar livre']
+        elif workout_type == "casa":
+            expected_keywords = ['peso corporal', 'sem equipamento', 'flexão', 'agachamento', 'abdominal', 'casa']
+            avoid_keywords = ['halter', 'barra', 'máquina', 'esteira', 'academia']
+        elif workout_type == "ar_livre":
+            expected_keywords = ['corrida', 'caminhada', 'parque', 'ar livre', 'banco', 'escada', 'outdoor']
+            avoid_keywords = ['halter', 'máquina', 'esteira', 'equipamento de academia']
+        else:
+            return False, {}
+        
+        # Count expected and avoided keywords
+        expected_found = sum(1 for keyword in expected_keywords if keyword in suggestion_lower)
+        avoided_found = sum(1 for keyword in avoid_keywords if keyword in suggestion_lower)
+        
+        # Check for workout structure
+        structure_keywords = ['aquecimento', 'treino principal', 'alongamento', 'séries', 'repetições']
+        structure_found = sum(1 for keyword in structure_keywords if keyword in suggestion_lower)
+        
+        # Check for safety tips
+        safety_keywords = ['segurança', 'lesão', 'cuidado', 'dica']
+        safety_found = sum(1 for keyword in safety_keywords if keyword in suggestion_lower)
+        
+        print(f"   📊 Content Analysis for {workout_type}:")
+        print(f"      Expected keywords found: {expected_found}/{len(expected_keywords)}")
+        print(f"      Avoided keywords found: {avoided_found} (should be 0)")
+        print(f"      Workout structure elements: {structure_found}/{len(structure_keywords)}")
+        print(f"      Safety tips: {safety_found}")
+        
+        # Validation criteria
+        criteria_met = 0
+        total_criteria = 4
+        
+        if expected_found >= 2:
+            print(f"   ✅ Criterion 1: Location-appropriate exercises (found {expected_found})")
+            criteria_met += 1
+        else:
+            print(f"   ❌ Criterion 1: Insufficient location-appropriate exercises (found {expected_found})")
+        
+        if avoided_found == 0:
+            print(f"   ✅ Criterion 2: No inappropriate equipment mentioned")
+            criteria_met += 1
+        else:
+            print(f"   ❌ Criterion 2: Found inappropriate equipment ({avoided_found})")
+        
+        if structure_found >= 3:
+            print(f"   ✅ Criterion 3: Proper workout structure")
+            criteria_met += 1
+        else:
+            print(f"   ❌ Criterion 3: Insufficient workout structure")
+        
+        if safety_found >= 1:
+            print(f"   ✅ Criterion 4: Safety tips included")
+            criteria_met += 1
+        else:
+            print(f"   ❌ Criterion 4: No safety tips found")
+        
+        success_rate = (criteria_met / total_criteria) * 100
+        print(f"   📈 Success Rate for {workout_type}: {success_rate:.1f}% ({criteria_met}/{total_criteria} criteria met)")
+        
+        return success_rate >= 75, {
+            'workout_type': workout_type,
+            'expected_found': expected_found,
+            'avoided_found': avoided_found,
+            'structure_found': structure_found,
+            'safety_found': safety_found,
+            'success_rate': success_rate,
+            'criteria_met': criteria_met,
+            'total_criteria': total_criteria
+        }
+
 def main():
     print("🚀 Starting FitLife AI Authentication System Tests")
     print("🔍 Focus: Testing dietary_restrictions field fix")
