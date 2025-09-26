@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the new profile editing functionality that was just implemented."
+user_problem_statement: "Test the enhanced workout suggestion system with the new workout_type field."
 
 backend:
   - task: "Profile Editing Functionality"
