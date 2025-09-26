@@ -117,6 +117,7 @@ class UserUpdateRequest(BaseModel):
     height: Optional[float] = None
     goals: Optional[str] = None
     dietary_restrictions: Optional[str] = None
+    workout_type: Optional[str] = None
 
 class FeedbackRequest(BaseModel):
     name: str
