@@ -177,7 +177,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Affordable Nutrition Suggestion System"
+    - "Profile Editing Functionality"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
