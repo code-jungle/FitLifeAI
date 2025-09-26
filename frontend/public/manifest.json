@@ -33,8 +33,8 @@
       "url": "/dashboard?action=workout",
       "icons": [
         {
-          "src": "icon.svg",
-          "sizes": "any"
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
         }
       ]
     },
