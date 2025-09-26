@@ -1271,6 +1271,15 @@ const Dashboard = () => {
                       {user?.dietary_restrictions || 'Nenhuma restrição informada'}
                     </div>
                   </div>
+                  <div>
+                    <Label className="text-gray-400 text-sm">Tipo de Treino</Label>
+                    <div className="text-white text-sm sm:text-base">
+                      {user?.workout_type === 'academia' && '🏋️ Academia'}
+                      {user?.workout_type === 'casa' && '🏠 Em Casa'}
+                      {user?.workout_type === 'ar_livre' && '🌳 Ao Ar Livre'}
+                      {!user?.workout_type && '🏋️ Academia (padrão)'}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
