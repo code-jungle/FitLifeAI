@@ -601,6 +601,46 @@ async def stripe_webhook(request: Request):
 async def get_user_profile(current_user: User = Depends(get_current_user)):
     return UserResponse(**current_user.dict())
 
+@api_router.put("/user/profile", response_model=UserResponse)
+async def update_user_profile(update_data: UserUpdateRequest, current_user: User = Depends(get_current_user)):
+    """Update user profile information"""
+    try:
+        # Build update dictionary with only provided fields
+        update_dict = {}
+        if update_data.age is not None:
+            update_dict["age"] = update_data.age
+        if update_data.weight is not None:
+            update_dict["weight"] = update_data.weight
+        if update_data.height is not None:
+            update_dict["height"] = update_data.height
+        if update_data.goals is not None:
+            update_dict["goals"] = update_data.goals
+        if update_data.dietary_restrictions is not None:
+            update_dict["dietary_restrictions"] = update_data.dietary_restrictions
+        
+        if not update_dict:
+            raise HTTPException(status_code=400, detail="No fields to update")
+        
+        # Update user in database
+        result = await db.users.update_one(
+            {"id": current_user.id},
+            {"$set": update_dict}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(status_code=404, detail="User not found or no changes made")
+        
+        # Fetch updated user
+        updated_user_doc = await db.users.find_one({"id": current_user.id})
+        if not updated_user_doc:
+            raise HTTPException(status_code=404, detail="Updated user not found")
+        
+        updated_user = User(**updated_user_doc)
+        return UserResponse(**updated_user.dict())
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error updating profile: {str(e)}")
+
 # Feedback endpoint (public - no authentication required)
 @api_router.post("/feedback")
 async def submit_feedback(feedback: FeedbackRequest):
