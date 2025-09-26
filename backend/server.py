@@ -307,31 +307,44 @@ async def get_workout_suggestion(current_user: User = Depends(get_current_user))
         ⚖️ Peso: {current_user.weight}kg
         📏 Altura: {current_user.height}cm
         🎯 Objetivos: {current_user.goals}
+        🏠 Local de Treino: {current_user.workout_type}
         
-        📋 ESTRUTURA DO TREINO:
+        🎯 ADAPTE O TREINO PARA O LOCAL:
+        - Se for "academia": Use equipamentos como halteres, barras, máquinas, esteiras
+        - Se for "casa": Foque em exercícios com peso corporal, sem equipamentos ou com itens domésticos
+        - Se for "ar_livre": Privilegie corrida, caminhada, exercícios no parque, usar bancos/escadas
+        
+        📋 ESTRUTURA DO TREINO PERSONALIZADA:
         
         🔥 AQUECIMENTO (5-10 minutos)
-        - Liste 3-4 exercícios de aquecimento específicos
+        - Liste 3-4 exercícios de aquecimento específicos para o local de treino
         
         💪 TREINO PRINCIPAL
         Para cada exercício, inclua:
-        - Nome do exercício
+        - Nome do exercício (adequado para {current_user.workout_type})
         - Séries x Repetições
         - Tempo de descanso
         - Dica técnica importante
+        - Equipamento necessário (se houver)
         
         🧘 ALONGAMENTO/RESFRIAMENTO (5-10 minutos)
-        - Liste 3-4 exercícios de alongamento
+        - Liste 3-4 exercícios de alongamento adequados para o espaço
         
         ⚠️ DICAS IMPORTANTES DE SEGURANÇA
-        - 2-3 orientações específicas para evitar lesões
+        - 2-3 orientações específicas para evitar lesões no ambiente escolhido
+        
+        💡 DICAS ESPECÍFICAS PARA O LOCAL:
+        - Orientações sobre o espaço e equipamentos para {current_user.workout_type}
         
         IMPORTANTE: 
         - Use emojis para deixar mais visual e atrativo
         - Não use asteriscos (*)
         - Seja específico com números (séries, repetições, tempo)
         - Mantenha linguagem motivacional e positiva
-        - Adapte a intensidade conforme idade e objetivos
+        - Adapte COMPLETAMENTE para o local de treino escolhido
+        - Se for casa: não mencione equipamentos de academia
+        - Se for academia: aproveite ao máximo os equipamentos disponíveis
+        - Se for ar livre: foque em exercícios que usam o ambiente natural
         """
     )
     
