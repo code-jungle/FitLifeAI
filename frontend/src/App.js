@@ -154,6 +154,16 @@ const LandingPage = () => {
             >
               Login
             </Button>
+            
+            {/* PWA Install Button - Hidden by default, shown by PWA script */}
+            <Button
+              id="pwa-install-btn"
+              variant="outline"
+              className="hidden border-white text-white hover:bg-white hover:text-slate-900 text-sm px-3 py-1"
+              style={{ display: 'none' }}
+            >
+              📱 Instalar App
+            </Button>
           </div>
         </div>
       </header>
