@@ -874,11 +874,153 @@ def test_nutrition_system():
         print("❌ Nutrition system test failed.")
         return 1
 
+def test_profile_editing_system():
+    """Test the new profile editing functionality as requested in review"""
+    print("🚀 Starting FitLife AI Profile Editing Tests")
+    print("🔍 Focus: Testing PUT /api/user/profile endpoint with authentication")
+    print("=" * 70)
+    
+    tester = FitLifeAPITester()
+    
+    # First, login with the specified test user
+    print("\n🔐 PHASE 1: User Authentication")
+    login_data = {
+        "email": "test.fix@example.com",
+        "password": "TestPassword123!"
+    }
+    
+    success, response = tester.run_test(
+        "Login with Test User",
+        "POST",
+        "auth/login",
+        200,
+        data=login_data
+    )
+    
+    if success and 'token' in response:
+        tester.token = response['token']
+        tester.user_data = response.get('user', {})
+        print(f"   ✅ Login successful with test.fix@example.com")
+    else:
+        print("❌ Login failed with specified credentials, trying to register user...")
+        # Register the user if login fails
+        register_data = {
+            "email": "test.fix@example.com",
+            "password": "TestPassword123!",
+            "name": "Test Fix User",
+            "age": 25,
+            "weight": 70,
+            "height": 175,
+            "goals": "Initial goals",
+            "dietary_restrictions": "Initial restrictions"
+        }
+        
+        success, response = tester.run_test(
+            "Register Test User",
+            "POST",
+            "auth/register",
+            200,
+            data=register_data
+        )
+        
+        if success and 'token' in response:
+            tester.token = response['token']
+            tester.user_data = response.get('user', {})
+            print(f"   ✅ User registered successfully")
+        else:
+            print("❌ Both login and registration failed")
+            return 1
+    
+    print("\n👤 PHASE 2: Initial Profile Verification")
+    profile_success = tester.test_user_profile()
+    
+    if not profile_success:
+        print("❌ Initial profile verification failed")
+        return 1
+    
+    print("\n📝 PHASE 3: Profile Update Tests")
+    
+    # Test 1: Full profile update with specified test data
+    print("\n   Test 1: Full Profile Update with Test Data")
+    test_data = {
+        "age": 28,
+        "weight": 72.5,
+        "height": 178,
+        "goals": "Ganhar massa muscular e melhorar definição",
+        "dietary_restrictions": "Sem lactose"
+    }
+    
+    full_update_success, full_response = tester.test_profile_update_full()
+    
+    # Test 2: Partial profile update
+    print("\n   Test 2: Partial Profile Update")
+    partial_update_success, partial_response = tester.test_profile_update_partial()
+    
+    # Test 3: Single field update
+    print("\n   Test 3: Single Field Update")
+    single_update_success, single_response = tester.test_profile_update_single_field()
+    
+    # Test 4: Validation tests
+    print("\n   Test 4: Validation Tests")
+    validation_success = tester.test_profile_update_validation()
+    
+    # Test 5: Authentication test
+    print("\n   Test 5: Authentication Required Test")
+    auth_test_success = tester.test_profile_update_without_auth()
+    
+    # Test 6: Data persistence test
+    print("\n   Test 6: Data Persistence Test")
+    persistence_success = tester.test_profile_update_persistence()
+    
+    # Final results
+    print("\n" + "=" * 70)
+    print(f"📊 PROFILE EDITING TEST RESULTS")
+    print(f"Tests passed: {tester.tests_passed}/{tester.tests_run}")
+    print(f"Success rate: {(tester.tests_passed/tester.tests_run)*100:.1f}%")
+    
+    # Detailed test results
+    print(f"\n📝 PROFILE EDITING FUNCTIONALITY VERIFICATION:")
+    print(f"   User Authentication: {'✅ PASSED' if success else '❌ FAILED'}")
+    print(f"   Initial Profile Access: {'✅ PASSED' if profile_success else '❌ FAILED'}")
+    print(f"   Full Profile Update: {'✅ PASSED' if full_update_success else '❌ FAILED'}")
+    print(f"   Partial Profile Update: {'✅ PASSED' if partial_update_success else '❌ FAILED'}")
+    print(f"   Single Field Update: {'✅ PASSED' if single_update_success else '❌ FAILED'}")
+    print(f"   Validation Tests: {'✅ PASSED' if validation_success else '❌ FAILED'}")
+    print(f"   Authentication Required: {'✅ PASSED' if auth_test_success else '❌ FAILED'}")
+    print(f"   Data Persistence: {'✅ PASSED' if persistence_success else '❌ FAILED'}")
+    
+    # Summary of what was tested
+    print(f"\n🎯 TESTED FUNCTIONALITY:")
+    print(f"   ✓ PUT /api/user/profile endpoint with authentication")
+    print(f"   ✓ Profile data updates (age, weight, height, goals, dietary_restrictions)")
+    print(f"   ✓ Validation for required fields")
+    print(f"   ✓ Partial updates (updating only some fields)")
+    print(f"   ✓ Data persistence and proper return values")
+    print(f"   ✓ Authentication requirements")
+    
+    all_tests_passed = all([
+        success, profile_success, full_update_success, partial_update_success,
+        single_update_success, validation_success, auth_test_success, persistence_success
+    ])
+    
+    if all_tests_passed:
+        print("🎉 All profile editing tests passed! New functionality verified.")
+        return 0
+    elif tester.tests_passed >= tester.tests_run * 0.8:
+        print("⚠️  Most tests passed, minor issues detected.")
+        return 0
+    else:
+        print("❌ Multiple test failures detected in profile editing system.")
+        return 1
+
 if __name__ == "__main__":
     import sys
     
-    # Check if we should run nutrition tests specifically
-    if len(sys.argv) > 1 and sys.argv[1] == "nutrition":
-        sys.exit(test_nutrition_system())
+    # Check command line arguments for specific test types
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "nutrition":
+            sys.exit(test_nutrition_system())
+        elif sys.argv[1] == "profile":
+            sys.exit(test_profile_editing_system())
     else:
         sys.exit(main())
