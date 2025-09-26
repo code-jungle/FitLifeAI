@@ -823,6 +823,67 @@ const Dashboard = () => {
     }
   };
 
+  const handleEditProfile = () => {
+    // Pre-populate form with current user data
+    setEditProfileData({
+      age: user?.age || '',
+      weight: user?.weight || '',
+      height: user?.height || '',
+      goals: user?.goals || '',
+      dietary_restrictions: user?.dietary_restrictions || ''
+    });
+    setEditProfileOpen(true);
+  };
+
+  const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+    setIsUpdatingProfile(true);
+
+    try {
+      // Validate required fields
+      if (!editProfileData.age || !editProfileData.weight || !editProfileData.height || !editProfileData.goals) {
+        toast({
+          title: "Campos obrigatórios",
+          description: "Preencha idade, peso, altura e objetivos.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const response = await axios.put(`${API}/user/profile`, {
+        age: parseInt(editProfileData.age),
+        weight: parseFloat(editProfileData.weight),
+        height: parseFloat(editProfileData.height),
+        goals: editProfileData.goals,
+        dietary_restrictions: editProfileData.dietary_restrictions
+      }, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+
+      // Update user context with new data
+      const updatedUser = response.data;
+      
+      toast({
+        title: "Perfil atualizado!",
+        description: "Suas informações foram atualizadas com sucesso. As próximas sugestões da IA serão baseadas nos novos dados.",
+      });
+
+      setEditProfileOpen(false);
+      
+      // Force refresh of user data
+      window.location.reload();
+
+    } catch (error) {
+      toast({
+        title: "Erro na atualização",
+        description: error.response?.data?.detail || "Não foi possível atualizar o perfil. Tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsUpdatingProfile(false);
+    }
+  };
+
   useEffect(() => {
     fetchWorkoutHistory();
     fetchNutritionHistory();
