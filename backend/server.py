@@ -108,6 +108,13 @@ class AccountDeletionRequest(BaseModel):
     password: str
     confirmation_text: str
 
+class UserUpdateRequest(BaseModel):
+    age: Optional[int] = None
+    weight: Optional[float] = None
+    height: Optional[float] = None
+    goals: Optional[str] = None
+    dietary_restrictions: Optional[str] = None
+
 class FeedbackRequest(BaseModel):
     name: str
     email: EmailStr
