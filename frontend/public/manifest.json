@@ -4,12 +4,6 @@
   "description": "Sugestões personalizadas de treinos e nutrição com IA. 7 dias grátis, depois apenas R$ 14,90/mês.",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
       "src": "icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
