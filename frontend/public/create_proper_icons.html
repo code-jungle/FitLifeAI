@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate FitLife Icons</title>
+</head>
+<body>
+    <canvas id="canvas192" width="192" height="192" style="border: 1px solid black;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border: 1px solid black;"></canvas>
+    
+    <script>
+        // Function to draw the FitLife icon
+        function drawFitLifeIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.45;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, 0);
+            gradient.addColorStop(0, '#f97316'); // Orange
+            gradient.addColorStop(1, '#ec4899'); // Pink
+            
+            // Draw circular background
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Draw dumbbells
+            ctx.fillStyle = 'white';
+            
+            // Scale factors for dumbbell size
+            const scale = size / 512;
+            const plateRadius = 25 * scale;
+            const barWidth = 90 * scale;
+            const barHeight = 16 * scale;
+            
+            // Left dumbbell (angled -15 degrees)
+            ctx.save();
+            ctx.translate(centerX - 76 * scale, centerY);
+            ctx.rotate(-15 * Math.PI / 180);
+            
+            // Left plates
+            ctx.beginPath();
+            ctx.arc(-45 * scale, 0, plateRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(45 * scale, 0, plateRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Bar
+            ctx.fillRect(-45 * scale, -8 * scale, barWidth, barHeight);
+            
+            ctx.restore();
+            
+            // Right dumbbell (angled +15 degrees)
+            ctx.save();
+            ctx.translate(centerX + 76 * scale, centerY);
+            ctx.rotate(15 * Math.PI / 180);
+            
+            // Left plates
+            ctx.beginPath();
+            ctx.arc(-45 * scale, 0, plateRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(45 * scale, 0, plateRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Bar
+            ctx.fillRect(-45 * scale, -8 * scale, barWidth, barHeight);
+            
+            ctx.restore();
+        }
+        
+        // Draw icons
+        const canvas192 = document.getElementById('canvas192');
+        const canvas512 = document.getElementById('canvas512');
+        
+        drawFitLifeIcon(canvas192, 192);
+        drawFitLifeIcon(canvas512, 512);
+        
+        // Convert to PNG and download
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Auto download after 1 second
+        setTimeout(() => {
+            console.log('Icons generated successfully!');
+        }, 1000);
+        
+    </script>
+</body>
+</html>
