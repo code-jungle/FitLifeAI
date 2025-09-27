@@ -84,3 +84,47 @@ code {
     @apply bg-background text-foreground;
     }
 }
+
+/* Tentativa de ocultar marca d'água do Emergent */
+[class*="emergent"], 
+[id*="emergent"], 
+[class*="watermark"], 
+[id*="watermark"],
+div[style*="position: fixed"]:has-text("Made with Emergent"),
+div[style*="position: absolute"]:has-text("Made with Emergent"),
+iframe[src*="emergent"],
+div:contains("Made with Emergent"),
+a:contains("Made with Emergent"),
+span:contains("Made with Emergent") {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    z-index: -9999 !important;
+}
+
+/* Seletores mais específicos para marca d'água */
+div[style*="bottom"][style*="right"]:has-text("Made"),
+div[style*="position"][style*="z-index"]:has-text("Emergent") {
+    display: none !important;
+}
+
+/* Remove qualquer elemento com texto "Made with Emergent" */
+*::after,
+*::before {
+    content: none !important;
+}
+
+/* CSS mais agressivo para ocultar elementos da plataforma */
+[data-emergent],
+.emergent-watermark,
+#emergent-watermark,
+.made-with-emergent,
+#made-with-emergent {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
