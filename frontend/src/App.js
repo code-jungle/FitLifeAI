@@ -752,7 +752,8 @@ const Dashboard = () => {
     height: '',
     goals: '',
     dietary_restrictions: '',
-    workout_type: 'academia'
+    workout_type: 'academia',
+    current_activities: ''
   });
   const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
 
