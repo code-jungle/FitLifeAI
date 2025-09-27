@@ -1630,8 +1630,11 @@ const Dashboard = () => {
                   value={editProfileData.height}
                   onChange={(e) => setEditProfileData({...editProfileData, height: e.target.value})}
                   className="bg-slate-700 border-slate-600 text-white mt-1"
-                  placeholder="Altura em centímetros"
+                  placeholder="175"
                 />
+                <p className="text-xs text-gray-400 mt-1">
+                  💡 Altura em centímetros. Ex: <strong>175</strong>
+                </p>
               </div>
               
               <div>
