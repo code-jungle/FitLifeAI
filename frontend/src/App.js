@@ -698,7 +698,8 @@ const AuthForms = () => {
                   height: '',
                   goals: '',
                   dietary_restrictions: '',
-                  workout_type: 'academia'
+                  workout_type: 'academia',
+                  current_activities: ''
                 });
               }}
               className="text-orange-400 hover:text-orange-300 transition-colors text-sm sm:text-base"
