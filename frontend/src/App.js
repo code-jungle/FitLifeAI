@@ -524,11 +524,17 @@ const AuthForms = () => {
                       id="weight"
                       type="number"
                       step="0.1"
+                      min="30"
+                      max="300"
                       required
                       value={formData.weight}
                       onChange={(e) => setFormData({...formData, weight: e.target.value})}
                       className="bg-slate-700 border-slate-600 text-white mt-1"
+                      placeholder="70.5"
                     />
+                    <p className="text-xs text-gray-400 mt-1">
+                      💡 Insira seu peso em quilogramas. Exemplo: <strong>70.5</strong> (use ponto para decimais)
+                    </p>
                   </div>
                 </div>
                 <div>
