@@ -922,7 +922,8 @@ const Dashboard = () => {
       height: user?.height || '',
       goals: user?.goals || '',
       dietary_restrictions: user?.dietary_restrictions || '',
-      workout_type: user?.workout_type || 'academia'
+      workout_type: user?.workout_type || 'academia',
+      current_activities: user?.current_activities || ''
     });
     setEditProfileOpen(true);
   };
