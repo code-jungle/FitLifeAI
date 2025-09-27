@@ -68,6 +68,7 @@ class UserCreate(BaseModel):
     goals: str
     dietary_restrictions: str = ""  # Novo campo para restrições alimentares
     workout_type: str = "academia"  # Novo campo: academia, casa, ar_livre
+    current_activities: str = ""  # Novo campo: atividades físicas atuais
 
 class UserLogin(BaseModel):
     email: EmailStr
