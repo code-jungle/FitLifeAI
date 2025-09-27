@@ -600,6 +600,23 @@ const AuthForms = () => {
                     💡 A IA criará treinos específicos para o ambiente escolhido
                   </p>
                 </div>
+                
+                <div>
+                  <Label htmlFor="current_activities" className="text-white">
+                    Atividades Físicas Atuais
+                    <span className="text-gray-400 text-sm ml-1">(opcional)</span>
+                  </Label>
+                  <Textarea
+                    id="current_activities"
+                    placeholder="Ex: Futebol 2x/semana, Beach tennis, Academia, Corrida, Natação, Pilates..."
+                    value={formData.current_activities}
+                    onChange={(e) => setFormData({...formData, current_activities: e.target.value})}
+                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[60px]"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    💡 Informe atividades que você já pratica para treinos mais inteligentes e complementares
+                  </p>
+                </div>
               </div>
             )}
             
