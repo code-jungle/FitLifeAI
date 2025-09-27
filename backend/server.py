@@ -252,7 +252,8 @@ async def register_user(user_data: UserCreate):
         height=user_data.height,
         goals=user_data.goals,
         dietary_restrictions=user_data.dietary_restrictions,
-        workout_type=user_data.workout_type
+        workout_type=user_data.workout_type,
+        current_activities=user_data.current_activities
     )
     
     user_dict = user.dict()
