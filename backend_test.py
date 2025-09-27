@@ -1956,10 +1956,23 @@ if __name__ == "__main__":
             sys.exit(test_profile_editing_system())
         elif sys.argv[1] == "workout_type":
             sys.exit(test_workout_type_system())
+        elif sys.argv[1] == "current_activities":
+            # New test for current_activities field
+            success = test_current_activities_field()
+            sys.exit(0 if success else 1)
         elif sys.argv[1] == "final":
             success = comprehensive_final_verification()
             sys.exit(0 if success else 1)
+        else:
+            print("❌ Invalid test type. Available options:")
+            print("   python backend_test.py nutrition")
+            print("   python backend_test.py profile")
+            print("   python backend_test.py workout_type")
+            print("   python backend_test.py current_activities")
+            print("   python backend_test.py final")
+            sys.exit(1)
     else:
-        # Run comprehensive final verification by default
-        success = comprehensive_final_verification()
+        # Run current_activities test by default as requested
+        print("🎯 Running current_activities field tests by default")
+        success = test_current_activities_field()
         sys.exit(0 if success else 1)
