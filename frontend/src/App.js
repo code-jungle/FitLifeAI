@@ -1611,8 +1611,11 @@ const Dashboard = () => {
                     value={editProfileData.weight}
                     onChange={(e) => setEditProfileData({...editProfileData, weight: e.target.value})}
                     className="bg-slate-700 border-slate-600 text-white mt-1"
-                    placeholder="Peso"
+                    placeholder="70.5"
                   />
+                  <p className="text-xs text-gray-400 mt-1">
+                    💡 Peso em quilogramas. Ex: <strong>70.5</strong>
+                  </p>
                 </div>
               </div>
               
