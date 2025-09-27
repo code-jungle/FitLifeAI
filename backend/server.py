@@ -313,6 +313,14 @@ async def get_workout_suggestion(current_user: User = Depends(get_current_user))
         📏 Altura: {current_user.height}cm
         🎯 Objetivos: {current_user.goals}
         🏠 Local de Treino: {current_user.workout_type}
+        🏃 Atividades Atuais: {current_user.current_activities if current_user.current_activities else "Nenhuma atividade informada"}
+        
+        🎯 CONSIDERE AS ATIVIDADES ATUAIS:
+        - Se já pratica atividades, COMPLEMENTE o treino considerando o que já faz
+        - EVITE sobrecarregar grupos musculares já trabalhados nas atividades atuais  
+        - Se pratica esportes específicos, melhore o CONDICIONAMENTO para essa modalidade
+        - Se sedentário, comece com intensidade PROGRESSIVA
+        - APROVEITE habilidades já desenvolvidas para potencializar resultados
         
         🎯 ADAPTE O TREINO PARA O LOCAL:
         - Se for "academia": Use equipamentos como halteres, barras, máquinas, esteiras
