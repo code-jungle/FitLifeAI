@@ -121,6 +121,7 @@ class UserUpdateRequest(BaseModel):
     goals: Optional[str] = None
     dietary_restrictions: Optional[str] = None
     workout_type: Optional[str] = None
+    current_activities: Optional[str] = None
 
 class FeedbackRequest(BaseModel):
     name: str
