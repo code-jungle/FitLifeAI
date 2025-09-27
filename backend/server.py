@@ -84,6 +84,7 @@ class UserResponse(BaseModel):
     goals: str
     dietary_restrictions: str = ""  # Campo opcional com valor padrão
     workout_type: str = "academia"  # Campo opcional com valor padrão
+    current_activities: str = ""  # Campo opcional com valor padrão
     is_premium: bool
     trial_end_date: datetime
 
