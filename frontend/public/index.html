@@ -160,6 +160,81 @@
             });
         </script>
         
+        <!-- Script para remover marca d'água do Emergent -->
+        <script>
+            // Função para remover marca d'água
+            function removeEmergentWatermark() {
+                // Selecionar todos os elementos que podem conter a marca d'água
+                const selectors = [
+                    '*[class*="emergent"]',
+                    '*[id*="emergent"]', 
+                    '*[class*="watermark"]',
+                    '*[id*="watermark"]',
+                    'div[style*="position: fixed"]',
+                    'div[style*="position: absolute"]',
+                    'iframe',
+                    'div',
+                    'span',
+                    'a'
+                ];
+                
+                selectors.forEach(selector => {
+                    try {
+                        const elements = document.querySelectorAll(selector);
+                        elements.forEach(element => {
+                            const text = element.textContent || element.innerText || '';
+                            if (text.toLowerCase().includes('made with emergent') || 
+                                text.toLowerCase().includes('emergent') && 
+                                (element.style.position === 'fixed' || element.style.position === 'absolute')) {
+                                element.style.display = 'none';
+                                element.style.visibility = 'hidden';
+                                element.style.opacity = '0';
+                                element.remove();
+                                console.log('Removed watermark element:', element);
+                            }
+                        });
+                    } catch (e) {
+                        // Ignorar erros de seleção
+                    }
+                });
+                
+                // Remover iframes que podem conter marca d'água
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    if (iframe.src && iframe.src.includes('emergent')) {
+                        iframe.style.display = 'none';
+                        iframe.remove();
+                    }
+                });
+            }
+            
+            // Executar após carregamento da página
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', removeEmergentWatermark);
+            } else {
+                removeEmergentWatermark();
+            }
+            
+            // Executar periodicamente para capturar elementos adicionados dinamicamente
+            setInterval(removeEmergentWatermark, 1000);
+            
+            // Observer para detectar mudanças no DOM
+            if (typeof MutationObserver !== 'undefined') {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.addedNodes.length > 0) {
+                            setTimeout(removeEmergentWatermark, 100);
+                        }
+                    });
+                });
+                
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        </script>
+        
         <!-- Service Worker Registration -->
         <script>
             // Register Service Worker for PWA
