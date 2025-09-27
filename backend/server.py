@@ -642,6 +642,8 @@ async def update_user_profile(update_data: UserUpdateRequest, current_user: User
             update_dict["dietary_restrictions"] = update_data.dietary_restrictions
         if update_data.workout_type is not None:
             update_dict["workout_type"] = update_data.workout_type
+        if update_data.current_activities is not None:
+            update_dict["current_activities"] = update_data.current_activities
         
         if not update_dict:
             raise HTTPException(status_code=400, detail="No fields to update")
