@@ -542,11 +542,17 @@ const AuthForms = () => {
                   <Input
                     id="height"
                     type="number"
+                    min="120"
+                    max="250"
                     required
                     value={formData.height}
                     onChange={(e) => setFormData({...formData, height: e.target.value})}
                     className="bg-slate-700 border-slate-600 text-white mt-1"
+                    placeholder="175"
                   />
+                  <p className="text-xs text-gray-400 mt-1">
+                    💡 Insira sua altura em centímetros. Exemplo: <strong>175</strong> (apenas números inteiros)
+                  </p>
                 </div>
                 <div>
                   <Label htmlFor="goals" className="text-white">Seus objetivos</Label>
