@@ -1371,6 +1371,12 @@ const Dashboard = () => {
                       {!user?.workout_type && '🏋️ Academia (padrão)'}
                     </div>
                   </div>
+                  <div>
+                    <Label className="text-gray-400 text-sm">Atividades Físicas Atuais</Label>
+                    <div className="text-white text-sm sm:text-base">
+                      {user?.current_activities || 'Nenhuma atividade informada'}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
