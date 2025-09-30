@@ -170,7 +170,7 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
