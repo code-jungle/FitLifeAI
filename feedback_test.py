@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 class FeedbackTester:
-    def __init__(self, base_url="https://fitlife-personal.preview.emergentagent.com"):
+    def __init__(self, base_url="https://mobile-optimized-10.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0
@@ -209,7 +209,7 @@ def main():
     print("🚀 Starting FitLife AI Feedback Endpoint Tests")
     print("=" * 60)
     print("Testing POST /api/feedback endpoint")
-    print("URL: https://fitlife-personal.preview.emergentagent.com/api/feedback")
+    print("URL: https://mobile-optimized-10.preview.emergentagent.com/api/feedback")
     print("=" * 60)
     
     tester = FeedbackTester()

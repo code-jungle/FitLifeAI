@@ -10,7 +10,7 @@ import json
 
 def test_dietary_restrictions_validation():
     """Test various dietary restrictions scenarios"""
-    base_url = "https://fitlife-personal.preview.emergentagent.com/api"
+    base_url = "https://mobile-optimized-10.preview.emergentagent.com/api"
     
     print("🧪 Additional Dietary Restrictions Validation Tests")
     print("=" * 60)

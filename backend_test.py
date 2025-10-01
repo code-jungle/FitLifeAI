@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 class FitLifeAPITester:
-    def __init__(self, base_url="https://fitlife-personal.preview.emergentagent.com"):
+    def __init__(self, base_url="https://mobile-optimized-10.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.token = None
@@ -1299,7 +1299,7 @@ def test_current_activities_field():
     """Test the new current_activities field implementation"""
     print("🚀 Starting FitLife AI Current Activities Field Tests")
     print("🔍 Focus: Testing current_activities field in registration, profile, and AI suggestions")
-    print("🌐 Base URL: https://fitlife-personal.preview.emergentagent.com/api")
+    print("🌐 Base URL: https://mobile-optimized-10.preview.emergentagent.com/api")
     print("=" * 80)
     
     tester = FitLifeAPITester()
@@ -1526,7 +1526,7 @@ def comprehensive_final_verification():
     """Comprehensive final verification of all FitLife AI backend endpoints"""
     print("🚀 FITLIFE AI - COMPREHENSIVE FINAL BACKEND VERIFICATION")
     print("🔍 Testing ALL endpoints for 100% operational status")
-    print("🌐 Base URL: https://fitlife-personal.preview.emergentagent.com/api")
+    print("🌐 Base URL: https://mobile-optimized-10.preview.emergentagent.com/api")
     print("=" * 80)
     
     tester = FitLifeAPITester()
