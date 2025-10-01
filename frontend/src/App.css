@@ -225,100 +225,129 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #ea580c, #db2777);
 }
 
-/* Responsive Design - Mobile First */
+/* Mobile-First Responsive Design */
+/* Base styles are mobile-first */
+
+/* Enhanced Mobile Optimizations */
 @media (max-width: 640px) {
   .container {
     padding: 0 12px;
   }
   
-  /* Typography mobile */
+  /* Enhanced Typography Mobile */
   h1 {
-    font-size: 2rem;
-    line-height: 1.2;
+    font-size: 1.875rem; /* 30px */
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
   }
   
   h2 {
-    font-size: 1.75rem;
-    line-height: 1.3;
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
   }
   
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.3;
   }
   
-  /* Logo mobile */
+  h4 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+  }
+  
+  p {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.6;
+  }
+  
+  /* Logo mobile optimized */
   .fitlife-logo-text {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
   }
   
-  /* Buttons mobile */
+  /* Enhanced Button Touch Targets */
   .btn-primary, .btn-secondary {
-    padding: 12px 16px;
-    font-size: 14px;
-    min-height: 44px; /* Touch target */
+    padding: 16px 20px;
+    font-size: 15px;
+    min-height: 48px; /* Better touch target */
+    font-weight: 600;
+    border-radius: 12px;
   }
   
-  /* Cards mobile */
+  /* Mobile-optimized Cards */
   .feature-card {
-    padding: 16px;
-    margin-bottom: 16px;
+    padding: 20px 16px;
+    margin-bottom: 12px;
+    border-radius: 12px;
   }
   
-  /* Hero section mobile */
+  /* Hero section mobile enhanced */
   .hero-section h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+    font-size: 1.875rem;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    padding: 0 8px;
   }
   
   .hero-section p {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    padding: 0 8px;
   }
   
-  /* Form inputs mobile */
+  /* Enhanced Form inputs mobile */
   .custom-input {
-    padding: 14px 16px;
+    padding: 16px 16px;
     font-size: 16px; /* Prevent zoom on iOS */
-    min-height: 44px;
+    min-height: 48px;
+    border-radius: 8px;
+    border-width: 1.5px;
   }
   
-  /* Modal mobile */
+  /* Better Modal mobile */
   .modal-mobile {
-    margin: 8px;
-    max-height: 90vh;
+    margin: 4px;
+    max-height: 95vh;
     overflow-y: auto;
+    border-radius: 16px;
+    padding: 20px;
   }
   
-  /* Navigation mobile */
+  /* Enhanced Navigation mobile */
   .nav-mobile {
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
+    width: 100%;
   }
   
-  /* Grid mobile - force single column */
+  /* Improved Grid mobile */
   .grid-mobile {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
   }
   
-  /* Spacing mobile */
+  /* Better Spacing mobile */
   .space-mobile {
-    padding: 16px 0;
+    padding: 12px 0;
   }
   
-  /* Text mobile */
+  /* Optimized Text mobile */
   .text-mobile {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
   }
   
-  /* Dashboard header mobile */
+  /* Enhanced Dashboard header mobile */
   .dashboard-header {
-    padding: 12px 16px;
+    padding: 12px;
     flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
+    gap: 8px;
+    align-items: stretch;
   }
   
   .dashboard-header .user-info {
@@ -326,61 +355,167 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   
-  /* Tabs mobile */
+  /* Better Tabs mobile */
   .tabs-mobile {
+    display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 2px;
   }
   
   .tabs-mobile button {
     width: 100%;
     justify-content: center;
-    padding: 12px 16px;
+    padding: 14px 16px;
+    min-height: 48px;
+    font-size: 14px;
+    font-weight: 500;
   }
   
-  /* Cards grid mobile */
+  /* Enhanced Cards grid mobile */
   .cards-grid-mobile {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    padding: 0;
   }
   
-  /* IMC card mobile */
+  /* Better IMC card mobile */
   .imc-card-mobile {
-    padding: 16px;
+    padding: 20px 16px;
+    text-align: center;
   }
   
   .imc-value-mobile {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    font-weight: 700;
   }
   
-  /* History cards mobile */
+  /* Enhanced History cards mobile */
   .history-card-mobile {
-    padding: 12px;
+    padding: 16px;
+    border-radius: 12px;
   }
   
   .history-actions-mobile {
-    gap: 8px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
   
-  /* Modal mobile specific */
+  /* Better Modal mobile specific */
   .suggestion-modal-mobile {
-    padding: 16px;
-    max-height: 80vh;
+    padding: 20px;
+    max-height: 85vh;
     overflow-y: auto;
+    border-radius: 16px;
   }
   
-  /* Auth form mobile */
+  /* Enhanced Auth form mobile */
   .auth-form-mobile {
-    margin: 16px;
+    margin: 8px;
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+  
+  /* Better Danger zone mobile */
+  .danger-zone-mobile {
+    margin: 20px 0;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  /* New Mobile-Specific Classes */
+  .mobile-container {
+    padding: 0 12px;
+    max-width: 100%;
+  }
+
+  .mobile-card {
+    margin: 0 -4px 12px -4px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .mobile-button {
+    width: 100%;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 12px;
+    min-height: 48px;
+  }
+
+  .mobile-input {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
+    min-height: 48px;
+  }
+
+  .mobile-header {
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .mobile-section {
+    padding: 16px 0;
+  }
+
+  .mobile-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobile-tab {
+    padding: 14px;
+    width: 100%;
+    font-size: 14px;
+    min-height: 48px;
+    border-radius: 8px;
+  }
+
+  .mobile-modal {
+    position: fixed;
+    inset: 8px;
+    margin: 0;
+    max-height: calc(100vh - 16px);
+    border-radius: 16px;
     padding: 20px;
   }
-  
-  /* Danger zone mobile */
-  .danger-zone-mobile {
-    margin: 16px 0;
+
+  .mobile-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 }
 
