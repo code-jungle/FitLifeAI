@@ -1221,44 +1221,47 @@ const Dashboard = () => {
 
           <TabsContent value="history" className="space-y-3 sm:space-y-6">
             <div className="mobile-grid md:grid md:grid-cols-2 gap-3 sm:gap-6">
-              <Card className="bg-slate-800 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center">
+              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-white flex items-center text-base sm:text-lg">
                     <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
                     Histórico de Treinos
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 pt-0">
                   {workoutHistory.length === 0 ? (
-                    <p className="text-gray-400">Nenhum treino gerado ainda.</p>
+                    <div className="text-center py-8">
+                      <Dumbbell className="mx-auto h-8 w-8 text-gray-500 mb-2" />
+                      <p className="text-gray-400 text-sm">Nenhum treino gerado ainda.</p>
+                    </div>
                   ) : (
                     workoutHistory.map((workout) => (
-                      <div key={workout.id} className="p-4 bg-slate-700 rounded-lg">
+                      <div key={workout.id} className="p-3 bg-slate-700 rounded-xl border border-slate-600">
                         <div className="flex items-center justify-between mb-2">
-                          <div className="text-sm text-gray-400 flex items-center">
-                            <Calendar className="h-4 w-4 mr-1" />
+                          <div className="text-xs sm:text-sm text-gray-400 flex items-center">
+                            <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                             {new Date(workout.created_at).toLocaleDateString('pt-BR')}
                           </div>
-                          <div className="flex items-center space-x-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button size="sm" variant="ghost" className="text-orange-400 hover:text-orange-300 hover:bg-orange-400/10">
-                                  <Eye className="h-4 w-4" />
+                                <Button size="sm" variant="ghost" className="text-orange-400 hover:text-orange-300 hover:bg-orange-400/10 h-8 w-8 p-0">
+                                  <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                                 </Button>
                               </DialogTrigger>
-                              <DialogContent className="bg-slate-800 border-slate-700 max-w-3xl max-h-[80vh] overflow-y-auto">
+                              <DialogContent className="mobile-modal bg-slate-800 border-slate-700 max-w-4xl">
                                 <DialogHeader>
-                                  <DialogTitle className="text-white flex items-center">
-                                    <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
+                                  <DialogTitle className="text-white flex items-center text-base sm:text-lg">
+                                    <Dumbbell className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
                                     Sugestão de Treino
                                   </DialogTitle>
-                                  <DialogDescription className="text-gray-400">
+                                  <DialogDescription className="text-gray-400 text-xs sm:text-sm">
                                     Gerado em {new Date(workout.created_at).toLocaleString('pt-BR')}
                                   </DialogDescription>
                                 </DialogHeader>
-                                <div className="mt-4">
-                                  <div className="suggestion-content">
-                                    <div className="ai-response whitespace-pre-wrap">
+                                <div className="mt-3 sm:mt-4">
+                                  <div className="suggestion-content mobile-optimized">
+                                    <div className="ai-response whitespace-pre-wrap text-sm leading-relaxed">
                                       {workout.suggestion}
                                     </div>
                                   </div>
@@ -1268,15 +1271,15 @@ const Dashboard = () => {
                             <Button 
                               size="sm" 
                               variant="ghost" 
-                              className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
+                              className="text-red-400 hover:text-red-300 hover:bg-red-400/10 h-8 w-8 p-0"
                               onClick={() => deleteSuggestion(workout.id, 'workouts')}
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
                         </div>
-                        <div className="text-white text-sm line-clamp-2">
-                          {workout.suggestion.substring(0, 120)}...
+                        <div className="text-white text-xs sm:text-sm line-clamp-2 leading-relaxed">
+                          {workout.suggestion.substring(0, 100)}...
                         </div>
                       </div>
                     ))
