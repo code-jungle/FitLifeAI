@@ -1423,76 +1423,72 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
 
-              <div className="space-y-4 sm:space-y-6">
+              <div className="space-y-3 sm:space-y-6">
                 {/* Card do IMC */}
-                <Card className="bg-slate-800 border-slate-700">
-                  <CardHeader>
-                    <CardTitle className="text-white flex items-center text-lg sm:text-xl">
-                      <Activity className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
+                <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white flex items-center text-base sm:text-xl">
+                      <Activity className="mr-2 h-5 w-5 text-orange-500" />
                       <span className="hidden sm:inline">Índice de Massa Corporal (IMC)</span>
                       <span className="sm:hidden">IMC</span>
                     </CardTitle>
-                    <CardDescription className="text-gray-400 text-sm">
+                    <CardDescription className="text-gray-400 text-xs sm:text-sm">
                       Indicador de saúde baseado em peso e altura
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="pt-0">
                     {userBMI && bmiInfo ? (
-                      <div className="space-y-4">
-                        <div className="text-center">
-                          <div className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="text-center p-4 bg-slate-700/50 rounded-xl">
+                          <div className="text-2xl sm:text-4xl font-bold text-white mb-2">
                             {userBMI}
                           </div>
-                          <div className={`inline-flex px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold ${bmiInfo.color} ${bmiInfo.bgColor}`}>
+                          <div className={`inline-flex px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold ${bmiInfo.color} ${bmiInfo.bgColor}`}>
                             {bmiInfo.category}
                           </div>
                         </div>
                         
-                        <div className="space-y-2 text-xs sm:text-sm text-gray-300">
-                          <div className="flex justify-between items-center">
-                            <span>Cálculo:</span>
-                            <span className="text-right">{user?.weight}kg ÷ ({user?.height/100}m)² = {userBMI}</span>
+                        <div className="p-3 bg-slate-700/30 rounded-lg">
+                          <div className="text-xs sm:text-sm text-gray-300 text-center">
+                            <strong>Cálculo:</strong> {user?.weight}kg ÷ ({user?.height/100}m)² = {userBMI}
                           </div>
                         </div>
                         
-                        {/* Escala visual do IMC */}
+                        {/* Escala visual do IMC - Compacta para mobile */}
                         <div className="space-y-2">
-                          <div className="text-xs text-gray-400 mb-2">Referência:</div>
-                          <div className="space-y-1 text-xs">
+                          <div className="text-xs text-gray-400 font-medium">Referência IMC:</div>
+                          <div className="grid grid-cols-2 gap-2 text-xs">
                             <div className="flex justify-between items-center">
-                              <span className="text-blue-400">Abaixo do peso</span>
+                              <span className="text-blue-400">Abaixo</span>
                               <span className="text-gray-400">&lt; 18.5</span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span className="text-green-400">Peso normal</span>
-                              <span className="text-gray-400">18.5 - 24.9</span>
+                              <span className="text-green-400">Normal</span>
+                              <span className="text-gray-400">18.5-24.9</span>
                             </div>
                             <div className="flex justify-between items-center">
                               <span className="text-yellow-400">Sobrepeso</span>
-                              <span className="text-gray-400">25.0 - 29.9</span>
+                              <span className="text-gray-400">25.0-29.9</span>
                             </div>
                             <div className="flex justify-between items-center">
                               <span className="text-orange-400">Obesidade I</span>
-                              <span className="text-gray-400">30.0 - 34.9</span>
+                              <span className="text-gray-400">30.0-34.9</span>
                             </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-red-400">Obesidade II</span>
-                              <span className="text-gray-400">35.0 - 39.9</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-red-600">Obesidade III</span>
-                              <span className="text-gray-400">≥ 40.0</span>
+                            <div className="flex justify-between items-center col-span-2">
+                              <span className="text-red-400">Obesidade II/III</span>
+                              <span className="text-gray-400">≥ 35.0</span>
                             </div>
                           </div>
                         </div>
                         
-                        <div className="text-xs text-gray-400 bg-slate-700/50 p-2 sm:p-3 rounded-lg">
-                          💡 <strong>Dica:</strong> O IMC é uma referência geral. Consulte sempre um profissional de saúde para orientação personalizada.
+                        <div className="text-xs text-gray-400 bg-slate-700/50 p-3 rounded-lg border-l-2 border-orange-500">
+                          <span className="font-medium">💡 Importante:</span> O IMC é uma referência geral. Consulte sempre um profissional de saúde para orientação personalizada.
                         </div>
                       </div>
                     ) : (
-                      <div className="text-gray-400 text-center py-4 text-sm">
-                        Dados insuficientes para calcular o IMC
+                      <div className="text-gray-400 text-center py-8">
+                        <Activity className="mx-auto h-8 w-8 text-gray-500 mb-2" />
+                        <p className="text-sm">Dados insuficientes para calcular o IMC</p>
                       </div>
                     )}
                   </CardContent>
