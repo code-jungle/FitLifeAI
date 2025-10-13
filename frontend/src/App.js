@@ -611,19 +611,20 @@ const AuthForms = () => {
             )}
             
             <div>
-              <Label htmlFor="email" className="text-white">Email</Label>
+              <Label htmlFor="email" className="text-white text-sm font-medium">Email</Label>
               <Input
                 id="email"
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="bg-slate-700 border-slate-600 text-white mt-1"
+                className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
+                placeholder="seu@email.com"
               />
             </div>
             
             <div>
-              <Label htmlFor="password" className="text-white">Senha</Label>
+              <Label htmlFor="password" className="text-white text-sm font-medium">Senha</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -631,12 +632,13 @@ const AuthForms = () => {
                   required
                   value={formData.password}
                   onChange={(e) => setFormData({...formData, password: e.target.value})}
-                  className="bg-slate-700 border-slate-600 text-white mt-1 pr-12"
+                  className="mobile-input bg-slate-700 border-slate-600 text-white mt-1 pr-12"
+                  placeholder="Sua senha"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors bg-slate-600 p-1 rounded z-10"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors bg-slate-600 p-2 rounded-md z-10 touch-manipulation"
                   tabIndex={-1}
                   title={showPassword ? "Ocultar senha" : "Mostrar senha"}
                 >
