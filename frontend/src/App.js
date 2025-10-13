@@ -701,7 +701,7 @@ const AuthForms = () => {
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-4 sm:mt-6 text-center">
             <button
               onClick={() => {
                 setIsLogin(!isLogin);
@@ -719,7 +719,7 @@ const AuthForms = () => {
                   current_activities: ''
                 });
               }}
-              className="text-orange-400 hover:text-orange-300 transition-colors text-sm sm:text-base"
+              className="text-orange-400 hover:text-orange-300 transition-colors text-sm font-medium touch-manipulation py-2 px-4 rounded-lg"
             >
               {isLogin ? 'Não tem conta? Cadastre-se' : 'Já tem conta? Faça login'}
             </button>
