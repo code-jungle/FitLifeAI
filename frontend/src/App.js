@@ -495,32 +495,34 @@ const AuthForms = () => {
         <CardContent className="pt-0">
           <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             {!isLogin && (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <Label htmlFor="name" className="text-white">Nome completo</Label>
+                  <Label htmlFor="name" className="text-white text-sm font-medium">Nome completo</Label>
                   <Input
                     id="name"
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1"
+                    className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
+                    placeholder="Seu nome completo"
                   />
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <Label htmlFor="age" className="text-white">Idade</Label>
+                    <Label htmlFor="age" className="text-white text-sm font-medium">Idade</Label>
                     <Input
                       id="age"
                       type="number"
                       required
                       value={formData.age}
                       onChange={(e) => setFormData({...formData, age: e.target.value})}
-                      className="bg-slate-700 border-slate-600 text-white mt-1"
+                      className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
+                      placeholder="28"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="weight" className="text-white">Peso (kg)</Label>
+                    <Label htmlFor="weight" className="text-white text-sm font-medium">Peso (kg)</Label>
                     <Input
                       id="weight"
                       type="number"
@@ -530,16 +532,13 @@ const AuthForms = () => {
                       required
                       value={formData.weight}
                       onChange={(e) => setFormData({...formData, weight: e.target.value})}
-                      className="bg-slate-700 border-slate-600 text-white mt-1"
+                      className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
                       placeholder="70.5"
                     />
-                    <p className="text-xs text-gray-400 mt-1">
-                      💡 Insira seu peso em quilogramas. Exemplo: <strong>70.5</strong> (use ponto para decimais)
-                    </p>
                   </div>
                 </div>
                 <div>
-                  <Label htmlFor="height" className="text-white">Altura (cm)</Label>
+                  <Label htmlFor="height" className="text-white text-sm font-medium">Altura (cm)</Label>
                   <Input
                     id="height"
                     type="number"
@@ -548,11 +547,11 @@ const AuthForms = () => {
                     required
                     value={formData.height}
                     onChange={(e) => setFormData({...formData, height: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1"
+                    className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
                     placeholder="175"
                   />
                   <p className="text-xs text-gray-400 mt-1">
-                    💡 Insira sua altura em centímetros. Exemplo: <strong>175</strong> (apenas números inteiros)
+                    💡 Use ponto para decimais no peso (ex: 70.5)
                   </p>
                 </div>
                 <div>
