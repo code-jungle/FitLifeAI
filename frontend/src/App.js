@@ -1219,8 +1219,8 @@ const Dashboard = () => {
             )}
           </TabsContent>
 
-          <TabsContent value="history" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <TabsContent value="history" className="space-y-3 sm:space-y-6">
+            <div className="mobile-grid md:grid md:grid-cols-2 gap-3 sm:gap-6">
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center">
