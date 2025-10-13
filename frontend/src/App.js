@@ -1127,49 +1127,65 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <Card className="bg-slate-800 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center text-lg sm:text-xl">
-                    <Dumbbell className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
+            <div className="mobile-grid md:grid md:grid-cols-2 gap-3 sm:gap-6">
+              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-white flex items-center text-base sm:text-xl">
+                    <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
                     Sugestão de Treino
                   </CardTitle>
-                  <CardDescription className="text-gray-400 text-sm sm:text-base">
+                  <CardDescription className="text-gray-400 text-sm">
                     IA personalizada baseada no seu perfil
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <Button 
                     onClick={() => generateSuggestion('workout')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 text-white py-3"
+                    className="mobile-button bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 text-white font-semibold shadow-lg disabled:opacity-50 transition-all duration-300"
                   >
-                    <span className="text-sm sm:text-base">
-                      {loading && suggestionType === 'workout' ? 'Gerando...' : 'Gerar Treino'}
-                    </span>
+                    {loading && suggestionType === 'workout' ? (
+                      <div className="flex items-center">
+                        <div className="loading-spinner mr-2"></div>
+                        <span>Gerando...</span>
+                      </div>
+                    ) : (
+                      <>
+                        <Dumbbell className="mr-2 h-4 w-4" />
+                        <span>Gerar Treino</span>
+                      </>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-800 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center text-lg sm:text-xl">
-                    <Apple className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-pink-500" />
+              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-white flex items-center text-base sm:text-xl">
+                    <Apple className="mr-2 h-5 w-5 text-pink-500" />
                     Sugestão de Nutrição
                   </CardTitle>
-                  <CardDescription className="text-gray-400 text-sm sm:text-base">
+                  <CardDescription className="text-gray-400 text-sm">
                     Dieta balanceada para seus objetivos
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <Button 
                     onClick={() => generateSuggestion('nutrition')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="w-full bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90 text-white py-3"
+                    className="mobile-button bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90 text-white font-semibold shadow-lg disabled:opacity-50 transition-all duration-300"
                   >
-                    <span className="text-sm sm:text-base">
-                      {loading && suggestionType === 'nutrition' ? 'Gerando...' : 'Gerar Dieta'}
-                    </span>
+                    {loading && suggestionType === 'nutrition' ? (
+                      <div className="flex items-center">
+                        <div className="loading-spinner mr-2"></div>
+                        <span>Gerando...</span>
+                      </div>
+                    ) : (
+                      <>
+                        <Apple className="mr-2 h-4 w-4" />
+                        <span>Gerar Dieta</span>
+                      </>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
