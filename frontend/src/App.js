@@ -555,31 +555,28 @@ const AuthForms = () => {
                   </p>
                 </div>
                 <div>
-                  <Label htmlFor="goals" className="text-white">Seus objetivos</Label>
+                  <Label htmlFor="goals" className="text-white text-sm font-medium">Seus objetivos</Label>
                   <Textarea
                     id="goals"
                     required
                     placeholder="Ex: Perder peso, ganhar massa muscular, melhorar condicionamento..."
                     value={formData.goals}
                     onChange={(e) => setFormData({...formData, goals: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[80px]"
+                    className="mobile-input bg-slate-700 border-slate-600 text-white mt-1 min-h-[70px] resize-none"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="dietary_restrictions" className="text-white">
+                  <Label htmlFor="dietary_restrictions" className="text-white text-sm font-medium">
                     Restrições Alimentares
-                    <span className="text-gray-400 text-sm ml-1">(opcional)</span>
+                    <span className="text-gray-400 text-xs ml-1">(opcional)</span>
                   </Label>
                   <Textarea
                     id="dietary_restrictions"
-                    placeholder="Ex: Vegano, vegetariano, alergia a lactose, intolerância ao glúten, alergia a frutos do mar..."
+                    placeholder="Ex: Vegano, vegetariano, lactose, glúten..."
                     value={formData.dietary_restrictions}
                     onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[60px]"
+                    className="mobile-input bg-slate-700 border-slate-600 text-white mt-1 min-h-[50px] resize-none"
                   />
-                  <p className="text-xs text-gray-400 mt-1">
-                    💡 Informe suas restrições, alergias ou preferências alimentares para sugestões mais personalizadas
-                  </p>
                 </div>
                 
                 <div>
