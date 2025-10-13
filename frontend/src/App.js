@@ -1192,20 +1192,25 @@ const Dashboard = () => {
             </div>
 
             {currentSuggestion && (
-              <Card className="bg-slate-800 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center">
+              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-xl">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-white flex items-center text-base sm:text-lg">
                     {suggestionType === 'workout' ? (
                       <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
                     ) : (
                       <Apple className="mr-2 h-5 w-5 text-pink-500" />
                     )}
-                    {suggestionType === 'workout' ? 'Sua Sugestão de Treino' : 'Sua Sugestão de Nutrição'}
+                    <span className="hidden sm:inline">
+                      {suggestionType === 'workout' ? 'Sua Sugestão de Treino' : 'Sua Sugestão de Nutrição'}
+                    </span>
+                    <span className="sm:hidden">
+                      {suggestionType === 'workout' ? 'Seu Treino' : 'Sua Dieta'}
+                    </span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="suggestion-content">
-                    <div className="ai-response whitespace-pre-wrap">
+                <CardContent className="pt-0">
+                  <div className="suggestion-content mobile-optimized">
+                    <div className="ai-response whitespace-pre-wrap text-sm sm:text-base leading-relaxed">
                       {currentSuggestion.suggestion}
                     </div>
                   </div>
