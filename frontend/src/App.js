@@ -1355,16 +1355,16 @@ const Dashboard = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="profile" className="space-y-4 sm:space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-              <Card className="bg-slate-800 border-slate-700">
-                <CardHeader>
-                  <div className="flex justify-between items-center">
-                    <CardTitle className="text-white text-lg sm:text-xl">Informações Pessoais</CardTitle>
+          <TabsContent value="profile" className="space-y-3 sm:space-y-6">
+            <div className="mobile-grid lg:grid lg:grid-cols-2 gap-3 sm:gap-6">
+              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg">
+                <CardHeader className="pb-3">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+                    <CardTitle className="text-white text-base sm:text-xl">Informações Pessoais</CardTitle>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
+                      className="mobile-button sm:w-auto border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white font-medium"
                       onClick={() => handleEditProfile()}
                     >
                       <User className="mr-2 h-4 w-4" />
@@ -1372,51 +1372,51 @@ const Dashboard = () => {
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label className="text-gray-400 text-sm">Nome</Label>
-                      <div className="text-white text-sm sm:text-base">{user?.name}</div>
+                <CardContent className="space-y-3 sm:space-y-4 pt-0">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="p-3 bg-slate-700/50 rounded-lg">
+                      <Label className="text-gray-400 text-xs sm:text-sm font-medium">Nome</Label>
+                      <div className="text-white text-sm sm:text-base mt-1">{user?.name}</div>
                     </div>
-                    <div>
-                      <Label className="text-gray-400 text-sm">Email</Label>
-                      <div className="text-white text-sm sm:text-base break-all">{user?.email}</div>
+                    <div className="p-3 bg-slate-700/50 rounded-lg">
+                      <Label className="text-gray-400 text-xs sm:text-sm font-medium">Email</Label>
+                      <div className="text-white text-sm sm:text-base mt-1 break-all">{user?.email}</div>
                     </div>
-                    <div>
-                      <Label className="text-gray-400 text-sm">Idade</Label>
-                      <div className="text-white text-sm sm:text-base">{user?.age} anos</div>
+                    <div className="p-3 bg-slate-700/50 rounded-lg">
+                      <Label className="text-gray-400 text-xs sm:text-sm font-medium">Idade</Label>
+                      <div className="text-white text-sm sm:text-base mt-1">{user?.age} anos</div>
                     </div>
-                    <div>
-                      <Label className="text-gray-400 text-sm">Peso</Label>
-                      <div className="text-white text-sm sm:text-base">{user?.weight} kg</div>
+                    <div className="p-3 bg-slate-700/50 rounded-lg">
+                      <Label className="text-gray-400 text-xs sm:text-sm font-medium">Peso</Label>
+                      <div className="text-white text-sm sm:text-base mt-1">{user?.weight} kg</div>
                     </div>
-                    <div>
-                      <Label className="text-gray-400 text-sm">Altura</Label>
-                      <div className="text-white text-sm sm:text-base">{user?.height} cm</div>
+                    <div className="p-3 bg-slate-700/50 rounded-lg sm:col-span-1">
+                      <Label className="text-gray-400 text-xs sm:text-sm font-medium">Altura</Label>
+                      <div className="text-white text-sm sm:text-base mt-1">{user?.height} cm</div>
+                    </div>
+                    <div className="p-3 bg-slate-700/50 rounded-lg">
+                      <Label className="text-gray-400 text-xs sm:text-sm font-medium">Tipo de Treino</Label>
+                      <div className="text-white text-sm sm:text-base mt-1">
+                        {user?.workout_type === 'academia' && '🏋️ Academia'}
+                        {user?.workout_type === 'casa' && '🏠 Em Casa'}
+                        {user?.workout_type === 'ar_livre' && '🌳 Ao Ar Livre'}
+                        {!user?.workout_type && '🏋️ Academia (padrão)'}
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <Label className="text-gray-400 text-sm">Objetivos</Label>
-                    <div className="text-white text-sm sm:text-base">{user?.goals}</div>
+                  <div className="p-3 bg-slate-700/50 rounded-lg">
+                    <Label className="text-gray-400 text-xs sm:text-sm font-medium">Objetivos</Label>
+                    <div className="text-white text-sm sm:text-base mt-1 leading-relaxed">{user?.goals}</div>
                   </div>
-                  <div>
-                    <Label className="text-gray-400 text-sm">Restrições Alimentares</Label>
-                    <div className="text-white text-sm sm:text-base">
+                  <div className="p-3 bg-slate-700/50 rounded-lg">
+                    <Label className="text-gray-400 text-xs sm:text-sm font-medium">Restrições Alimentares</Label>
+                    <div className="text-white text-sm sm:text-base mt-1 leading-relaxed">
                       {user?.dietary_restrictions || 'Nenhuma restrição informada'}
                     </div>
                   </div>
-                  <div>
-                    <Label className="text-gray-400 text-sm">Tipo de Treino</Label>
-                    <div className="text-white text-sm sm:text-base">
-                      {user?.workout_type === 'academia' && '🏋️ Academia'}
-                      {user?.workout_type === 'casa' && '🏠 Em Casa'}
-                      {user?.workout_type === 'ar_livre' && '🌳 Ao Ar Livre'}
-                      {!user?.workout_type && '🏋️ Academia (padrão)'}
-                    </div>
-                  </div>
-                  <div>
-                    <Label className="text-gray-400 text-sm">Atividades Físicas Atuais</Label>
-                    <div className="text-white text-sm sm:text-base">
+                  <div className="p-3 bg-slate-700/50 rounded-lg">
+                    <Label className="text-gray-400 text-xs sm:text-sm font-medium">Atividades Físicas Atuais</Label>
+                    <div className="text-white text-sm sm:text-base mt-1 leading-relaxed">
                       {user?.current_activities || 'Nenhuma atividade informada'}
                     </div>
                   </div>
