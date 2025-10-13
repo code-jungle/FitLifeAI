@@ -479,21 +479,21 @@ const AuthForms = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 sm:p-6">
-      <Card className="w-full max-w-md bg-slate-800 border-slate-700">
-        <CardHeader className="text-center">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-2 sm:p-6">
+      <Card className="mobile-card w-full max-w-lg bg-slate-800 border-slate-700 shadow-2xl m-2 sm:m-0">
+        <CardHeader className="text-center pb-4">
           <div className="fitlife-logo mx-auto mb-2">
-            <div className="fitlife-logo-text">FitLife AI</div>
+            <div className="fitlife-logo-text text-lg sm:text-xl">FitLife AI</div>
           </div>
-          <CardTitle className="text-white text-xl sm:text-2xl">
+          <CardTitle className="text-white text-lg sm:text-2xl">
             {isLogin ? 'Entrar na sua conta' : 'Criar conta gratuita'}
           </CardTitle>
-          <CardDescription className="text-gray-400">
+          <CardDescription className="text-gray-400 text-sm">
             {isLogin ? 'Acesse suas sugestões personalizadas' : '7 dias grátis, depois R$ 14,90/mês'}
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <CardContent className="pt-0">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             {!isLogin && (
               <div className="space-y-4">
                 <div>
