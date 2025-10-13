@@ -1109,18 +1109,18 @@ const Dashboard = () => {
             )}
 
             {/* Aviso Importante sobre as Sugestões */}
-            <Card className="bg-blue-950/50 border-blue-700/50">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-start space-x-3">
-                  <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400 flex-shrink-0 mt-0.5" />
+            <Card className="mobile-card bg-blue-950/60 border-blue-700/60 backdrop-blur-sm">
+              <CardContent className="p-3 sm:p-6">
+                <div className="flex items-start space-x-2 sm:space-x-3">
+                  <AlertTriangle className="h-4 w-4 sm:h-6 sm:w-6 text-blue-400 flex-shrink-0 mt-1" />
                   <div>
-                    <h4 className="text-blue-200 font-semibold text-sm sm:text-base mb-2">
+                    <h4 className="text-blue-200 font-semibold text-xs sm:text-base mb-1 sm:mb-2">
                       ⚠️ Importante - Leia antes de usar
                     </h4>
                     <p className="text-blue-100 text-xs sm:text-sm leading-relaxed">
-                      <strong>As sugestões de treinos e dietas são apenas orientações educacionais</strong> geradas por IA para ajudar em uma vida mais saudável. 
-                      Elas <strong>NÃO substituem</strong> a consulta com profissionais de saúde qualificados como médicos, nutricionistas ou educadores físicos. 
-                      Sempre consulte um profissional antes de iniciar qualquer programa de exercícios ou mudança na alimentação.
+                      <strong>As sugestões são orientações educacionais</strong> por IA. 
+                      <strong>NÃO substituem</strong> profissionais de saúde. 
+                      Sempre consulte especialistas antes de iniciar programas de exercícios ou mudança na alimentação.
                     </p>
                   </div>
                 </div>
