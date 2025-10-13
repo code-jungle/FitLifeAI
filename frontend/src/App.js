@@ -649,7 +649,7 @@ const AuthForms = () => {
 
             {!isLogin && (
               <div>
-                <Label htmlFor="confirmPassword" className="text-white">Confirmar Senha</Label>
+                <Label htmlFor="confirmPassword" className="text-white text-sm font-medium">Confirmar Senha</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
@@ -657,18 +657,19 @@ const AuthForms = () => {
                     required
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                    className={`bg-slate-700 border-slate-600 text-white mt-1 pr-12 ${
+                    className={`mobile-input bg-slate-700 border-slate-600 text-white mt-1 pr-12 ${
                       formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword
                         ? 'border-red-500 focus:border-red-500' 
                         : formData.password && formData.confirmPassword && formData.password === formData.confirmPassword
                         ? 'border-green-500 focus:border-green-500'
                         : ''
                     }`}
+                    placeholder="Confirme sua senha"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors bg-slate-600 p-1 rounded z-10"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors bg-slate-600 p-2 rounded-md z-10 touch-manipulation"
                     tabIndex={-1}
                     title={showConfirmPassword ? "Ocultar senha" : "Mostrar senha"}
                   >
@@ -676,20 +677,27 @@ const AuthForms = () => {
                   </button>
                 </div>
                 {formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword && (
-                  <p className="text-red-400 text-sm mt-1">As senhas não coincidem</p>
+                  <p className="text-red-400 text-xs mt-1">❌ As senhas não coincidem</p>
                 )}
                 {formData.password && formData.confirmPassword && formData.password === formData.confirmPassword && (
-                  <p className="text-green-400 text-sm mt-1">✓ Senhas coincidem</p>
+                  <p className="text-green-400 text-xs mt-1">✓ Senhas coincidem</p>
                 )}
               </div>
             )}
 
             <Button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold py-3"
+              className="mobile-button bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold shadow-lg mt-4 touch-manipulation"
               disabled={loading || (!isLogin && formData.password !== formData.confirmPassword)}
             >
-              {loading ? 'Processando...' : (isLogin ? 'Entrar' : 'Criar Conta Grátis')}
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="loading-spinner mr-2"></div>
+                  Processando...
+                </div>
+              ) : (
+                isLogin ? 'Entrar' : 'Criar Conta Grátis'
+              )}
             </Button>
           </form>
 
