@@ -580,38 +580,32 @@ const AuthForms = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="workout_type" className="text-white">Onde você prefere treinar?</Label>
+                  <Label htmlFor="workout_type" className="text-white text-sm font-medium">Onde você prefere treinar?</Label>
                   <select
                     id="workout_type"
                     required
                     value={formData.workout_type}
                     onChange={(e) => setFormData({...formData, workout_type: e.target.value})}
-                    className="w-full bg-slate-700 border border-slate-600 text-white mt-1 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="mobile-input w-full bg-slate-700 border border-slate-600 text-white mt-1 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
-                    <option value="academia">🏋️ Academia (equipamentos completos)</option>
-                    <option value="casa">🏠 Em Casa (peso corporal/básico)</option>
-                    <option value="ar_livre">🌳 Ao Ar Livre (parques/ruas)</option>
+                    <option value="academia">🏋️ Academia</option>
+                    <option value="casa">🏠 Em Casa</option>
+                    <option value="ar_livre">🌳 Ao Ar Livre</option>
                   </select>
-                  <p className="text-xs text-gray-400 mt-1">
-                    💡 A IA criará treinos específicos para o ambiente escolhido
-                  </p>
                 </div>
                 
                 <div>
-                  <Label htmlFor="current_activities" className="text-white">
+                  <Label htmlFor="current_activities" className="text-white text-sm font-medium">
                     Atividades Físicas Atuais
-                    <span className="text-gray-400 text-sm ml-1">(opcional)</span>
+                    <span className="text-gray-400 text-xs ml-1">(opcional)</span>
                   </Label>
                   <Textarea
                     id="current_activities"
-                    placeholder="Ex: Futebol 2x/semana, Beach tennis, Academia, Corrida, Natação, Pilates..."
+                    placeholder="Ex: Futebol 2x/semana, Corrida, Academia..."
                     value={formData.current_activities}
                     onChange={(e) => setFormData({...formData, current_activities: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[60px]"
+                    className="mobile-input bg-slate-700 border-slate-600 text-white mt-1 min-h-[50px] resize-none"
                   />
-                  <p className="text-xs text-gray-400 mt-1">
-                    💡 Informe atividades que você já pratica para treinos mais inteligentes e complementares
-                  </p>
                 </div>
               </div>
             )}
