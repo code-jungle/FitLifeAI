@@ -1088,21 +1088,21 @@ const Dashboard = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="suggestions" className="space-y-4 sm:space-y-6">
+          <TabsContent value="suggestions" className="space-y-3 sm:space-y-6">
             {!user?.is_premium && !isTrialActive && (
-              <Card className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 border-0">
+              <Card className="mobile-card bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 border-0 shadow-xl">
                 <CardContent className="p-4 sm:p-6 text-center">
-                  <Crown className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-white mb-3 sm:mb-4" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Trial Expirado</h3>
-                  <p className="text-white/90 mb-4 text-sm sm:text-base">
-                    Faça upgrade para premium e continue aproveitando sugestões ilimitadas de treino e nutrição.
+                  <Crown className="mx-auto h-8 w-8 sm:h-12 sm:w-12 text-white mb-2 sm:mb-4" />
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">Trial Expirado</h3>
+                  <p className="text-white/90 mb-4 text-sm sm:text-base leading-relaxed">
+                    Faça upgrade para premium e continue aproveitando sugestões ilimitadas.
                   </p>
                   <Button 
                     onClick={handleUpgrade}
-                    className="bg-white text-slate-900 hover:bg-gray-100 font-semibold w-full sm:w-auto"
+                    className="mobile-button bg-white text-slate-900 hover:bg-gray-100 font-semibold shadow-lg"
                   >
                     <CreditCard className="mr-2 h-4 w-4" />
-                    <span className="text-sm sm:text-base">Upgrade Premium - R$ 14,90/mês</span>
+                    <span className="text-sm">Upgrade Premium - R$ 14,90/mês</span>
                   </Button>
                 </CardContent>
               </Card>
