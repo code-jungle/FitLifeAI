@@ -1059,20 +1059,32 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto p-4 sm:p-6">
-        <Tabs defaultValue="suggestions" className="space-y-4 sm:space-y-6">
-          <TabsList className="bg-slate-800 border-slate-700 w-full flex-col sm:flex-row h-auto sm:h-10">
-            <TabsTrigger value="suggestions" className="w-full sm:w-auto text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 justify-center py-3 sm:py-2">
-              <Zap className="mr-2 h-4 w-4" />
-              <span className="text-sm sm:text-base">Sugestões IA</span>
+      <div className="mobile-container max-w-7xl mx-auto p-3 sm:p-6">
+        <Tabs defaultValue="suggestions" className="space-y-3 sm:space-y-6">
+          <TabsList className="bg-slate-800 border-slate-700 w-full grid grid-cols-3 sm:flex sm:flex-row h-auto gap-1 p-1 rounded-xl">
+            <TabsTrigger 
+              value="suggestions" 
+              className="mobile-tab text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg transition-all duration-200"
+            >
+              <Zap className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline text-sm">Sugestões IA</span>
+              <span className="sm:hidden text-xs">IA</span>
             </TabsTrigger>
-            <TabsTrigger value="history" className="w-full sm:w-auto text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 justify-center py-3 sm:py-2">
-              <History className="mr-2 h-4 w-4" />
-              <span className="text-sm sm:text-base">Histórico</span>
+            <TabsTrigger 
+              value="history" 
+              className="mobile-tab text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg transition-all duration-200"
+            >
+              <History className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline text-sm">Histórico</span>
+              <span className="sm:hidden text-xs">Hist</span>
             </TabsTrigger>
-            <TabsTrigger value="profile" className="w-full sm:w-auto text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 justify-center py-3 sm:py-2">
-              <User className="mr-2 h-4 w-4" />
-              <span className="text-sm sm:text-base">Perfil</span>
+            <TabsTrigger 
+              value="profile" 
+              className="mobile-tab text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg transition-all duration-200"
+            >
+              <User className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline text-sm">Perfil</span>
+              <span className="sm:hidden text-xs">Perfil</span>
             </TabsTrigger>
           </TabsList>
 
