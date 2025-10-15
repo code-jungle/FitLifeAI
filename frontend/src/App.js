@@ -278,23 +278,22 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
+      {/* Enhanced Mobile CTA Section */}
+      <section className="py-12 sm:py-20 px-3 sm:px-6 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500">
+        <div className="mobile-container max-w-4xl mx-auto text-center">
+          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-8 leading-tight px-2">
             Pronto para Transformar seu Corpo?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-3 leading-relaxed">
             Junte-se a milhares de pessoas que já transformaram suas vidas com o FitLife AI
           </p>
           <Button 
             size="lg" 
-            className="bg-white text-slate-900 hover:bg-gray-100 font-semibold px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-base sm:text-lg md:text-xl w-full sm:w-auto max-w-sm mx-auto"
+            className="mobile-button bg-white text-slate-900 hover:bg-gray-100 font-semibold shadow-xl touch-manipulation"
             onClick={() => navigate('/register')}
           >
-            <Trophy className="mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
-            <span className="hidden sm:inline">Comece sua Transformação</span>
-            <span className="sm:hidden">Comece Agora</span>
+            <Trophy className="mr-2 h-5 w-5" />
+            <span className="text-base font-semibold">Comece sua Transformação</span>
           </Button>
         </div>
       </section>
