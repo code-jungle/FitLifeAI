@@ -233,43 +233,43 @@ const LandingPage = () => {
           </div>
 
           <div className="mobile-grid md:grid md:grid-cols-3 gap-4 sm:gap-8">
-            <Card className="bg-slate-900/80 border-slate-700 backdrop-blur-sm hover:border-orange-500/50 transition-all duration-300">
-              <CardHeader className="text-center">
-                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
+            <Card className="mobile-card bg-slate-900/90 border-slate-700 backdrop-blur-sm hover:border-orange-500/50 transition-all duration-300 shadow-lg">
+              <CardHeader className="text-center pb-3">
+                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center mb-3 shadow-lg">
                   <Dumbbell className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-white">Treinos Personalizados</CardTitle>
+                <CardTitle className="text-lg sm:text-2xl text-white font-bold">Treinos Personalizados</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 text-center text-base sm:text-lg">
+              <CardContent className="pt-0">
+                <CardDescription className="text-gray-300 text-center text-sm sm:text-lg leading-relaxed">
                   IA cria treinos específicos baseados em sua idade, peso, altura e objetivos pessoais
                 </CardDescription>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900/80 border-slate-700 backdrop-blur-sm hover:border-pink-500/50 transition-all duration-300">
-              <CardHeader className="text-center">
-                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center mb-4">
+            <Card className="mobile-card bg-slate-900/90 border-slate-700 backdrop-blur-sm hover:border-pink-500/50 transition-all duration-300 shadow-lg">
+              <CardHeader className="text-center pb-3">
+                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center mb-3 shadow-lg">
                   <Apple className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-white">Nutrição Inteligente</CardTitle>
+                <CardTitle className="text-lg sm:text-2xl text-white font-bold">Nutrição Inteligente</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 text-center text-base sm:text-lg">
+              <CardContent className="pt-0">
+                <CardDescription className="text-gray-300 text-center text-sm sm:text-lg leading-relaxed">
                   Sugestões de dieta balanceada com porções e horários ideais para seus objetivos
                 </CardDescription>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900/80 border-slate-700 backdrop-blur-sm hover:border-red-500/50 transition-all duration-300">
-              <CardHeader className="text-center">
-                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center mb-4">
+            <Card className="mobile-card bg-slate-900/90 border-slate-700 backdrop-blur-sm hover:border-red-500/50 transition-all duration-300 shadow-lg">
+              <CardHeader className="text-center pb-3">
+                <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center mb-3 shadow-lg">
                   <Brain className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-white">IA Avançada</CardTitle>
+                <CardTitle className="text-lg sm:text-2xl text-white font-bold">IA Avançada</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 text-center text-base sm:text-lg">
+              <CardContent className="pt-0">
+                <CardDescription className="text-gray-300 text-center text-sm sm:text-lg leading-relaxed">
                   Powered by Gemini AI, a mais avançada tecnologia para sugestões fitness personalizadas
                 </CardDescription>
               </CardContent>
