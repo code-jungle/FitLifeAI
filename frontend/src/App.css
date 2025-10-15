@@ -841,12 +841,82 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Enhanced Touch Interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, .mobile-button, .mobile-tab {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Better tap targets for mobile */
+@media (max-width: 640px) {
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ensure clickable elements have proper spacing */
+  .clickable-area {
+    padding: 12px;
+    margin: 4px;
+  }
+  
+  /* Better visual feedback for touch */
+  button:active, .mobile-button:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+    transition: all 0.1s ease;
+  }
+  
+  /* Prevent text selection on touch */
+  .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
 /* Focus styles for accessibility */
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+select:focus-visible {
   outline: 2px solid #f97316;
   outline-offset: 2px;
+}
+
+/* Better contrast for mobile readability */
+@media (max-width: 640px) {
+  .high-contrast {
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Larger text for better mobile readability */
+  .mobile-text-large {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .mobile-text-xl {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 600;
+  }
 }
 
 /* Reduced motion for accessibility */
