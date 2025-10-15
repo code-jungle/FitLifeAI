@@ -219,20 +219,20 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-slate-800/50">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">
+      {/* Enhanced Mobile Features Section */}
+      <section className="py-12 sm:py-20 px-3 sm:px-6 bg-slate-800/50">
+        <div className="mobile-container max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-16">
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-3 sm:mb-6 px-2">
               Tecnologia que Transforma seu
-              <span className="block sm:inline bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent"> Fitness</span>
+              <span className="block bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent mt-1"> Fitness</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-xl text-gray-300 max-w-2xl mx-auto px-3 leading-relaxed">
               Nossa IA analisa seus dados pessoais para criar sugestões únicas de treino e nutrição
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="mobile-grid md:grid md:grid-cols-3 gap-4 sm:gap-8">
             <Card className="bg-slate-900/80 border-slate-700 backdrop-blur-sm hover:border-orange-500/50 transition-all duration-300">
               <CardHeader className="text-center">
                 <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
