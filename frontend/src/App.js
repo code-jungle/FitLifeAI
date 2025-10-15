@@ -169,52 +169,51 @@ const LandingPage = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden">
+      {/* Enhanced Mobile Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://customer-assets.emergentagent.com/job_smartfit-ai-2/artifacts/0b9ap7fs_f7736199-989a-4bc2-ad40-54f184078b7a.png')`
+            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://customer-assets.emergentagent.com/job_smartfit-ai-2/artifacts/0b9ap7fs_f7736199-989a-4bc2-ad40-54f184078b7a.png')`
           }}
         />
         
-        <div className="relative container mx-auto text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 sm:mb-8 leading-relaxed sm:leading-normal">
+        <div className="relative mobile-container max-w-6xl mx-auto text-center">
+          <h1 className="text-2xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-8 leading-tight sm:leading-normal px-2">
             Transforme seu corpo com
-            <span className="block bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent mt-1">
               Inteligência Artificial
             </span>
           </h1>
           
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-xl text-gray-300 mb-6 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-3">
             Sugestões personalizadas de treinos e nutrição criadas especialmente para você.
-            7 dias grátis, depois apenas R$ 14,90/mês.
+            <span className="block sm:inline mt-1 sm:mt-0"> 7 dias grátis, depois apenas R$ 14,90/mês.</span>
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
+          <div className="flex flex-col gap-3 justify-center items-center px-3">
             <Button 
               size="lg" 
-              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
+              className="mobile-button bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold shadow-xl touch-manipulation"
               onClick={() => navigate('/register')}
             >
-              <Zap className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="hidden sm:inline">Começar Agora - Grátis</span>
-              <span className="sm:hidden">Começar Grátis</span>
+              <Zap className="mr-2 h-5 w-5" />
+              <span className="text-base font-semibold">Começar Grátis Agora</span>
             </Button>
           </div>
           
-          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-gray-400 px-4">
-            <div className="flex items-center">
-              <Star className="h-4 w-4 text-yellow-500 mr-1" />
-              7 dias grátis
+          <div className="mt-6 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-8 text-xs sm:text-sm text-gray-400 px-3 max-w-lg sm:max-w-none mx-auto">
+            <div className="flex items-center justify-center">
+              <Star className="h-4 w-4 text-yellow-500 mr-2" />
+              <span>7 dias grátis</span>
             </div>
-            <div className="flex items-center">
-              <Crown className="h-4 w-4 text-orange-500 mr-1" />
-              IA Personalizada
+            <div className="flex items-center justify-center">
+              <Crown className="h-4 w-4 text-orange-500 mr-2" />
+              <span>IA Personalizada</span>
             </div>
-            <div className="flex items-center">
-              <Activity className="h-4 w-4 text-pink-500 mr-1" />
-              Sugestões Ilimitadas
+            <div className="flex items-center justify-center">
+              <Activity className="h-4 w-4 text-pink-500 mr-2" />
+              <span>Sugestões Ilimitadas</span>
             </div>
           </div>
         </div>
