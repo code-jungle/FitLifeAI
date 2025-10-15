@@ -298,13 +298,13 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Feedback Section */}
-      <section className="py-16 px-4 sm:px-6 bg-slate-800/50">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+      {/* Enhanced Mobile Feedback Section */}
+      <section className="py-12 sm:py-16 px-3 sm:px-6 bg-slate-800/50">
+        <div className="mobile-container max-w-4xl mx-auto text-center">
+          <h2 className="text-xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 px-2">
             Sua opinião é importante!
           </h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-3 leading-relaxed">
             Tem sugestões, dúvidas ou quer compartilhar sua experiência? 
             Envie seu feedback e nos ajude a melhorar o FitLife AI.
           </p>
@@ -312,13 +312,13 @@ const LandingPage = () => {
           <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
             <DialogTrigger asChild>
               <Button 
-                className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold px-8 py-3"
+                className="mobile-button bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white font-semibold shadow-lg touch-manipulation"
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Enviar Feedback
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-slate-800 border-slate-700 max-w-md mx-auto">
+            <DialogContent className="mobile-modal bg-slate-800 border-slate-700 max-w-lg">
               <DialogHeader>
                 <DialogTitle className="text-white flex items-center">
                   <MessageSquare className="mr-2 h-5 w-5 text-orange-500" />
