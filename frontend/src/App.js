@@ -320,73 +320,73 @@ const LandingPage = () => {
             </DialogTrigger>
             <DialogContent className="mobile-modal bg-slate-800 border-slate-700 max-w-lg">
               <DialogHeader>
-                <DialogTitle className="text-white flex items-center">
+                <DialogTitle className="text-white flex items-center text-base sm:text-lg">
                   <MessageSquare className="mr-2 h-5 w-5 text-orange-500" />
                   Envie seu Feedback
                 </DialogTitle>
-                <DialogDescription className="text-gray-400">
+                <DialogDescription className="text-gray-400 text-sm">
                   Conte-nos sua experiência, sugestões ou dúvidas sobre o FitLife AI.
                 </DialogDescription>
               </DialogHeader>
               
-              <form onSubmit={handleFeedbackSubmit} className="space-y-4 mt-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form onSubmit={handleFeedbackSubmit} className="space-y-3 sm:space-y-4 mt-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <Label htmlFor="feedback-name" className="text-white">Nome</Label>
+                    <Label htmlFor="feedback-name" className="text-white text-sm font-medium">Nome</Label>
                     <Input
                       id="feedback-name"
                       required
                       value={feedbackData.name}
                       onChange={(e) => setFeedbackData({...feedbackData, name: e.target.value})}
-                      className="bg-slate-700 border-slate-600 text-white mt-1"
+                      className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
                       placeholder="Seu nome"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="feedback-email" className="text-white">Email</Label>
+                    <Label htmlFor="feedback-email" className="text-white text-sm font-medium">Email</Label>
                     <Input
                       id="feedback-email"
                       type="email"
                       required
                       value={feedbackData.email}
                       onChange={(e) => setFeedbackData({...feedbackData, email: e.target.value})}
-                      className="bg-slate-700 border-slate-600 text-white mt-1"
+                      className="mobile-input bg-slate-700 border-slate-600 text-white mt-1"
                       placeholder="seu@email.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <Label htmlFor="feedback-message" className="text-white">Sua Mensagem</Label>
+                  <Label htmlFor="feedback-message" className="text-white text-sm font-medium">Sua Mensagem</Label>
                   <Textarea
                     id="feedback-message"
                     required
                     value={feedbackData.message}
                     onChange={(e) => setFeedbackData({...feedbackData, message: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[120px]"
-                    placeholder="Compartilhe sua experiência, sugestões, dúvidas ou reportar problemas..."
+                    className="mobile-input bg-slate-700 border-slate-600 text-white mt-1 min-h-[100px] resize-none"
+                    placeholder="Compartilhe sua experiência, sugestões ou dúvidas..."
                   />
                 </div>
                 
-                <div className="flex justify-end space-x-3 pt-4">
+                <div className="flex flex-col sm:flex-row justify-end gap-3 pt-3">
                   <Button 
                     type="button" 
                     variant="ghost" 
                     onClick={() => setFeedbackOpen(false)}
-                    className="text-gray-400 hover:text-white"
+                    className="text-gray-400 hover:text-white order-2 sm:order-1 mobile-button sm:w-auto"
                   >
                     Cancelar
                   </Button>
                   <Button 
                     type="submit" 
                     disabled={feedbackLoading}
-                    className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white"
+                    className="mobile-button bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:opacity-90 text-white order-1 sm:order-2 sm:w-auto touch-manipulation"
                   >
                     {feedbackLoading ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      <div className="flex items-center justify-center">
+                        <div className="loading-spinner mr-2"></div>
                         Enviando...
-                      </>
+                      </div>
                     ) : (
                       <>
                         <Send className="mr-2 h-4 w-4" />
