@@ -1694,19 +1694,22 @@ const Dashboard = () => {
         </Tabs>
         
         {/* Modal de Edição de Perfil */}
+        {/* Enhanced Mobile-Optimized Profile Edit Modal */}
         <Dialog open={editProfileOpen} onOpenChange={setEditProfileOpen}>
-          <DialogContent className="bg-slate-800 border-slate-700 max-w-md mx-auto">
-            <DialogHeader>
-              <DialogTitle className="text-white flex items-center">
-                <User className="mr-2 h-5 w-5 text-orange-500" />
+          <DialogContent className="mobile-modal bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600/50 max-w-lg mx-4 sm:mx-auto shadow-2xl rounded-2xl backdrop-blur-sm">
+            <DialogHeader className="border-b border-slate-700/50 pb-4">
+              <DialogTitle className="text-white flex items-center text-lg font-bold">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center mr-3 shadow-lg shadow-orange-500/25">
+                  <User className="h-4 w-4 text-white" />
+                </div>
                 Editar Perfil
               </DialogTitle>
-              <DialogDescription className="text-gray-400">
-                Atualize suas informações para receber sugestões mais precisas da IA
+              <DialogDescription className="text-gray-400 text-sm mt-2">
+                Atualize suas informações para sugestões mais precisas da IA
               </DialogDescription>
             </DialogHeader>
             
-            <form onSubmit={handleUpdateProfile} className="space-y-4 mt-4">
+            <form onSubmit={handleUpdateProfile} className="space-y-4 mt-4 max-h-[70vh] overflow-y-auto")
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="edit-age" className="text-white">Idade *</Label>
