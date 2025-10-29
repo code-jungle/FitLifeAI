@@ -1162,64 +1162,85 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <div className="mobile-grid md:grid md:grid-cols-2 gap-3 sm:gap-6">
-              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-white flex items-center text-base sm:text-xl">
-                    <Dumbbell className="mr-2 h-5 w-5 text-orange-500" />
-                    Sugestão de Treino
-                  </CardTitle>
-                  <CardDescription className="text-gray-400 text-sm">
-                    IA personalizada baseada no seu perfil
-                  </CardDescription>
+            {/* Enhanced Mobile-First Suggestion Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <Card className="group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600/50 shadow-xl hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 rounded-2xl overflow-hidden">
+                {/* Card glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-pink-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <CardHeader className="relative pb-4 pt-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center shadow-lg shadow-orange-500/25">
+                      <Dumbbell className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-white text-lg font-bold">
+                        Treino Personalizado
+                      </CardTitle>
+                      <CardDescription className="text-gray-400 text-sm mt-1">
+                        IA baseada no seu perfil
+                      </CardDescription>
+                    </div>
+                  </div>
                 </CardHeader>
-                <CardContent className="pt-0">
+                
+                <CardContent className="relative pt-0 pb-6">
                   <Button 
                     onClick={() => generateSuggestion('workout')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="mobile-button bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 text-white font-semibold shadow-lg disabled:opacity-50 transition-all duration-300"
+                    className="w-full h-14 bg-gradient-to-r from-orange-500 via-orange-600 to-pink-600 hover:from-orange-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold rounded-xl shadow-lg shadow-orange-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 touch-manipulation"
                   >
                     {loading && suggestionType === 'workout' ? (
-                      <div className="flex items-center">
-                        <div className="loading-spinner mr-2"></div>
-                        <span>Gerando...</span>
+                      <div className="flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+                        <span>Gerando treino...</span>
                       </div>
                     ) : (
-                      <>
-                        <Dumbbell className="mr-2 h-4 w-4" />
-                        <span>Gerar Treino</span>
-                      </>
+                      <div className="flex items-center justify-center">
+                        <Dumbbell className="mr-3 h-5 w-5" />
+                        <span className="text-base">Gerar Treino</span>
+                      </div>
                     )}
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="mobile-card bg-slate-800 border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-white flex items-center text-base sm:text-xl">
-                    <Apple className="mr-2 h-5 w-5 text-pink-500" />
-                    Sugestão de Nutrição
-                  </CardTitle>
-                  <CardDescription className="text-gray-400 text-sm">
-                    Dieta balanceada para seus objetivos
-                  </CardDescription>
+              <Card className="group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600/50 shadow-xl hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 rounded-2xl overflow-hidden">
+                {/* Card glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-red-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <CardHeader className="relative pb-4 pt-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center shadow-lg shadow-pink-500/25">
+                      <Apple className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-white text-lg font-bold">
+                        Nutrição Inteligente
+                      </CardTitle>
+                      <CardDescription className="text-gray-400 text-sm mt-1">
+                        Dieta para seus objetivos
+                      </CardDescription>
+                    </div>
+                  </div>
                 </CardHeader>
-                <CardContent className="pt-0">
+                
+                <CardContent className="relative pt-0 pb-6">
                   <Button 
                     onClick={() => generateSuggestion('nutrition')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="mobile-button bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90 text-white font-semibold shadow-lg disabled:opacity-50 transition-all duration-300"
+                    className="w-full h-14 bg-gradient-to-r from-pink-500 via-pink-600 to-red-600 hover:from-pink-600 hover:via-red-600 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg shadow-pink-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 touch-manipulation"
                   >
                     {loading && suggestionType === 'nutrition' ? (
-                      <div className="flex items-center">
-                        <div className="loading-spinner mr-2"></div>
-                        <span>Gerando...</span>
+                      <div className="flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+                        <span>Gerando dieta...</span>
                       </div>
                     ) : (
-                      <>
-                        <Apple className="mr-2 h-4 w-4" />
-                        <span>Gerar Dieta</span>
-                      </>
+                      <div className="flex items-center justify-center">
+                        <Apple className="mr-3 h-5 w-5" />
+                        <span className="text-base">Gerar Dieta</span>
+                      </div>
                     )}
                   </Button>
                 </CardContent>
