@@ -1096,7 +1096,7 @@ const Dashboard = () => {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent opacity-50"></div>
       </header>
 
-      <div className="mobile-container max-w-7xl mx-auto p-3 sm:p-6">
+      <div className="mobile-container max-w-7xl mx-auto p-3 sm:p-6 pb-20 sm:pb-6 gesture-scroll">
         <Tabs defaultValue="suggestions" className="space-y-3 sm:space-y-6">
           {/* Enhanced Mobile-First Tab Navigation */}
           <TabsList className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 border border-slate-600/50 w-full grid grid-cols-3 h-auto gap-0.5 p-1 rounded-2xl shadow-lg backdrop-blur-sm">
