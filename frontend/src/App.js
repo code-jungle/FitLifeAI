@@ -1760,41 +1760,43 @@ const Dashboard = () => {
                 </p>
               </div>
               
-              <div>
-                <Label htmlFor="edit-goals" className="text-white">Objetivos *</Label>
+              <div className="space-y-1">
+                <Label htmlFor="edit-goals" className="text-white text-sm font-medium">Objetivos *</Label>
                 <Textarea
                   id="edit-goals"
                   required
                   value={editProfileData.goals}
                   onChange={(e) => setEditProfileData({...editProfileData, goals: e.target.value})}
-                  className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[80px]"
-                  placeholder="Ex: Perder peso, ganhar massa muscular, melhorar condicionamento..."
+                  className="mobile-input bg-slate-700/80 border-slate-600 text-white min-h-[80px] rounded-xl focus:border-orange-500 transition-colors resize-none"
+                  placeholder="Ex: Perder peso, ganhar massa muscular..."
                 />
               </div>
               
-              <div>
-                <Label htmlFor="edit-restrictions" className="text-white">Restrições Alimentares</Label>
+              <div className="space-y-1">
+                <Label htmlFor="edit-restrictions" className="text-white text-sm font-medium">
+                  Restrições Alimentares <span className="text-gray-400 text-xs">(opcional)</span>
+                </Label>
                 <Textarea
                   id="edit-restrictions"
                   value={editProfileData.dietary_restrictions}
                   onChange={(e) => setEditProfileData({...editProfileData, dietary_restrictions: e.target.value})}
-                  className="bg-slate-700 border-slate-600 text-white mt-1 min-h-[60px]"
-                  placeholder="Ex: Vegano, alergia a glúten, intolerância à lactose..."
+                  className="mobile-input bg-slate-700/80 border-slate-600 text-white min-h-[60px] rounded-xl focus:border-orange-500 transition-colors resize-none"
+                  placeholder="Ex: Vegano, sem glúten, sem lactose..."
                 />
               </div>
               
-              <div>
-                <Label htmlFor="edit-workout-type" className="text-white">Tipo de Treino *</Label>
+              <div className="space-y-1">
+                <Label htmlFor="edit-workout-type" className="text-white text-sm font-medium">Tipo de Treino *</Label>
                 <select
                   id="edit-workout-type"
                   required
                   value={editProfileData.workout_type}
                   onChange={(e) => setEditProfileData({...editProfileData, workout_type: e.target.value})}
-                  className="w-full bg-slate-700 border border-slate-600 text-white mt-1 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="mobile-input w-full bg-slate-700/80 border border-slate-600 text-white h-12 px-4 rounded-xl focus:outline-none focus:border-orange-500 transition-colors"
                 >
-                  <option value="academia">🏋️ Academia (equipamentos completos)</option>
-                  <option value="casa">🏠 Em Casa (peso corporal/básico)</option>
-                  <option value="ar_livre">🌳 Ao Ar Livre (parques/ruas)</option>
+                  <option value="academia">🏋️ Academia</option>
+                  <option value="casa">🏠 Em Casa</option>
+                  <option value="ar_livre">🌳 Ao Ar Livre</option>
                 </select>
                 <p className="text-xs text-gray-400 mt-1">
                   💡 A IA adaptará os treinos para o ambiente escolhido
