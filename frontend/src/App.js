@@ -1098,30 +1098,28 @@ const Dashboard = () => {
 
       <div className="mobile-container max-w-7xl mx-auto p-3 sm:p-6">
         <Tabs defaultValue="suggestions" className="space-y-3 sm:space-y-6">
-          <TabsList className="bg-slate-800 border-slate-700 w-full grid grid-cols-3 sm:flex sm:flex-row h-auto gap-1 p-1 rounded-xl">
+          {/* Enhanced Mobile-First Tab Navigation */}
+          <TabsList className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 border border-slate-600/50 w-full grid grid-cols-3 h-auto gap-0.5 p-1 rounded-2xl shadow-lg backdrop-blur-sm">
             <TabsTrigger 
               value="suggestions" 
-              className="mobile-tab text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg transition-all duration-200"
+              className="flex flex-col items-center justify-center py-3 px-2 text-gray-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500 data-[state=active]:via-orange-500 data-[state=active]:to-red-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-pink-500/25 rounded-xl transition-all duration-300 hover:bg-slate-600/50 min-h-[60px] touch-manipulation"
             >
-              <Zap className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline text-sm">Sugestões IA</span>
-              <span className="sm:hidden text-xs">IA</span>
+              <Zap className="h-5 w-5 mb-1" />
+              <span className="text-xs font-medium">Sugestões</span>
             </TabsTrigger>
             <TabsTrigger 
               value="history" 
-              className="mobile-tab text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg transition-all duration-200"
+              className="flex flex-col items-center justify-center py-3 px-2 text-gray-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500 data-[state=active]:via-orange-500 data-[state=active]:to-red-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-pink-500/25 rounded-xl transition-all duration-300 hover:bg-slate-600/50 min-h-[60px] touch-manipulation"
             >
-              <History className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline text-sm">Histórico</span>
-              <span className="sm:hidden text-xs">Hist</span>
+              <History className="h-5 w-5 mb-1" />
+              <span className="text-xs font-medium">Histórico</span>
             </TabsTrigger>
             <TabsTrigger 
               value="profile" 
-              className="mobile-tab text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg transition-all duration-200"
+              className="flex flex-col items-center justify-center py-3 px-2 text-gray-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500 data-[state=active]:via-orange-500 data-[state=active]:to-red-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-pink-500/25 rounded-xl transition-all duration-300 hover:bg-slate-600/50 min-h-[60px] touch-manipulation"
             >
-              <User className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline text-sm">Perfil</span>
-              <span className="sm:hidden text-xs">Perfil</span>
+              <User className="h-5 w-5 mb-1" />
+              <span className="text-xs font-medium">Perfil</span>
             </TabsTrigger>
           </TabsList>
 
