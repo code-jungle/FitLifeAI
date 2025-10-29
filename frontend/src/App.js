@@ -1720,7 +1720,7 @@ const Dashboard = () => {
               </DialogDescription>
             </DialogHeader>
             
-            <form onSubmit={handleUpdateProfile} className="space-y-4 mt-4 max-h-[70vh] overflow-y-auto")
+            <form onSubmit={handleUpdateProfile} className="space-y-4 mt-4 max-h-[70vh] overflow-y-auto"
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="edit-age" className="text-white text-sm font-medium">Idade *</Label>
