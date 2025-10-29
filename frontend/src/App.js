@@ -1017,44 +1017,69 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      {/* Enhanced Mobile Header */}
-      <header className="bg-slate-800 border-b border-slate-700 mobile-header sticky top-0 z-50 backdrop-blur-lg">
-        <div className="mobile-container max-w-7xl mx-auto">
+      {/* Enhanced Gradient Header */}
+      <header className="relative mobile-header sticky top-0 z-50 backdrop-blur-xl border-b border-white/10">
+        {/* Background with gradient and glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-orange-500/10 to-red-500/10"></div>
+        
+        <div className="relative mobile-container max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
-            <div className="fitlife-logo">
-              <div className="fitlife-logo-text">FitLife AI</div>
+            {/* Enhanced Logo with gradient */}
+            <div className="fitlife-logo flex items-center">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-r from-pink-500 via-orange-500 to-red-500 flex items-center justify-center mr-3 shadow-lg shadow-pink-500/25">
+                <Dumbbell className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+              </div>
+              <div className="fitlife-logo-text bg-gradient-to-r from-pink-400 via-orange-400 to-red-400 bg-clip-text text-transparent font-bold text-lg sm:text-xl">
+                FitLife AI
+              </div>
             </div>
+            
             <div className="flex items-center gap-2">
               <div className="hidden sm:block text-white text-sm">
-                <span className="text-gray-400">Olá,</span> {user?.name}
+                <span className="text-gray-300">Olá,</span> 
+                <span className="font-medium text-white ml-1">{user?.name}</span>
               </div>
+              
               {!user?.is_premium && (
-                <div className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                <div className={`px-2 py-1 rounded-full text-xs font-semibold backdrop-blur-sm ${
                   isTrialActive 
-                    ? 'bg-yellow-600 text-black' 
-                    : 'bg-red-600 text-white'
+                    ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black shadow-lg shadow-yellow-500/25' 
+                    : 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25'
                 }`}>
-                  {isTrialActive ? `${trialDaysLeft}d` : 'Expirado'}
+                  {isTrialActive ? `${trialDaysLeft}d restantes` : 'Expirado'}
                 </div>
               )}
+              
               {user?.is_premium && (
-                <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg shadow-pink-500/25">
                   <Crown className="inline h-3 w-3 mr-1" />
-                  Pro
+                  <span className="hidden sm:inline">Premium</span>
+                  <span className="sm:hidden">Pro</span>
                 </div>
               )}
-              <Button variant="ghost" onClick={logout} className="text-white hover:bg-slate-700 p-2 h-10 w-10">
+              
+              <Button 
+                variant="ghost" 
+                onClick={logout} 
+                className="text-white hover:bg-white/10 p-2 h-10 w-10 rounded-lg backdrop-blur-sm hover:shadow-lg hover:shadow-white/5 transition-all duration-200"
+              >
                 <LogOut className="h-4 w-4" />
               </Button>
             </div>
           </div>
+          
           {/* Mobile User Info */}
           <div className="sm:hidden mt-2 pb-2">
             <div className="text-white text-sm">
-              <span className="text-gray-400">Olá,</span> {user?.name?.split(' ')[0] || user?.name}
+              <span className="text-gray-300">Olá,</span> 
+              <span className="font-medium ml-1">{user?.name?.split(' ')[0] || user?.name}</span>
             </div>
           </div>
         </div>
+        
+        {/* Subtle glow line at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent opacity-50"></div>
       </header>
 
       <div className="mobile-container max-w-7xl mx-auto p-3 sm:p-6">
