@@ -1710,9 +1710,9 @@ const Dashboard = () => {
             </DialogHeader>
             
             <form onSubmit={handleUpdateProfile} className="space-y-4 mt-4 max-h-[70vh] overflow-y-auto")
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="edit-age" className="text-white">Idade *</Label>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <Label htmlFor="edit-age" className="text-white text-sm font-medium">Idade *</Label>
                   <Input
                     id="edit-age"
                     type="number"
@@ -1721,12 +1721,12 @@ const Dashboard = () => {
                     max="100"
                     value={editProfileData.age}
                     onChange={(e) => setEditProfileData({...editProfileData, age: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1"
-                    placeholder="Idade"
+                    className="mobile-input bg-slate-700/80 border-slate-600 text-white h-12 text-center font-semibold rounded-xl focus:border-orange-500 transition-colors"
+                    placeholder="28"
                   />
                 </div>
-                <div>
-                  <Label htmlFor="edit-weight" className="text-white">Peso (kg) *</Label>
+                <div className="space-y-1">
+                  <Label htmlFor="edit-weight" className="text-white text-sm font-medium">Peso (kg) *</Label>
                   <Input
                     id="edit-weight"
                     type="number"
@@ -1736,17 +1736,14 @@ const Dashboard = () => {
                     step="0.1"
                     value={editProfileData.weight}
                     onChange={(e) => setEditProfileData({...editProfileData, weight: e.target.value})}
-                    className="bg-slate-700 border-slate-600 text-white mt-1"
+                    className="mobile-input bg-slate-700/80 border-slate-600 text-white h-12 text-center font-semibold rounded-xl focus:border-orange-500 transition-colors"
                     placeholder="70.5"
                   />
-                  <p className="text-xs text-gray-400 mt-1">
-                    💡 Peso em quilogramas. Ex: <strong>70.5</strong>
-                  </p>
                 </div>
               </div>
               
-              <div>
-                <Label htmlFor="edit-height" className="text-white">Altura (cm) *</Label>
+              <div className="space-y-1">
+                <Label htmlFor="edit-height" className="text-white text-sm font-medium">Altura (cm) *</Label>
                 <Input
                   id="edit-height"
                   type="number"
@@ -1755,11 +1752,11 @@ const Dashboard = () => {
                   max="250"
                   value={editProfileData.height}
                   onChange={(e) => setEditProfileData({...editProfileData, height: e.target.value})}
-                  className="bg-slate-700 border-slate-600 text-white mt-1"
+                  className="mobile-input bg-slate-700/80 border-slate-600 text-white h-12 text-center font-semibold rounded-xl focus:border-orange-500 transition-colors"
                   placeholder="175"
                 />
-                <p className="text-xs text-gray-400 mt-1">
-                  💡 Altura em centímetros. Ex: <strong>175</strong>
+                <p className="text-xs text-gray-400 text-center">
+                  💡 Use ponto para decimais (ex: 70.5)
                 </p>
               </div>
               
