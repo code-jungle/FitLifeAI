@@ -1692,6 +1692,17 @@ const Dashboard = () => {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Mobile FAB for Quick Actions */}
+        <div className="fixed bottom-6 right-6 sm:hidden z-40">
+          <Button
+            onClick={() => generateSuggestion('workout')}
+            disabled={loading || (!user?.is_premium && !isTrialActive)}
+            className="w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white shadow-xl shadow-orange-500/25 touch-feedback disabled:opacity-50 transition-all duration-300 border-2 border-white/10"
+          >
+            <Dumbbell className="h-6 w-6" />
+          </Button>
+        </div>
         
         {/* Modal de Edição de Perfil */}
         {/* Enhanced Mobile-Optimized Profile Edit Modal */}
