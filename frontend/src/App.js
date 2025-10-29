@@ -1229,7 +1229,7 @@ const Dashboard = () => {
                   <Button 
                     onClick={() => generateSuggestion('nutrition')}
                     disabled={loading || (!user?.is_premium && !isTrialActive)}
-                    className="w-full h-14 bg-gradient-to-r from-pink-500 via-pink-600 to-red-600 hover:from-pink-600 hover:via-red-600 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg shadow-pink-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 touch-manipulation"
+                    className="w-full touch-target-large touch-feedback bg-gradient-to-r from-pink-500 via-pink-600 to-red-600 hover:from-pink-600 hover:via-red-600 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg shadow-pink-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     {loading && suggestionType === 'nutrition' ? (
                       <div className="flex items-center justify-center">
