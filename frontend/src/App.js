@@ -141,16 +141,27 @@ const LandingPage = () => {
   
   return (
     <div className="min-h-screen bg-slate-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800">
-        <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-          <div className="fitlife-logo">
-            <div className="fitlife-logo-text">FitLife AI</div>
+      {/* Enhanced Gradient Header */}
+      <header className="relative sticky top-0 z-50 backdrop-blur-xl border-b border-white/10">
+        {/* Background with gradient and glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-orange-500/10 to-red-500/10"></div>
+        
+        <div className="relative container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+          {/* Enhanced Logo with gradient */}
+          <div className="fitlife-logo flex items-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-r from-pink-500 via-orange-500 to-red-500 flex items-center justify-center mr-3 shadow-lg shadow-pink-500/25">
+              <Dumbbell className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+            </div>
+            <div className="fitlife-logo-text bg-gradient-to-r from-pink-400 via-orange-400 to-red-400 bg-clip-text text-transparent font-bold text-lg sm:text-xl">
+              FitLife AI
+            </div>
           </div>
+          
           <div className="flex items-center space-x-2 sm:space-x-4">
             <Button 
               variant="ghost" 
-              className="text-white hover:bg-white/10 text-sm sm:text-base px-3 sm:px-4"
+              className="text-white hover:bg-white/10 text-sm sm:text-base px-3 sm:px-4 rounded-lg backdrop-blur-sm hover:shadow-lg hover:shadow-white/5 transition-all duration-200"
               onClick={() => navigate('/auth')}
             >
               Login
@@ -160,13 +171,16 @@ const LandingPage = () => {
             <Button
               id="pwa-install-btn"
               variant="outline"
-              className="hidden border-white text-white hover:bg-white hover:text-slate-900 text-sm px-3 py-1"
+              className="hidden border-pink-500/50 text-pink-400 hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:text-white text-sm px-3 py-1 rounded-lg backdrop-blur-sm transition-all duration-300"
               style={{ display: 'none' }}
             >
               📱 Instalar App
             </Button>
           </div>
         </div>
+        
+        {/* Subtle glow line at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent opacity-50"></div>
       </header>
 
       {/* Enhanced Mobile Hero Section */}
