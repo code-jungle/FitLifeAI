@@ -240,7 +240,10 @@ async def register_user(user_data: UserCreate):
     # Check if user already exists
     existing_user = await db.users.find_one({"email": user_data.email})
     if existing_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(
+            status_code=400, 
+            detail=f"O email {user_data.email} já está cadastrado. Tente fazer login ou use outro email."
+        )
     
     # Create new user
     hashed_password = hash_password(user_data.password)
