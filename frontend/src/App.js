@@ -480,11 +480,23 @@ const AuthForms = () => {
       });
       navigate('/dashboard');
     } catch (error) {
+      const errorMessage = error.response?.data?.detail || "Ocorreu um erro. Tente novamente.";
+      const isEmailDuplicate = errorMessage.toLowerCase().includes('já está cadastrado');
+      
       toast({
-        title: "Erro",
-        description: error.response?.data?.detail || "Ocorreu um erro. Tente novamente.",
+        title: isEmailDuplicate ? "Email já cadastrado" : "Erro",
+        description: errorMessage,
         variant: "destructive"
       });
+      
+      // Se for erro de email duplicado e estiver na tela de registro, focar no campo email
+      if (isEmailDuplicate && !isLogin) {
+        const emailField = document.getElementById('email');
+        if (emailField) {
+          emailField.focus();
+          emailField.select();
+        }
+      }
     } finally {
       setLoading(false);
     }
